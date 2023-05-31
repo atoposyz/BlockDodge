@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Timer = System.Windows.Forms.Timer;
+
 namespace demo
 {
     public partial class Form1 : Form
@@ -5,10 +8,32 @@ namespace demo
         private Player? tmp;
         int posnum = 1;
         Point[] Points = new Point[3] { new Point(200, 100), new Point(200, 200), new Point(200, 300) };
+        private List<Bullet> bullets = new List<Bullet>();
+        private Timer timer = new Timer();
+
+
+
         public Form1()
         {
             InitializeComponent();
+
+            timer.Interval = 20;
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
         }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            foreach (Bullet bullet in bullets)
+            {
+                bullet.Move();
+                bullet.Draw(panel2.CreateGraphics());
+            }
+            
+            //panel2.Invalidate();
+            //tmp.Draw(panel2.CreateGraphics());
+        }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -47,6 +72,15 @@ namespace demo
                 label1.Text = "change to pos" + posnum + "on" + tmp.PlayerPosition.ToString();
             }
         }
+
+        private void panel2_MouseClick(object sender, MouseEventArgs e)
+        {
+            Bullet bullet = new Bullet(panel1.Width, e.Y, 5);
+            bullet.Draw(panel2.CreateGraphics());
+            bullets.Add(bullet);
+            
+        }
+
     }
     public class Player
     {
@@ -70,5 +104,34 @@ namespace demo
         }
     }
 
+    class Bullet
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Speed { get; set; }
+
+        //public Point PlayerPosition;
+        double Width;
+        Image img;
+        public Bullet(int x, int y, int speed)
+        {
+            X = x;
+            Y = y;
+            Speed = speed;
+            img = GameImg.Bullet;
+            Width = img.Width;
+        }
+
+        public void Move()
+        {
+            X -= Speed;
+        }
+        public void Draw(Graphics g)
+        {
+            //g.FillEllipse(Brushes.Red, this.X, this.Y, 10, 10);
+            g.Clear(Color.White);
+            g.DrawImage(img, new Point(this.X, this.Y));
+        }
+    }
 
 }
