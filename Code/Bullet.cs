@@ -10,14 +10,20 @@ namespace demo.Code
     {
         private int width;
         private int height;
+        protected int damagetype;
 
         public Bullet(Point position, int width, int height, Image image) : base(position, width, height, image)
         {
             this.width = width;
             this.height = height;
+            damagetype = 0;
         }
 
-
+        public int DamageType
+        {
+            get { return damagetype; } 
+            set {  damagetype = value; }
+        }
         public void Move()
         {
             position.X -= Form1.BulletSpeed;

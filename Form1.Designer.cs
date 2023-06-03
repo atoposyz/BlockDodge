@@ -30,11 +30,13 @@
         {
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
+            shieldlabel = new Label();
             textBox2 = new TextBox();
             button2 = new Button();
             button1 = new Button();
             panel2 = new Panel();
             label1 = new Label();
+            shieldtext = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -57,6 +59,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(shieldtext);
+            panel1.Controls.Add(shieldlabel);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
@@ -65,6 +69,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(872, 55);
             panel1.TabIndex = 0;
+            // 
+            // shieldlabel
+            // 
+            shieldlabel.AutoSize = true;
+            shieldlabel.Location = new Point(745, 20);
+            shieldlabel.Name = "shieldlabel";
+            shieldlabel.Size = new Size(54, 20);
+            shieldlabel.TabIndex = 3;
+            shieldlabel.Text = "盾量：";
             // 
             // textBox2
             // 
@@ -112,6 +125,15 @@
             label1.TabIndex = 0;
             label1.Text = "label1";
             // 
+            // shieldtext
+            // 
+            shieldtext.AutoSize = true;
+            shieldtext.Location = new Point(795, 22);
+            shieldtext.Name = "shieldtext";
+            shieldtext.Size = new Size(18, 20);
+            shieldtext.TabIndex = 4;
+            shieldtext.Text = "0";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -139,5 +161,7 @@
         private Panel panel2;
         private Label label1;
         private TextBox textBox2;
+        private Label shieldlabel;
+        private Label shieldtext;
     }
 }

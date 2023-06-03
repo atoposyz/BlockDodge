@@ -33,6 +33,7 @@ namespace demo.Code
         {
             this.width = width;
             this.height = height;
+            DamageType = 1;
         }
     }
     abstract class DEBUFF : Effect
@@ -44,6 +45,23 @@ namespace demo.Code
         {
             this.width = width;
             this.height = height;
+            DamageType = 2;
+        }
+    }
+    class SHIELD: BUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public SHIELD(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.OnceEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            block.ShieldCapacity++;
         }
     }
     class BRAVE: DEBUFF
@@ -56,6 +74,7 @@ namespace demo.Code
             this.width = width;
             this.height = height;
             type = EffectType.OnceEffect;
+            
         }
         public override void CauseEffect(Player block)
         {

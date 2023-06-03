@@ -63,9 +63,29 @@ namespace demo {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap BUFF {
+            get {
+                object obj = ResourceManager.GetObject("BUFF", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Bullet {
             get {
                 object obj = ResourceManager.GetObject("Bullet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap DEBUFF {
+            get {
+                object obj = ResourceManager.GetObject("DEBUFF", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
