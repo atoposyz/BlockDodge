@@ -94,11 +94,13 @@ namespace demo
                         else if (bullet.DamageType == 1) //如果是效果类
                         {
                             ((BUFF)bullet).CauseEffect(block);
+                            UpdateStatus();
                             transmitter.Bullets[i] = null;
                         }
                         else if(bullet.DamageType == 2)
                         {
                             ((DEBUFF)bullet).CauseEffect(block);
+                            UpdateStatus();
                             transmitter.Bullets[i] = null;
                         }
 
