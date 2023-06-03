@@ -16,6 +16,7 @@ namespace demo.Code
         private List<bool>[] track;
         private int tracklength;
         private int bulletnumber;
+        private int[] trackposY = new int[3] { 100, 200, 300 };
         public Transmitter(int tracknumber)
         {
             bulletnumber = 0;
@@ -65,7 +66,7 @@ namespace demo.Code
         {
             get { return bulletnumber; }
         }
-        public void Fire(int startX)
+        public void Fire(int startX, int blockX)
         {
             int numtmp = 0;
             for (int i = 0; i < tracklength; i++)
@@ -74,7 +75,9 @@ namespace demo.Code
                 {
                     if (track[j][i] == true)
                     {
-                        bullets[numtmp] = new Bullet(new Point(startX + i * 200, Form1.Points[j].Y), Form1.BulletWidth, Form1.BulletHeight, GameImg.Bullet);
+                        bullets[numtmp] = new Bullet(
+                            new Point(startX + i * 200, trackposY[j]), 
+                            Form1.BulletWidth, Form1.BulletHeight, GameImg.Bullet);
                         numtmp++;
                     }
 

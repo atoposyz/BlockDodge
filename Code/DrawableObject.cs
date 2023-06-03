@@ -8,7 +8,7 @@ namespace demo.Code
 {
     public abstract class DrawableObject
     {
-        public Point position;
+        protected Point position;
         protected Image image;
 
         public DrawableObject(Point position, int width, int height, Image image)

@@ -7,10 +7,15 @@ namespace demo
 {
     public partial class Form1 : Form
     {
-        private Player? tmp;
-        int posnum = 1;
-        
-        public static Point[] Points = new Point[3] { new Point(200, 100), new Point(200, 200), new Point(200, 300) };
+        private Player block;
+        private int posY;
+        private int posX;
+        //private Point startpoint = new Point(50, 200);
+        private Point startpoint;
+        /*public static Point[,] Points = new Point[3, 3] { 
+            { new Point(50, 100), new Point(50, 200), new Point(50, 300) },
+            { new Point(350, 100), new Point(350, 200), new Point(350, 300) },
+            { new Point(650, 100), new Point(650, 200), new Point(650, 300) } };*/
         
 
         private List<DrawableObject> dos = new List<DrawableObject>();
@@ -33,7 +38,9 @@ namespace demo
             InitializeComponent();
             //InitializeGame();
             //DoubleBuffered = true;
-
+            posY = 1;
+            posX = 0;
+            startpoint = Tool.points[posX, posY];
             //panel2.Resize += new EventHandler(panel2_Resize);
             buffer = BufferedGraphicsManager.Current.Allocate(panel2.CreateGraphics(), panel2.DisplayRectangle);
         }
@@ -41,8 +48,8 @@ namespace demo
         //private void InitializeGame()
         //{
         //    //buffer.Graphics.Clear(BackColor);
-        //    tmp = new Player(Points[posnum], BlockSize, BlockSize, GameImg.Square);
-        //    dos.Add(tmp);
+        //    block = new Player(Points[posY], BlockSize, BlockSize, GameImg.Square);
+        //    dos.Add(block);
         //    timer = new Timer();
         //    timer.Interval = 20;
         //    timer.Tick += new EventHandler(timer_Tick);
@@ -63,7 +70,7 @@ namespace demo
                         //bullet.Position = new Point(panel2.Width, random.Next(panel2.Height - BulletHeight));
                     }
 
-                    if (bullet.CollidesWith(tmp))
+                    if (bullet.CollidesWith(block))
                     {
                         timer.Stop();
                         MessageBox.Show("Game Over");
@@ -76,13 +83,13 @@ namespace demo
             }
             //UpdateDrawableObject();
             //panel2.Invalidate();
-            //tmp.Draw(panel2.CreateGraphics());
+            //block.Draw(panel2.CreateGraphics());
         }
 
         private void DrawGame()
         {
             buffer.Graphics.Clear(BackColor);
-            tmp.Draw(buffer.Graphics);
+            block.Draw(buffer.Graphics);
 
             foreach (Bullet bullet in transmitter.Bullets)
             {
@@ -114,8 +121,8 @@ namespace demo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tmp = new Player(Points[posnum], BlockSize, BlockSize, GameImg.Square);
-            dos.Add(tmp);
+            block = new Player(startpoint, BlockSize, BlockSize, GameImg.Square);
+            dos.Add(block);
 
 
             timer = new Timer();
@@ -128,7 +135,7 @@ namespace demo
             //bullets = new Bullet[5];
             //transmitter.Bullets = new Bullet[transmitter.BulletNumber];
             GenerateBullets();
-            label1.Text = "start on" + Points[posnum].ToString();
+            label1.Text = "start on " + block.Position.ToString();
         }
 
         private void GenerateBullets()
@@ -141,7 +148,7 @@ namespace demo
                 bullets[i] = new Bullet(new Point(startX, startY), BulletWidth, BulletHeight, GameImg.Bullet);
                 startY += BulletHeight * 2;
             }*/
-            transmitter.Fire(panel2.Width);
+            transmitter.Fire(panel2.Width, posX);
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -152,25 +159,25 @@ namespace demo
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             label1.Text = e.KeyChar.ToString();
-            if (e.KeyChar == 'w' && tmp != null)
+            if (e.KeyChar == 'w' && block != null)
             {
-                if (posnum > 0)
+                if (posY > 0)
                 {
-                    posnum--;
+                    posY--;
                 }
-                tmp.changepos(Points[posnum]);
+                block.changepos(posX, posY);
                 //UpdateDrawableObject();
-                label1.Text = "change to pos" + posnum + "on" + Points[posnum].ToString();
+                label1.Text = "change to pos " + posY + " on" + block.Position.ToString();
             }
-            else if (e.KeyChar == 's' && tmp != null)
+            else if (e.KeyChar == 's' && block != null)
             {
-                if (posnum < 2)
+                if (posY < 2)
                 {
-                    posnum++;
+                    posY++;
                 }
-                tmp.changepos(Points[posnum]);
+                block.changepos(posX, posY);
                 //UpdateDrawableObject();
-                label1.Text = "change to pos" + posnum + "on" + tmp.position.ToString();
+                label1.Text = "change to pos " + posY + " on" + block.Position.ToString();
             }
         }
 
