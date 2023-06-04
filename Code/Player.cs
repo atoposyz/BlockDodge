@@ -13,6 +13,7 @@ namespace demo.Code
         private int coordinateX;
         private int coordinateY;
         private int shieldcapacity;
+        private bool bulletignore;
         public static Point[,] Points = new Point[3, 3] {
             { new Point(50, 100), new Point(50, 200), new Point(50, 300) },
             { new Point(350, 100), new Point(350, 200), new Point(350, 300) },
@@ -31,6 +32,11 @@ namespace demo.Code
         {
             get { return shieldcapacity; }
             set { shieldcapacity = value; }
+        }
+        public bool BulletIgnore
+        {
+            get { return bulletignore; }
+            set { bulletignore = value; }
         }
         public Player(Point position, int width, int height, Image image) : base(position, width, height, image)
         {

@@ -57,6 +57,40 @@ namespace demo
         //    timer.Start();
 
         //}
+        private bool CollidesJudge(int No_, Bullet bullet)
+        {
+            if (bullet.DamageType == 0)  //如果是子弹
+            {
+                if(block.BulletIgnore == true)
+                {
+                    transmitter.Bullets[No_] = null;
+                    UpdateStatus();
+                }
+                else if (block.ShieldCapacity > 0)
+                {
+                    block.ShieldCapacity--;
+                    transmitter.Bullets[No_] = null;
+                    UpdateStatus();
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else if (bullet.DamageType == 1) //如果是效果类
+            {
+                ((BUFF)bullet).CauseEffect(block);
+                UpdateStatus();
+                transmitter.Bullets[No_] = null;
+            }
+            else if(bullet.DamageType == 2)
+            {
+                ((DEBUFF)bullet).CauseEffect(block);
+                UpdateStatus();
+                transmitter.Bullets[No_] = null;
+            }
+            return false;
+        }
 
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -75,35 +109,13 @@ namespace demo
 
                     if (bullet.CollidesWith(block))
                     {
-                        if (bullet.DamageType == 0)  //如果是子弹
-                        {
-                            if (block.ShieldCapacity > 0)
-                            {
-                                block.ShieldCapacity--;
-                                transmitter.Bullets[i] = null;
-                                UpdateStatus();
-                            }
-                            else
-                            {
-                                timer.Stop();
-                                MessageBox.Show("Game Over");
-                                //InitializeGame();
-                                break;
-                            }
+                        bool flag = CollidesJudge(i, bullet);
+                        if(flag == true) {
+                            //InitializeGame();
+                            timer.Stop();
+                            MessageBox.Show("Game Over");
+                            break; 
                         }
-                        else if (bullet.DamageType == 1) //如果是效果类
-                        {
-                            ((BUFF)bullet).CauseEffect(block);
-                            UpdateStatus();
-                            transmitter.Bullets[i] = null;
-                        }
-                        else if(bullet.DamageType == 2)
-                        {
-                            ((DEBUFF)bullet).CauseEffect(block);
-                            UpdateStatus();
-                            transmitter.Bullets[i] = null;
-                        }
-
                     }
                 }
 
@@ -118,7 +130,6 @@ namespace demo
         {
             shieldtext.Text = block.ShieldCapacity.ToString();
         }
-
         private void DrawGame()
         {
             buffer.Graphics.Clear(BackColor);

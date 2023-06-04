@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Timer = System.Timers.Timer;
 
 namespace demo.Code
 {   
@@ -64,11 +65,40 @@ namespace demo.Code
             block.ShieldCapacity++;
         }
     }
+    class SHIELD_TimeLimit: BUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        Timer timer;
+        Player block;
+        public SHIELD_TimeLimit(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.ContinuousEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            block.BulletIgnore = true;
+            this.block = block;
+            timer = new Timer(100);
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(this.LoseEfficacy);
+            timer.AutoReset = false;
+            timer.Enabled = true;
+        }
+        private void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+            block.BulletIgnore = false;
+        }
+    }
     class BRAVE: DEBUFF
     {
         private int width;
         private int height;
         EffectType type;
+        Timer timer;
+        Player block;
         public BRAVE(Point position, int width, int height, Image image) : base(position, width, height, image)
         {
             this.width = width;
@@ -78,10 +108,20 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
-            if(block.CoordinateX < 2)
+            block.BulletIgnore = true;
+            this.block = block;
+            timer = new Timer(100);
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(this.LoseEfficacy);
+            timer.AutoReset = false;
+            timer.Enabled = true;
+            if (block.CoordinateX < 2)
             {
                 block.changepos(block.CoordinateX + 1, block.CoordinateY);
             }
+        }
+        private void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+            block.BulletIgnore = false;
         }
     }
 }
