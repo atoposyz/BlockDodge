@@ -30,14 +30,13 @@
         {
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
+            timelimit = new Label();
             shieldtext = new Label();
             shieldlabel = new Label();
-            textBox2 = new TextBox();
             button2 = new Button();
             button1 = new Button();
             panel2 = new Panel();
             label1 = new Label();
-            timelimit = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -63,7 +62,6 @@
             panel1.Controls.Add(timelimit);
             panel1.Controls.Add(shieldtext);
             panel1.Controls.Add(shieldlabel);
-            panel1.Controls.Add(textBox2);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Dock = DockStyle.Fill;
@@ -71,6 +69,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(872, 55);
             panel1.TabIndex = 0;
+            // 
+            // timelimit
+            // 
+            timelimit.AutoSize = true;
+            timelimit.Location = new Point(715, 21);
+            timelimit.Name = "timelimit";
+            timelimit.Size = new Size(25, 20);
+            timelimit.TabIndex = 5;
+            timelimit.Text = "0s";
             // 
             // shieldtext
             // 
@@ -89,14 +96,6 @@
             shieldlabel.Size = new Size(197, 20);
             shieldlabel.TabIndex = 3;
             shieldlabel.Text = "持续时间：                 盾量：";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(401, 18);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(124, 27);
-            textBox2.TabIndex = 2;
-            textBox2.KeyPress += textBox2_KeyPress;
             // 
             // button2
             // 
@@ -136,15 +135,6 @@
             label1.TabIndex = 0;
             label1.Text = "label1";
             // 
-            // timelimit
-            // 
-            timelimit.AutoSize = true;
-            timelimit.Location = new Point(715, 21);
-            timelimit.Name = "timelimit";
-            timelimit.Size = new Size(25, 20);
-            timelimit.TabIndex = 5;
-            timelimit.Text = "0s";
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -154,7 +144,7 @@
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            KeyPress += Form1_KeyPress;
+            KeyDown += Form1_KeyDown;
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -171,7 +161,6 @@
         private Button button1;
         private Panel panel2;
         private Label label1;
-        private TextBox textBox2;
         private Label shieldlabel;
         private Label shieldtext;
         private Label timelimit;

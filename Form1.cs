@@ -7,6 +7,7 @@ namespace demo
 {
     public partial class Form1 : Form
     {
+
         private Player block;
         //private int posY;
         //private int posX;
@@ -36,6 +37,7 @@ namespace demo
         public Form1()
         {
             InitializeComponent();
+            this.KeyPreview = true;
             //InitializeGame();
             //DoubleBuffered = true;
             //posY = 1;
@@ -82,10 +84,11 @@ namespace demo
             }
             else if (bullet.DamageType == 1) //如果是效果类
             {
-                if(block.EffectIgnore == true)
+                if (block.EffectIgnore == true)
                 {
                     transmitter.Bullets[No_] = null;
-                } else
+                }
+                else
                 {
                     ((BUFF)bullet).CauseEffect(block);
                     UpdateStatus();
@@ -147,11 +150,12 @@ namespace demo
 
                 DrawGame();
             }
-            if(block.Magnet == true && timelast > 0)
+            if (block.Magnet == true && timelast > 0)
             {
                 timelimit.Text = (timelast / 1000).ToString() + 's';
                 timelast -= 20;
-            } else
+            }
+            else
             {
                 timelimit.Text = "0s";
                 timelast = 0;
@@ -237,36 +241,7 @@ namespace demo
             }*/
             transmitter.Fire(panel2.Width, block.CoordinateX);
         }
-
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            label1.Text = e.KeyChar.ToString();
-            if (e.KeyChar == 'w' && block != null)
-            {
-                if (block.CoordinateY > 0)
-                {
-                    block.CoordinateY--;
-                }
-                block.changepos(block.CoordinateX, block.CoordinateY);
-                //UpdateDrawableObject();
-                //label1.Text = "change to pos " + block.CoordinateY + " on" + block.Position.ToString();
-            }
-            else if (e.KeyChar == 's' && block != null)
-            {
-                if (block.CoordinateY < 2)
-                {
-                    block.CoordinateY++;
-                }
-                block.changepos(block.CoordinateX, block.CoordinateY);
-                //UpdateDrawableObject();
-                //label1.Text = "change to pos " + block.CoordinateY + " on" + block.Position.ToString();
-            }
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -289,6 +264,31 @@ namespace demo
         public void setlabel1(string text)
         {
             //label1.Text = text;
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            label1.Text = ((char)e.KeyValue).ToString();
+            if ((char)e.KeyValue == 'W' && block != null)
+            {
+                if (block.CoordinateY > 0)
+                {
+                    block.CoordinateY--;
+                }
+                block.changepos(block.CoordinateX, block.CoordinateY);
+                //UpdateDrawableObject();
+                //label1.Text = "change to pos " + block.CoordinateY + " on" + block.Position.ToString();
+            }
+            else if ((char)e.KeyValue == 'S' && block != null)
+            {
+                if (block.CoordinateY < 2)
+                {
+                    block.CoordinateY++;
+                }
+                block.changepos(block.CoordinateX, block.CoordinateY);
+                //UpdateDrawableObject();
+                //label1.Text = "change to pos " + block.CoordinateY + " on" + block.Position.ToString();
+            }
         }
     }
 }
