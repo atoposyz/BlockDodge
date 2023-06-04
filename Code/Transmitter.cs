@@ -15,7 +15,13 @@ namespace demo.Code
     }
     enum BuffProbability
     {
-
+        shield = 15,
+        magnet = 30,
+        defense = 45,
+        timeslack = 60,
+        invincibility = 75,
+        pure = 90,
+        sprint = 100
     }
     class Transmitter
     {
@@ -136,9 +142,7 @@ namespace demo.Code
                         numtmp++;
                     } else if (track[j][i] == 2)    //BUFF
                     {
-                        bullets[numtmp] = new SPRINT(
-                            new Point(startX + i * 200, Tool.trackposY[j]),
-                            Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+                        bullets[numtmp] = RandomBuff(startX, i, j);
                         numtmp++;
                     }
                     else if (track[j][i] == 3)      //DEBUFF
@@ -150,6 +154,39 @@ namespace demo.Code
                     }
 
                 }
+            }
+        }
+        public BUFF RandomBuff(int startX, int i, int j) {
+            Random rd = new Random();
+            int tmp = rd.Next(0, 100);
+            if(tmp < (int)BuffProbability.shield) {
+                return new SHIELD(
+                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            } else if(tmp < (int)BuffProbability.magnet) {
+                return new MAGNET(
+                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            } else if(tmp < (int)BuffProbability.defense) {
+                return new DEFENSE(
+                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            } else if(tmp < (int)BuffProbability.timeslack) {
+                return new TIMESLACK(
+                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            } else if(tmp < (int)BuffProbability.invincibility) {
+                return new INVINCIBILITY(
+                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            } else if(tmp < (int)BuffProbability.pure) {
+                return new PURE(
+                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            } else {
+                return new SPRINT(
+                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             }
         }
     }
