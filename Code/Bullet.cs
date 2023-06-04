@@ -47,6 +47,10 @@ namespace demo.Code
             return block.Position.X < position.X + Form1.BulletWidth 
                 && block.Position.X + Form1.BlockSize > position.X;
         }
+        public bool Pass(Player block)
+        {
+            return block.Position.X > position.X + Form1.BulletWidth;
+        }
 
         public override void Draw(Graphics g)
         {

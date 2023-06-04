@@ -30,6 +30,7 @@ namespace demo
         public const int BulletWidth = 60;
         public const int BulletHeight = 60;
         public int BulletSpeed = 5;
+        public const int TrackLength = 50;
 
         private Random random;
         private BufferedGraphics buffer;
@@ -47,6 +48,8 @@ namespace demo
             block.CoordinateX = 0;
             block.CoordinateY = 1;
             Tool tool = new Tool(this, block);
+            //transmitter.LoadTrack("demo1.txt");
+            transmitter.LoadRandomTrack(TrackLength);
             //panel2.Resize += new EventHandler(panel2_Resize);
             buffer = BufferedGraphicsManager.Current.Allocate(panel2.CreateGraphics(), panel2.DisplayRectangle);
         }
@@ -121,6 +124,12 @@ namespace demo
                     if (bullet == null) continue;
                     bullet.Move();
                     //bullet.Draw(panel2.CreateGraphics());
+                    if(bullet.Pass(block) && i == transmitter.Bullets.Length - 1)
+                    {//TODO   BUG!!!!!!!
+                        timer.Stop();
+                        MessageBox.Show("You Win!");
+                        break;
+                    }
                     if (bullet.LeaveScreen())
                     {
                         bullet = null;
@@ -241,12 +250,11 @@ namespace demo
             }*/
             transmitter.Fire(panel2.Width, block.CoordinateX);
         }
-        
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //transmitter.LoadTrack("demo1.txt");
-            transmitter.LoadRandomTrack(50);
+            
         }
 
         //private void panel2_MouseClick(object sender, MouseEventArgs e)
