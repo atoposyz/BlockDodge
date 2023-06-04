@@ -30,13 +30,14 @@
         {
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
+            shieldtext = new Label();
             shieldlabel = new Label();
             textBox2 = new TextBox();
             button2 = new Button();
             button1 = new Button();
             panel2 = new Panel();
             label1 = new Label();
-            shieldtext = new Label();
+            timelimit = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -59,6 +60,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(timelimit);
             panel1.Controls.Add(shieldtext);
             panel1.Controls.Add(shieldlabel);
             panel1.Controls.Add(textBox2);
@@ -70,18 +72,27 @@
             panel1.Size = new Size(872, 55);
             panel1.TabIndex = 0;
             // 
+            // shieldtext
+            // 
+            shieldtext.AutoSize = true;
+            shieldtext.Location = new Point(835, 21);
+            shieldtext.Name = "shieldtext";
+            shieldtext.Size = new Size(18, 20);
+            shieldtext.TabIndex = 4;
+            shieldtext.Text = "0";
+            // 
             // shieldlabel
             // 
             shieldlabel.AutoSize = true;
-            shieldlabel.Location = new Point(745, 20);
+            shieldlabel.Location = new Point(632, 21);
             shieldlabel.Name = "shieldlabel";
-            shieldlabel.Size = new Size(54, 20);
+            shieldlabel.Size = new Size(197, 20);
             shieldlabel.TabIndex = 3;
-            shieldlabel.Text = "盾量：";
+            shieldlabel.Text = "持续时间：                 盾量：";
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(571, 18);
+            textBox2.Location = new Point(401, 18);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(124, 27);
             textBox2.TabIndex = 2;
@@ -125,14 +136,14 @@
             label1.TabIndex = 0;
             label1.Text = "label1";
             // 
-            // shieldtext
+            // timelimit
             // 
-            shieldtext.AutoSize = true;
-            shieldtext.Location = new Point(795, 22);
-            shieldtext.Name = "shieldtext";
-            shieldtext.Size = new Size(18, 20);
-            shieldtext.TabIndex = 4;
-            shieldtext.Text = "0";
+            timelimit.AutoSize = true;
+            timelimit.Location = new Point(715, 21);
+            timelimit.Name = "timelimit";
+            timelimit.Size = new Size(25, 20);
+            timelimit.TabIndex = 5;
+            timelimit.Text = "0s";
             // 
             // Form1
             // 
@@ -163,5 +174,6 @@
         private TextBox textBox2;
         private Label shieldlabel;
         private Label shieldtext;
+        private Label timelimit;
     }
 }

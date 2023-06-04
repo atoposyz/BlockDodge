@@ -12,8 +12,10 @@ namespace demo.Code
         private int height;
         private int coordinateX;
         private int coordinateY;
-        private int shieldcapacity;
+        private int shieldcapacity = 100;
         private bool bulletignore;
+        private bool magnet;
+        private bool effectignore;
         public static Point[,] Points = new Point[3, 3] {
             { new Point(50, 100), new Point(50, 200), new Point(50, 300) },
             { new Point(350, 100), new Point(350, 200), new Point(350, 300) },
@@ -37,6 +39,16 @@ namespace demo.Code
         {
             get { return bulletignore; }
             set { bulletignore = value; }
+        }
+        public bool Magnet
+        {
+            get { return magnet; }
+            set { magnet = value; }
+        }
+        public bool EffectIgnore
+        {
+            get { return effectignore;}
+            set { effectignore = value; }
         }
         public Player(Point position, int width, int height, Image image) : base(position, width, height, image)
         {

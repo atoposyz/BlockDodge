@@ -13,6 +13,10 @@ namespace demo.Code
         debuff = 40,    //3
         bullet = 100    //1
     }
+    enum BuffProbability
+    {
+
+    }
     class Transmitter
     {
         private int interval;
@@ -132,7 +136,7 @@ namespace demo.Code
                         numtmp++;
                     } else if (track[j][i] == 2)    //BUFF
                     {
-                        bullets[numtmp] = new SHIELD(
+                        bullets[numtmp] = new SPRINT(
                             new Point(startX + i * 200, Tool.trackposY[j]),
                             Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
                         numtmp++;

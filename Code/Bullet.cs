@@ -26,7 +26,8 @@ namespace demo.Code
         }
         public void Move()
         {
-            position.X -= Form1.BulletSpeed;
+            //position.X -= Form1.BulletSpeed;
+            position.X -= Tool.form.BulletSpeed;
         }
 
         public bool CollidesWith(Player block)
@@ -34,6 +35,17 @@ namespace demo.Code
             Rectangle bulletRect = new Rectangle(position, new Size(Form1.BulletWidth, Form1.BulletHeight));
             Rectangle blockRect = new Rectangle(block.Position, new Size(Form1.BlockSize, Form1.BlockSize));
             return bulletRect.IntersectsWith(blockRect);
+        }
+
+        public bool LeaveScreen()
+        {
+            return position.X + Form1.BulletWidth < 10;
+        }
+
+        public bool MeetWith(Player block)
+        {
+            return block.Position.X < position.X + Form1.BulletWidth 
+                && block.Position.X + Form1.BlockSize > position.X;
         }
 
         public override void Draw(Graphics g)

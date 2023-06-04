@@ -65,18 +65,43 @@ namespace demo.Code
             block.ShieldCapacity++;
         }
     }
-    class SHIELD_TimeLimit: BUFF
+    class MAGNET: BUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public MAGNET(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.ContinuousEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            block.Magnet = true;
+            Tool.form.Timelast = 10000;
+            Tool.MagnetTimer.Stop();
+            Tool.MagnetTimer.Start();
+            //Tool.form.setlabel1("magnet!!!");
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+            //Tool.form.setlabel1("LOSE magnet!!!");
+            Tool.block.Magnet = false;
+        }
+    }
+    class DEFENSE: BUFF
     {
         private int width;
         private int height;
         EffectType type;
         Timer timer;
         Player block;
-        public SHIELD_TimeLimit(Point position, int width, int height, Image image) : base(position, width, height, image)
+        public DEFENSE(Point position, int width, int height, Image image) : base(position, width, height, image)
         {
             this.width = width;
             this.height = height;
-            type = EffectType.ContinuousEffect;
+            type = EffectType.OnceEffect;
         }
         public override void CauseEffect(Player block)
         {
@@ -86,10 +111,106 @@ namespace demo.Code
             timer.Elapsed += new System.Timers.ElapsedEventHandler(this.LoseEfficacy);
             timer.AutoReset = false;
             timer.Enabled = true;
+            if (block.CoordinateX > 0)
+            {
+                block.changepos(block.CoordinateX - 1, block.CoordinateY);
+            }
         }
         private void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
             block.BulletIgnore = false;
+        }
+    }
+    class TIMESLACK: BUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public TIMESLACK(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.ContinuousEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            Tool.form.BulletSpeed = 3;
+            Tool.TimeslackTimer.Stop();
+            Tool.TimeslackTimer.Start();
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+            Tool.form.BulletSpeed = 5;
+        }
+    }
+    class INVINCIBILITY: BUFF  
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public INVINCIBILITY(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.ContinuousEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            block.EffectIgnore = true;
+            block.BulletIgnore = true;
+            Tool.InvincibilityTimer.Stop();
+            Tool.InvincibilityTimer.Start();
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+            Tool.block.EffectIgnore = false;
+            Tool.block.BulletIgnore = false;
+        }
+    }
+    class SPRINT: BUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public SPRINT(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.ContinuousEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            Tool.form.BulletSpeed = 20;
+            block.EffectIgnore = true;
+            block.BulletIgnore = true;
+            Tool.SprintTimer.Stop();
+            Tool.SprintTimer.Start();
+            //block.Magnet = true;
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+            Tool.form.BulletSpeed = 5;
+            Tool.block.BulletIgnore = false;
+            Tool.block.EffectIgnore = false;
+            //Tool.block.Magnet = false;
+        }
+    }
+    class PURE: BUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public PURE(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.OnceEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            block.EffectIgnore = false;
+            block.BulletIgnore= false;
+            block.Magnet = false;
         }
     }
     class BRAVE: DEBUFF
@@ -98,7 +219,6 @@ namespace demo.Code
         private int height;
         EffectType type;
         Timer timer;
-        Player block;
         public BRAVE(Point position, int width, int height, Image image) : base(position, width, height, image)
         {
             this.width = width;
@@ -109,7 +229,6 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             block.BulletIgnore = true;
-            this.block = block;
             timer = new Timer(100);
             timer.Elapsed += new System.Timers.ElapsedEventHandler(this.LoseEfficacy);
             timer.AutoReset = false;
@@ -121,7 +240,7 @@ namespace demo.Code
         }
         private void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
-            block.BulletIgnore = false;
+            Tool.block.BulletIgnore = false;
         }
     }
 }
