@@ -103,6 +103,16 @@ namespace demo {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap bullet_blue {
+            get {
+                object obj = ResourceManager.GetObject("bullet_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap DEBUFF {
             get {
                 object obj = ResourceManager.GetObject("DEBUFF", resourceCulture);
