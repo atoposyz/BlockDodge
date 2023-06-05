@@ -42,13 +42,12 @@
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.DataSource = rankItemBindingSource1;
-            dataGridView1.Location = new Point(2, 2);
+            dataGridView1.Location = new Point(221, -1);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 32;
-            dataGridView1.Size = new Size(368, 448);
+            dataGridView1.Size = new Size(406, 562);
             dataGridView1.TabIndex = 0;
-            // 
             // 
             // rankItemBindingSource
             // 
@@ -58,7 +57,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(873, 561);
             Controls.Add(dataGridView1);
             Name = "Form2";
             Text = "Form2";

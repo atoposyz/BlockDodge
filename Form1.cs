@@ -196,7 +196,7 @@ namespace demo
         private void DrawGame()
         {
             buffer.Graphics.Clear(BackColor);
-            buffer.Graphics.DrawImage(GameImg.tmp, 0, 0);
+            buffer.Graphics.DrawImage(GameImg.background, 0, 0);
             block.Draw(buffer.Graphics);
 
             foreach (Bullet bullet in transmitter.Bullets)
@@ -212,9 +212,9 @@ namespace demo
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(GameImg.tmp, 0, 0);
+            e.Graphics.DrawImage(GameImg.background, 0, 0);
             buffer.Graphics.Clear(BackColor);
-            buffer.Graphics.DrawImage(GameImg.tmp, 0, 0);
+            buffer.Graphics.DrawImage(GameImg.background, 0, 0);
             ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
             foreach (DrawableObject drawable in dos)
             {
