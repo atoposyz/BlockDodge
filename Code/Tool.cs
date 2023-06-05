@@ -15,7 +15,7 @@ namespace demo.Code
             { new Point(blockposX[0], trackposY[0]), new Point(blockposX[0], trackposY[1]), new Point(blockposX[0], trackposY[2]) },
             { new Point(blockposX[1], trackposY[0]), new Point(blockposX[1], trackposY[1]), new Point(blockposX[1], trackposY[2]) },
             { new Point(blockposX[2], trackposY[0]), new Point(blockposX[2], trackposY[1]), new Point(blockposX[2], trackposY[2]) } };
-        public static double BULLETSPEED = 12.4;
+        public static double BULLETSPEED = 12.5;
         
         public static Player block;
         public static Form1 form;
