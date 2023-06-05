@@ -1,0 +1,9 @@
+myz, 100
+wxxxxxx,100
+wxx, 100
+王曦, 100
+ggn, 100
+toposyz,7
+aidan,4
+wx,0
+wxxx,0
