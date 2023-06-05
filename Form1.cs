@@ -47,9 +47,11 @@ namespace demo
         private bool ifRecord = false;
         private int cnt = 3;
         private int xPos = 0;
+        private Thread uiThread;
         public Form1()
         {
             InitializeComponent();
+            uiThread = new Thread(DrawGame);
             this.KeyPreview = true;
             //InitializeGame();
             //DoubleBuffered = true;
@@ -76,6 +78,7 @@ namespace demo
 
             //panel2.Resize += new EventHandler(panel2_Resize);
             buffer = BufferedGraphicsManager.Current.Allocate(panel2.CreateGraphics(), panel2.DisplayRectangle);
+            uiThread.Start();
         }
 
         //private void InitializeGame()
@@ -183,7 +186,7 @@ namespace demo
                     }
                 }
 
-                DrawGame();
+                //DrawGame();
             }
             UpdateContinuousEffect();
         }
@@ -257,48 +260,51 @@ namespace demo
         }
         private void DrawGame()
         {
-            xPos -= 5;
-            if (xPos < -4154)
-            {
-                xPos = 0;
-            }
-            buffer.Graphics.Clear(BackColor);
-            //buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
-            string imagePath = @"Resources\mod_00" + cnt.ToString() + ".png";
-            cnt = (cnt - 3 + 1) % 23 + 3;
-            //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
-            Image image = Image.FromFile(imagePath);
-            Image imageTMP = new Bitmap(image, 60, 60);
-            block.Draw(buffer.Graphics, imageTMP);
-
-            for (int i = transmitter.Bullets2.Count - 1; i >= 0; i--)
-            {
-                if (transmitter.Bullets2[i] != null)
+            while (true) {
+                xPos -= 5;
+                if (xPos < -4154)
                 {
-                    transmitter.Bullets2[i].Draw(buffer.Graphics);
+                    xPos = 0;
                 }
-            }
-            transmitter.Bullets2.RemoveAll(s => s == null);
-            buffer.Render();
+                buffer.Graphics.Clear(BackColor);
+                buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
+                string imagePath = @"Resources\mod_00" + cnt.ToString() + ".png";
+                cnt = (cnt - 3 + 1) % 23 + 3;
+                //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
+                Image image = Image.FromFile(imagePath);
+                Image imageTMP = new Bitmap(image, 60, 60);
+                block.Draw(buffer.Graphics, imageTMP);
+
+                for (int i = transmitter.Bullets2.Count - 1; i >= 0; i--)
+                {
+                    if (transmitter.Bullets2[i] != null)
+                    {
+                        transmitter.Bullets2[i].Draw(buffer.Graphics);
+                    }
+                }
+                transmitter.Bullets2.RemoveAll(s => s == null);
+                buffer.Render();
+                Thread.Sleep(8);
+            } 
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-            //e.Graphics.DrawImage(GameImg.background_all, 0, 0);
-            buffer.Graphics.Clear(BackColor);
-            //buffer.Graphics.DrawImage(GameImg.background_all, 0, 0);
-            ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
-            foreach (DrawableObject drawable in dos)
-            {
-                if (drawable != null)
-                {
-                    drawable.Draw(buffer.Graphics);
-                }
+        //private void panel2_Paint(object sender, PaintEventArgs e)
+        //{
+        //    //e.Graphics.DrawImage(GameImg.background_all, 0, 0);
+        //    buffer.Graphics.Clear(BackColor);
+        //    //buffer.Graphics.DrawImage(GameImg.background_all, 0, 0);
+        //    ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+        //    foreach (DrawableObject drawable in dos)
+        //    {
+        //        if (drawable != null)
+        //        {
+        //            drawable.Draw(buffer.Graphics);
+        //        }
 
-            }
-            buffer.Render(e.Graphics);
+        //    }
+        //    buffer.Render(e.Graphics);
 
-        }
+        //}
 
         //private void panel2_Paint2(object sender, PaintEventArgs e)
         //{
