@@ -17,11 +17,12 @@ namespace demo
             { new Point(50, 100), new Point(50, 200), new Point(50, 300) },
             { new Point(350, 100), new Point(350, 200), new Point(350, 300) },
             { new Point(650, 100), new Point(650, 200), new Point(650, 300) } };*/
-        private int timelast;
 
         private List<DrawableObject> dos = new List<DrawableObject>();
         private Transmitter transmitter = new Transmitter(TrackNumber);
         private Timer timer;
+        private bool pause;
+        private bool firststart;
 
         public const int TrackNumber = 3;
         public const int BlockSize = 60;
@@ -48,6 +49,11 @@ namespace demo
             block.CoordinateX = 0;
             block.CoordinateY = 1;
             Tool tool = new Tool(this, block);
+            pause = true;
+            firststart = true;
+            timer = new Timer();
+            timer.Interval = 20;
+            timer.Tick += new EventHandler(timer_Tick);
             //transmitter.LoadTrack("demo1.txt");
             transmitter.LoadRandomTrack(TrackLength);
             //panel2.Resize += new EventHandler(panel2_Resize);
@@ -72,13 +78,13 @@ namespace demo
                 if (block.BulletIgnore == true)
                 {
                     transmitter.Bullets[No_] = null;
-                    UpdateStatus();
+                    UpdateTimesEffect();
                 }
                 else if (block.ShieldCapacity > 0)
                 {
                     block.ShieldCapacity--;
                     transmitter.Bullets[No_] = null;
-                    UpdateStatus();
+                    UpdateTimesEffect();
                 }
                 else
                 {
@@ -94,7 +100,7 @@ namespace demo
                 else
                 {
                     ((BUFF)bullet).CauseEffect(block);
-                    UpdateStatus();
+                    UpdateTimesEffect();
                     transmitter.Bullets[No_] = null;
                 }
             }
@@ -107,7 +113,7 @@ namespace demo
                 else
                 {
                     ((DEBUFF)bullet).CauseEffect(block);
-                    UpdateStatus();
+                    UpdateTimesEffect();
                     transmitter.Bullets[No_] = null;
                 }
             }
@@ -124,7 +130,7 @@ namespace demo
                     if (bullet == null) continue;
                     bullet.Move();
                     //bullet.Draw(panel2.CreateGraphics());
-                    if(bullet.Pass(block) && i == transmitter.Bullets.Length - 1)
+                    if (bullet.Pass(block) && i == transmitter.Bullets.Length - 1)
                     {//TODO   BUG!!!!!!!
                         timer.Stop();
                         MessageBox.Show("You Win!");
@@ -140,7 +146,7 @@ namespace demo
                     if (block.Magnet == true && bullet.MeetWith(block) && bullet.DamageType == 1)
                     {
                         ((BUFF)bullet).CauseEffect(block);
-                        UpdateStatus();
+                        UpdateTimesEffect();
                         transmitter.Bullets[i] = null;
                         continue;
                     }
@@ -159,25 +165,23 @@ namespace demo
 
                 DrawGame();
             }
-            if (block.Magnet == true && timelast > 0)
-            {
-                timelimit.Text = (timelast / 1000).ToString() + 's';
-                timelast -= 20;
-            }
-            else
-            {
-                timelimit.Text = "0s";
-                timelast = 0;
-            }
+            UpdateContinuousEffect();
             //UpdateDrawableObject();
             //panel2.Invalidate();
             //block.Draw(panel2.CreateGraphics());
         }
 
-        public void UpdateStatus()
+        public void UpdateTimesEffect()
         {
             shieldtext.Text = block.ShieldCapacity.ToString();
 
+        }
+        public void UpdateContinuousEffect()
+        {
+            magnetlimit.Text = (Tool.MagnetTime / 1000).ToString() + 's';
+            timeslacklimit.Text = (Tool.TimeslackTime / 1000).ToString() + "s";
+            invincibilitylimit.Text = (Tool.InvincibilityTime / 1000).ToString() + "s";
+            sprintlimit.Text = (Tool.SprintTime / 1000).ToString() + "s";
         }
         private void DrawGame()
         {
@@ -198,6 +202,7 @@ namespace demo
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             buffer.Graphics.Clear(BackColor);
+            ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
             foreach (DrawableObject drawable in dos)
             {
                 if (drawable != null)
@@ -221,20 +226,29 @@ namespace demo
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            dos.Add(block);
-
-
-            timer = new Timer();
-            timer.Interval = 20;
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Start();
-
-
-            random = new Random();
+            if (pause == true)
+            {
+                pause = false;
+                timer.Start();
+                button1.Text = "ÔÝÍ£";
+            }
+            else if (pause == false)
+            {
+                pause = true;
+                timer.Stop();
+                buffer.Graphics.DrawString("PAUSE", new Font("Segoe UI", 80), new SolidBrush(Color.Black), new Point(200, 100));
+                buffer.Render();
+                button1.Text = "¼ÌÐø";
+            }
+            if (firststart == true)
+            {
+                firststart = false;
+                dos.Add(block);
+                random = new Random();
+                GenerateBullets();
+            }
             //bullets = new Bullet[5];
             //transmitter.Bullets = new Bullet[transmitter.BulletNumber];
-            GenerateBullets();
             //label1.Text = "start on " + block.Position.ToString();
         }
 
@@ -254,7 +268,7 @@ namespace demo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         //private void panel2_MouseClick(object sender, MouseEventArgs e)
@@ -264,18 +278,12 @@ namespace demo
         //    bullets.Add(bullet);
         //    dos.Add(bullet);
         //}
-        public int Timelast
-        {
-            get { return timelast; }
-            set { timelast = value; }
-        }
-        public void setlabel1(string text)
-        {
-            //label1.Text = text;
-        }
-
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            if (pause == true)
+            {
+                return;
+            }
             label1.Text = ((char)e.KeyValue).ToString();
             if ((char)e.KeyValue == 'W' && block != null)
             {

@@ -17,26 +17,75 @@ namespace demo.Code
             { new Point(blockposX[2], trackposY[0]), new Point(blockposX[2], trackposY[1]), new Point(blockposX[2], trackposY[2]) } };
         public static Player block;
         public static Form1 form;
+        public static Timer MainTimer;
         public static Timer MagnetTimer;
         public static Timer TimeslackTimer;
         public static Timer InvincibilityTimer;
         public static Timer SprintTimer;
+
+        public static int MagnetTime = 0;
+        public static int TimeslackTime = 0;
+        public static int InvincibilityTime = 0;
+        public static int SprintTime = 0;
+
+
         public Tool(Form1 form1, Player block)
         {
             Tool.block = block;
             Tool.form = form1;
-            Tool.MagnetTimer = new Timer(13500);//大概有3.5s延迟
+
+            MainTimer = new Timer(500);
+            MainTimer.Elapsed += new System.Timers.ElapsedEventHandler(MainTimerCount);
+            MainTimer.AutoReset = true;
+            MainTimer.Start();
+
+            Tool.MagnetTimer = new Timer(10000);
             Tool.MagnetTimer.Elapsed += new System.Timers.ElapsedEventHandler(MAGNET.LoseEfficacy);
             Tool.MagnetTimer.AutoReset = false;
-            Tool.TimeslackTimer = new Timer(8500);
+            Tool.TimeslackTimer = new Timer(5000);
             Tool.TimeslackTimer.Elapsed += new System.Timers.ElapsedEventHandler(TIMESLACK.LoseEfficacy);
             Tool.TimeslackTimer.AutoReset = false;
-            InvincibilityTimer = new Timer(8500);
+            InvincibilityTimer = new Timer(5000);
             InvincibilityTimer.Elapsed += new System.Timers.ElapsedEventHandler(INVINCIBILITY.LoseEfficacy);
             InvincibilityTimer.AutoReset = false;
             SprintTimer = new Timer(4000);
             SprintTimer.Elapsed += new System.Timers.ElapsedEventHandler(SPRINT.LoseEfficacy);
             SprintTimer.AutoReset = false;
+        }
+        public static void MainTimerCount(object source, System.Timers.ElapsedEventArgs e)
+        {
+            if(block.Magnet == true && MagnetTime > 0)
+            {
+                MagnetTime -= 500;
+            }
+            else
+            {
+                MagnetTime = 0;
+            }
+            if(form.BulletSpeed < 5 && TimeslackTime > 0)
+            {
+                TimeslackTime -= 500;
+            } 
+            else
+            {
+                TimeslackTime = 0;
+            }
+            if(block.EffectIgnore == true && block.BulletIgnore == true && InvincibilityTime > 0)
+            {
+                InvincibilityTime -= 500;
+            }
+            else
+            {
+                InvincibilityTime = 0;
+            }
+            if(form.BulletSpeed > 5 && block.EffectIgnore == true && block.BulletIgnore == true && SprintTime > 0)
+            {
+                SprintTime -= 500;
+            }
+            else
+            {
+                SprintTime = 0;
+            }
         }
     }
 }

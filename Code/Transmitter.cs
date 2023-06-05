@@ -143,6 +143,9 @@ namespace demo.Code
                     } else if (track[j][i] == 2)    //BUFF
                     {
                         bullets[numtmp] = RandomBuff(startX, i, j);
+                        /*bullets[numtmp] = new TIMESLACK(
+                            new Point(startX + i * 200, Tool.trackposY[j]),
+                            Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);*/
                         numtmp++;
                     }
                     else if (track[j][i] == 3)      //DEBUFF

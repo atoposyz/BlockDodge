@@ -79,7 +79,7 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             block.Magnet = true;
-            Tool.form.Timelast = 10000;
+            Tool.MagnetTime = 10500;
             Tool.MagnetTimer.Stop();
             Tool.MagnetTimer.Start();
             //Tool.form.setlabel1("magnet!!!");
@@ -135,6 +135,7 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             Tool.form.BulletSpeed = 3;
+            Tool.TimeslackTime = 5500;
             Tool.TimeslackTimer.Stop();
             Tool.TimeslackTimer.Start();
         }
@@ -158,6 +159,7 @@ namespace demo.Code
         {
             block.EffectIgnore = true;
             block.BulletIgnore = true;
+            Tool.InvincibilityTime = 5500;
             Tool.InvincibilityTimer.Stop();
             Tool.InvincibilityTimer.Start();
         }
@@ -183,6 +185,7 @@ namespace demo.Code
             Tool.form.BulletSpeed = 20;
             block.EffectIgnore = true;
             block.BulletIgnore = true;
+            Tool.SprintTime = 4500;
             Tool.SprintTimer.Stop();
             Tool.SprintTimer.Start();
             //block.Magnet = true;
