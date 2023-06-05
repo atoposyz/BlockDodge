@@ -167,7 +167,7 @@ namespace demo.Code
                     {
                         bullets2.Add(new Bullet(
                             new Point(startX, Tool.trackposY[j]),
-                            Form1.BulletWidth, Form1.BulletHeight, GameImg.bullet_blue));
+                            Form1.BulletWidth, Form1.BulletHeight, GameImg.sword));
                     }
                     else if (track[j][i] == 2)    //BUFF
                     {
@@ -193,7 +193,7 @@ namespace demo.Code
                     {
                         bullets[numtmp] = new Bullet(
                             new Point(startX + i * interval, Tool.trackposY[j]), 
-                            Form1.BulletWidth, Form1.BulletHeight, GameImg.bullet_blue);
+                            Form1.BulletWidth, Form1.BulletHeight, GameImg.sword);
                         numtmp++;
                     } else if (track[j][i] == 2)    //BUFF
                     {
