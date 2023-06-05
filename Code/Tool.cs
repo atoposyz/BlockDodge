@@ -15,6 +15,8 @@ namespace demo.Code
             { new Point(blockposX[0], trackposY[0]), new Point(blockposX[0], trackposY[1]), new Point(blockposX[0], trackposY[2]) },
             { new Point(blockposX[1], trackposY[0]), new Point(blockposX[1], trackposY[1]), new Point(blockposX[1], trackposY[2]) },
             { new Point(blockposX[2], trackposY[0]), new Point(blockposX[2], trackposY[1]), new Point(blockposX[2], trackposY[2]) } };
+        public static double BULLETSPEED = 12.4;
+        
         public static Player block;
         public static Form1 form;
         public static Timer MainTimer;
@@ -62,7 +64,7 @@ namespace demo.Code
             {
                 MagnetTime = 0;
             }
-            if(form.BulletSpeed < 5 && TimeslackTime > 0)
+            if(form.BulletSpeed < Tool.BULLETSPEED && TimeslackTime > 0)
             {
                 TimeslackTime -= 500;
             } 
@@ -78,7 +80,7 @@ namespace demo.Code
             {
                 InvincibilityTime = 0;
             }
-            if(form.BulletSpeed > 5 && block.EffectIgnore == true && block.BulletIgnore == true && SprintTime > 0)
+            if(form.BulletSpeed > Tool.BULLETSPEED && block.EffectIgnore == true && block.BulletIgnore == true && SprintTime > 0)
             {
                 SprintTime -= 500;
             }

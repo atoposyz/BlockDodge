@@ -6,6 +6,7 @@ using System.Security.Cryptography.Xml;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Text;
+using System.Media;
 
 namespace demo
 {
@@ -25,6 +26,7 @@ namespace demo
         private List<DrawableObject> dos = new List<DrawableObject>();
         private Transmitter transmitter = new Transmitter(TrackNumber);
         private Timer timer;
+        System.Media.SoundPlayer sp = new SoundPlayer();
         private bool pause;
         private bool firststart;
 
@@ -34,7 +36,7 @@ namespace demo
         public const int BulletSize = 60;
         public const int BulletWidth = 60;
         public const int BulletHeight = 60;
-        public int BulletSpeed = 5;
+        public double BulletSpeed = Tool.BULLETSPEED;
         public const int TrackLength = 50;
 
         private Random random;
@@ -60,8 +62,11 @@ namespace demo
             timer = new Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
-            //transmitter.LoadTrack("demo1.txt");
-            transmitter.LoadRandomTrack(TrackLength);
+            transmitter.LoadTrack("demo2.txt");
+            
+            sp.SoundLocation = @"../../../Resources/music.wav"; //“Ù¿÷Œƒº˛
+            
+            //transmitter.LoadRandomTrack(TrackLength);
             //panel2.Resize += new EventHandler(panel2_Resize);
             buffer = BufferedGraphicsManager.Current.Allocate(panel2.CreateGraphics(), panel2.DisplayRectangle);
         }
@@ -241,6 +246,7 @@ namespace demo
                 pause = false;
                 timer.Start();
                 button1.Text = "‘›Õ£";
+                sp.PlayLooping();
             }
             else if (pause == false)
             {

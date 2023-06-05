@@ -34,9 +34,10 @@ namespace demo.Code
         private int tracklength;    //赛道的长度
         private int bulletnumber;   //发射物的数量
         //private int[] trackposY = new int[3] { 100, 200, 300 };
-        public Transmitter(int tracknumber)
+        public Transmitter(int tracknumber, int interval = 200)
         {
             bulletnumber = 0;
+            this.interval = interval;
             track = new List<int>[tracknumber];
             for (int i = 0; i < tracknumber; i++)
             {
@@ -137,21 +138,21 @@ namespace demo.Code
                     if (track[j][i] == 1)           //普通子弹
                     {
                         bullets[numtmp] = new Bullet(
-                            new Point(startX + i * 200, Tool.trackposY[j]), 
+                            new Point(startX + i * interval, Tool.trackposY[j]), 
                             Form1.BulletWidth, Form1.BulletHeight, GameImg.Bullet);
                         numtmp++;
                     } else if (track[j][i] == 2)    //BUFF
                     {
                         bullets[numtmp] = RandomBuff(startX, i, j);
                         /*bullets[numtmp] = new TIMESLACK(
-                            new Point(startX + i * 200, Tool.trackposY[j]),
+                            new Point(startX + i * interval, Tool.trackposY[j]),
                             Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);*/
                         numtmp++;
                     }
                     else if (track[j][i] == 3)      //DEBUFF
                     {
                         bullets[numtmp] = new BRAVE(
-                            new Point(startX + i * 200, Tool.trackposY[j]),
+                            new Point(startX + i * interval, Tool.trackposY[j]),
                             Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
                         numtmp++;
                     }
@@ -164,31 +165,31 @@ namespace demo.Code
             int tmp = rd.Next(0, 100);
             if(tmp < (int)BuffProbability.shield) {
                 return new SHIELD(
-                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    new Point(startX + i * interval, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.magnet) {
                 return new MAGNET(
-                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    new Point(startX + i * interval, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.defense) {
                 return new DEFENSE(
-                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    new Point(startX + i * interval, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.timeslack) {
                 return new TIMESLACK(
-                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    new Point(startX + i * interval, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.invincibility) {
                 return new INVINCIBILITY(
-                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    new Point(startX + i * interval, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.pure) {
                 return new PURE(
-                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    new Point(startX + i * interval, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else {
                 return new SPRINT(
-                    new Point(startX + i * 200, Tool.trackposY[j]),
+                    new Point(startX + i * interval, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             }
         }

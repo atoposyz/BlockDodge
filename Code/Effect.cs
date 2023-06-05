@@ -141,7 +141,7 @@ namespace demo.Code
         }
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
-            Tool.form.BulletSpeed = 5;
+            Tool.form.BulletSpeed = Tool.BULLETSPEED;
         }
     }
     class INVINCIBILITY: BUFF  

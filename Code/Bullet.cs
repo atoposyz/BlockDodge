@@ -11,12 +11,14 @@ namespace demo.Code
         private int width;
         private int height;
         protected int damagetype;
+        protected double posX;
 
         public Bullet(Point position, int width, int height, Image image) : base(position, width, height, image)
         {
             this.width = width;
             this.height = height;
             damagetype = 0;
+            posX = position.X;
         }
 
         public int DamageType
@@ -27,7 +29,8 @@ namespace demo.Code
         public void Move()
         {
             //position.X -= Form1.BulletSpeed;
-            position.X -= Tool.form.BulletSpeed;
+            posX -= Tool.form.BulletSpeed;
+            position.X = (int)posX;
         }
 
         public bool CollidesWith(Player block)
