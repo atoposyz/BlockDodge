@@ -45,7 +45,7 @@ namespace demo
         private string userName;
         private bool ifRecord = false;
         private int cnt = 3;
-        private int m = -1;
+        private int xPos = 0;
         public Form1()
         {
             InitializeComponent();
@@ -202,8 +202,13 @@ namespace demo
         }
         private void DrawGame()
         {
+            xPos -= 5;
+            if (xPos < -4154)
+            {
+                xPos = 0;
+            }
             buffer.Graphics.Clear(BackColor);
-            buffer.Graphics.DrawImage(GameImg.background, 0, 0);
+            buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
             string imagePath = @"Resources\mod_00" + cnt.ToString() + ".png";
             cnt = (cnt - 3 + 1) % 23 + 3;
             //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
@@ -224,9 +229,9 @@ namespace demo
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(GameImg.background, 0, 0);
+            e.Graphics.DrawImage(GameImg.background_all, 0, 0);
             buffer.Graphics.Clear(BackColor);
-            buffer.Graphics.DrawImage(GameImg.background, 0, 0);
+            buffer.Graphics.DrawImage(GameImg.background_all, 0, 0);
             ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
             foreach (DrawableObject drawable in dos)
             {
