@@ -38,7 +38,7 @@ namespace demo
         public const int BulletWidth = 60;
         public const int BulletHeight = 60;
         public double BulletSpeed = Tool.BULLETSPEED;
-        public const int TrackLength = 50;
+        public const int TrackLength = 200;
 
         private Random random;
         private BufferedGraphics buffer;
@@ -147,6 +147,7 @@ namespace demo
                     if (bullet == null) continue;
                     bullet.Move();
                     //bullet.Draw(panel2.CreateGraphics());
+                    /*
                     if (bullet.Pass(block) && i == transmitter.Bullets2.Count - 1)
                     {//TODO   BUG!!!!!!!
                         timer.Stop();
@@ -156,7 +157,7 @@ namespace demo
                             Form2.AddOrUpdateRankItem(userName, _score);
                         }
                         break;
-                    }
+                    }*/
                     if (bullet.LeaveScreen())
                     {
                         transmitter.Bullets2[i] = null;
@@ -427,12 +428,18 @@ namespace demo
             {
                 mode = 1;
                 label1.Text = "无尽模式";
+                Tool.BULLETSPEED = 5;
+                BulletSpeed = 5;
+                transmitter.Interval = 1500;
                 transmitter.LoadRandomTrack(TrackLength);
             }
             else if (mode == 1)
             {
                 mode = 0;
                 label1.Text = "闯关模式";
+                Tool.BULLETSPEED = 12.5;
+                BulletSpeed = 12.5;
+                transmitter.Interval = 500;
                 transmitter.LoadTrack("demo2.txt");
             }
         }

@@ -16,7 +16,6 @@ namespace demo.Code
             { new Point(blockposX[1], trackposY[0]), new Point(blockposX[1], trackposY[1]), new Point(blockposX[1], trackposY[2]) },
             { new Point(blockposX[2], trackposY[0]), new Point(blockposX[2], trackposY[1]), new Point(blockposX[2], trackposY[2]) } };
 
-        public static Object lockobj = new object();
         public static double BULLETSPEED = 12.5;
         //public static double BULLETSPEED = 5;
 

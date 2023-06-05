@@ -135,6 +135,7 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             Tool.form.BulletSpeed = 3;
+            Tool.transmitter.Interval *= 5;
             Tool.TimeslackTime = 5500;
             Tool.TimeslackTimer.Stop();
             Tool.TimeslackTimer.Start();
@@ -142,6 +143,7 @@ namespace demo.Code
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
             Tool.form.BulletSpeed = Tool.BULLETSPEED;
+            Tool.transmitter.Interval /= 5;
         }
     }
     class INVINCIBILITY: BUFF  
@@ -183,6 +185,7 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             Tool.form.BulletSpeed = 20;
+            Tool.transmitter.Interval /= 2;
             block.EffectIgnore = true;
             block.BulletIgnore = true;
             Tool.SprintTime = 4500;
@@ -193,6 +196,7 @@ namespace demo.Code
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
             Tool.form.BulletSpeed = 5;
+            Tool.transmitter.Interval *= 2;
             Tool.block.BulletIgnore = false;
             Tool.block.EffectIgnore = false;
             //Tool.block.Magnet = false;

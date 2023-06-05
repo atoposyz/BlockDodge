@@ -39,7 +39,7 @@ namespace demo.Code
         private int bulletnumber;   //发射物的数量
         //private int[] trackposY = new int[3] { 100, 200, 300 };
         private int timecount = 0;
-        public Transmitter(int tracknumber, int startX, int interval = 200)
+        public Transmitter(int tracknumber, int startX, int interval = 500)
         {
             bulletnumber = 0;
             this.startX = startX;
@@ -153,12 +153,12 @@ namespace demo.Code
         public void TransmitterCheck(object source, System.Timers.ElapsedEventArgs e)
         {
             timecount += 50;
-            int i = timecount / 500;    //1s发射一次
+            int i = timecount / interval;    //interval秒发射一次
             if(i >= tracklength)
             {
                 return;
             }
-            if (timecount % 500 == 0)
+            if (timecount % interval == 0)
             {
                 for(int j = 0; j < track.Length; j++)
                 {
