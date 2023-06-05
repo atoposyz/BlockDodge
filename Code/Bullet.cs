@@ -59,6 +59,7 @@ namespace demo.Code
         {
             //g.FillEllipse(Brushes.Red, this.X, this.Y, 10, 10);
             g.DrawImage(image, position.X, position.Y, width, height);
+            Tool.form.drawstringonlabel(position.ToString());
         }
 
         public override void Draw(Graphics g, Image image)

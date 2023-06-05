@@ -15,31 +15,45 @@ namespace demo.Code
             { new Point(blockposX[0], trackposY[0]), new Point(blockposX[0], trackposY[1]), new Point(blockposX[0], trackposY[2]) },
             { new Point(blockposX[1], trackposY[0]), new Point(blockposX[1], trackposY[1]), new Point(blockposX[1], trackposY[2]) },
             { new Point(blockposX[2], trackposY[0]), new Point(blockposX[2], trackposY[1]), new Point(blockposX[2], trackposY[2]) } };
+
+        public static Object lockobj = new object();
         public static double BULLETSPEED = 12.5;
-        
+        //public static double BULLETSPEED = 5;
+
         public static Player block;
         public static Form1 form;
+        public static Transmitter transmitter;
         public static Timer MainTimer;
+        public static Timer TransmitterTimer;
+
         public static Timer MagnetTimer;
         public static Timer TimeslackTimer;
         public static Timer InvincibilityTimer;
         public static Timer SprintTimer;
+        public static Timer FearlessTimer;
 
+        public static int TransmitterTime = 0;
         public static int MagnetTime = 0;
         public static int TimeslackTime = 0;
         public static int InvincibilityTime = 0;
         public static int SprintTime = 0;
+        public static int FearlessTime = 0;
 
 
-        public Tool(Form1 form1, Player block)
+        public Tool(Form1 form1, Player block, Transmitter transmitter)
         {
             Tool.block = block;
             Tool.form = form1;
+            Tool.transmitter = transmitter;
 
             MainTimer = new Timer(500);
             MainTimer.Elapsed += new System.Timers.ElapsedEventHandler(MainTimerCount);
             MainTimer.AutoReset = true;
             MainTimer.Start();
+
+            TransmitterTimer = new Timer(50);
+            TransmitterTimer.Elapsed += new System.Timers.ElapsedEventHandler(transmitter.TransmitterCheck);
+            TransmitterTimer.AutoReset = true;
 
             Tool.MagnetTimer = new Timer(10000);
             Tool.MagnetTimer.Elapsed += new System.Timers.ElapsedEventHandler(MAGNET.LoseEfficacy);
@@ -52,6 +66,9 @@ namespace demo.Code
             InvincibilityTimer.AutoReset = false;
             SprintTimer = new Timer(4000);
             SprintTimer.Elapsed += new System.Timers.ElapsedEventHandler(SPRINT.LoseEfficacy);
+            SprintTimer.AutoReset = false;
+            FearlessTimer = new Timer(6000);
+            FearlessTimer.Elapsed += new System.Timers.ElapsedEventHandler(FEARLESS.LoseEfficacy);
             SprintTimer.AutoReset = false;
         }
         public static void MainTimerCount(object source, System.Timers.ElapsedEventArgs e)
@@ -89,5 +106,10 @@ namespace demo.Code
                 SprintTime = 0;
             }
         }
+        /*public static void TransmitterCheck(object source, System.Timers.ElapsedEventArgs e)
+        {
+            TransmitterTime += 50;
+
+        }*/
     }
 }

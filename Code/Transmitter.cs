@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.AxHost;
 
 namespace demo.Code
 {
@@ -27,16 +29,20 @@ namespace demo.Code
     {
         private int interval;
         private int speed;
+        private int startX;
         public Bullet[] bullets;
+        public List<Bullet> bullets2 = new List<Bullet>();
         private string? path;
         //private string[] track = new string[3];
         private List<int>[] track; //赛道，track.length是赛道的个数，目前为3
         private int tracklength;    //赛道的长度
         private int bulletnumber;   //发射物的数量
         //private int[] trackposY = new int[3] { 100, 200, 300 };
-        public Transmitter(int tracknumber, int interval = 200)
+        private int timecount = 0;
+        public Transmitter(int tracknumber, int startX, int interval = 200)
         {
             bulletnumber = 0;
+            this.startX = startX;
             this.interval = interval;
             track = new List<int>[tracknumber];
             for (int i = 0; i < tracknumber; i++)
@@ -48,6 +54,16 @@ namespace demo.Code
         {
             get { return bullets; }
             set { bullets = value; }
+        }
+        public List<Bullet> Bullets2 
+        { 
+            get { return bullets2; } 
+            set { bullets2 = value; }
+        }
+        public int Interval
+        { 
+            get { return interval; } 
+            set {  interval = value; } 
         }
         private void Reset()
         {
@@ -128,6 +144,38 @@ namespace demo.Code
         {
             get { return bulletnumber; }
         }
+        public void TransmitterCheck(object source, System.Timers.ElapsedEventArgs e)
+        {
+            timecount += 50;
+            int i = timecount / 500;    //1s发射一次
+            if(i >= tracklength)
+            {
+                return;
+            }
+            if (timecount % 500 == 0)
+            {
+                for(int j = 0; j < track.Length; j++)
+                {
+                    if (track[j][i] == 0) continue;
+                    if (track[j][i] == 1)           //普通子弹
+                    {
+                        bullets2.Add(new Bullet(
+                            new Point(startX, Tool.trackposY[j]),
+                            Form1.BulletWidth, Form1.BulletHeight, GameImg.Bullet));
+                    }
+                    else if (track[j][i] == 2)    //BUFF
+                    {
+                        bullets2.Add(RandomBuff(startX, i, j));
+                    }
+                    else if (track[j][i] == 3)      //DEBUFF
+                    {
+                        bullets2.Add(new FEARLESS(
+                            new Point(startX, Tool.trackposY[j]),
+                            Form1.BulletWidth, Form1.BulletHeight, GameImg.Bullet));
+                    }
+                }
+            }
+        }
         public void Fire(int startX, int blockX)
         {
             int numtmp = 0;
@@ -151,7 +199,7 @@ namespace demo.Code
                     }
                     else if (track[j][i] == 3)      //DEBUFF
                     {
-                        bullets[numtmp] = new BRAVE(
+                        bullets[numtmp] = new FEARLESS(
                             new Point(startX + i * interval, Tool.trackposY[j]),
                             Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
                         numtmp++;
@@ -165,31 +213,31 @@ namespace demo.Code
             int tmp = rd.Next(0, 100);
             if(tmp < (int)BuffProbability.shield) {
                 return new SHIELD(
-                    new Point(startX + i * interval, Tool.trackposY[j]),
+                    new Point(startX, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.magnet) {
                 return new MAGNET(
-                    new Point(startX + i * interval, Tool.trackposY[j]),
+                    new Point(startX, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.defense) {
                 return new DEFENSE(
-                    new Point(startX + i * interval, Tool.trackposY[j]),
+                    new Point(startX, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.timeslack) {
                 return new TIMESLACK(
-                    new Point(startX + i * interval, Tool.trackposY[j]),
+                    new Point(startX, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.invincibility) {
                 return new INVINCIBILITY(
-                    new Point(startX + i * interval, Tool.trackposY[j]),
+                    new Point(startX, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else if(tmp < (int)BuffProbability.pure) {
                 return new PURE(
-                    new Point(startX + i * interval, Tool.trackposY[j]),
+                    new Point(startX, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             } else {
                 return new SPRINT(
-                    new Point(startX + i * interval, Tool.trackposY[j]),
+                    new Point(startX, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             }
         }

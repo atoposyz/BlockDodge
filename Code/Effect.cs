@@ -246,4 +246,28 @@ namespace demo.Code
             Tool.block.BulletIgnore = false;
         }
     }
+    class FEARLESS: DEBUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public FEARLESS(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.ContinuousEffect;
+
+        }
+        public override void CauseEffect(Player block)
+        {
+            Tool.transmitter.Interval = 50;
+            Tool.FearlessTime = 6500;
+            Tool.FearlessTimer.Stop();
+            Tool.FearlessTimer.Start();
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+            Tool.transmitter.Interval = 200;
+        }
+    }
 }

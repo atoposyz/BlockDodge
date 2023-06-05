@@ -24,7 +24,7 @@ namespace demo
             { new Point(650, 100), new Point(650, 200), new Point(650, 300) } };*/
 
         private List<DrawableObject> dos = new List<DrawableObject>();
-        private Transmitter transmitter = new Transmitter(TrackNumber);
+        private Transmitter transmitter;
         private Timer timer;
         System.Media.SoundPlayer sp = new SoundPlayer();
         private bool pause;
@@ -58,17 +58,22 @@ namespace demo
             block = new Player(startpoint, BlockSize, BlockSize, GameImg.Square);
             block.CoordinateX = 0;
             block.CoordinateY = 1;
-            Tool tool = new Tool(this, block);
+            transmitter = new Transmitter(TrackNumber, panel2.Width);
+            Tool tool = new Tool(this, block, transmitter);
+
             pause = true;
             firststart = true;
+
             timer = new Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
+
             transmitter.LoadTrack("demo2.txt");
-            
-            sp.SoundLocation = @"../../../Resources/music.wav"; //音乐文件
-            
             //transmitter.LoadRandomTrack(TrackLength);
+
+            sp.SoundLocation = @"../../../Resources/music.wav"; //音乐文件
+
+
             //panel2.Resize += new EventHandler(panel2_Resize);
             buffer = BufferedGraphicsManager.Current.Allocate(panel2.CreateGraphics(), panel2.DisplayRectangle);
         }
@@ -90,13 +95,13 @@ namespace demo
             {
                 if (block.BulletIgnore == true)
                 {
-                    transmitter.Bullets[No_] = null;
+                    transmitter.Bullets2[No_] = null;
                     UpdateTimesEffect();
                 }
                 else if (block.ShieldCapacity > 0)
                 {
                     block.ShieldCapacity--;
-                    transmitter.Bullets[No_] = null;
+                    transmitter.Bullets2[No_] = null;
                     UpdateTimesEffect();
                 }
                 else
@@ -108,31 +113,81 @@ namespace demo
             {
                 if (block.EffectIgnore == true)
                 {
-                    transmitter.Bullets[No_] = null;
+                    transmitter.Bullets2[No_] = null;
                 }
                 else
                 {
                     ((BUFF)bullet).CauseEffect(block);
                     UpdateTimesEffect();
-                    transmitter.Bullets[No_] = null;
+                    transmitter.Bullets2[No_] = null;
                 }
             }
             else if (bullet.DamageType == 2)
             {
                 if (block.EffectIgnore == true)
                 {
-                    transmitter.Bullets[No_] = null;
+                    transmitter.Bullets2[No_] = null;
                 }
                 else
                 {
                     ((DEBUFF)bullet).CauseEffect(block);
                     UpdateTimesEffect();
-                    transmitter.Bullets[No_] = null;
+                    transmitter.Bullets2[No_] = null;
                 }
             }
             return false;
         }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (transmitter.Bullets2 != null)
+            {
+                for (int i = 0; i < transmitter.Bullets2.Count; i++)
+                {
+                    Bullet bullet = transmitter.Bullets2[i];
+                    if (bullet == null) continue;
+                    bullet.Move();
+                    //bullet.Draw(panel2.CreateGraphics());
+                    if (bullet.Pass(block) && i == transmitter.Bullets2.Count - 1)
+                    {//TODO   BUG!!!!!!!
+                        timer.Stop();
+                        MessageBox.Show("You Win!");
+                        if (ifRecord == true)    //如果开始的时候输入了用户名，就更新排行榜
+                        {
+                            Form2.AddOrUpdateRankItem(userName, _score);
+                        }
+                        break;
+                    }
+                    if (bullet.LeaveScreen())
+                    {
+                        transmitter.Bullets2[i] = null;
+                        continue;
+                        //bullet.Position = new Point(panel2.Width, random.Next(panel2.Height - BulletHeight));
+                    }
+                    //有磁铁效果时判断一下有没有经过BUFF，经过就自动吃掉BUFF
+                    if (block.Magnet == true && bullet.MeetWith(block) && bullet.DamageType == 1)
+                    {
+                        ((BUFF)bullet).CauseEffect(block);
+                        UpdateTimesEffect();
+                        transmitter.Bullets2[i] = null;
+                        continue;
+                    }
+                    if (bullet.CollidesWith(block))
+                    {
+                        bool flag = CollidesJudge(i, bullet);
+                        if (flag == true)
+                        {
+                            timer.Stop();
+                            MessageBox.Show("Game Over");
+                            break;
+                        }
+                    }
+                }
 
+                DrawGame();
+            }
+            UpdateContinuousEffect();
+        }
+        /*
         private void timer_Tick(object sender, EventArgs e)
         {
             if (transmitter.Bullets != null)
@@ -186,7 +241,7 @@ namespace demo
             //UpdateDrawableObject();
             //panel2.Invalidate();
             //block.Draw(panel2.CreateGraphics());
-        }
+        }*/
 
         public void UpdateTimesEffect()
         {
@@ -211,14 +266,14 @@ namespace demo
             Image imageTMP = new Bitmap(image, 60, 60);
             block.Draw(buffer.Graphics, imageTMP);
 
-            foreach (Bullet bullet in transmitter.Bullets)
+            for(int i = transmitter.Bullets2.Count - 1; i >= 0; i--)
             {
-                if (bullet != null)
+                if (transmitter.Bullets2[i] != null)
                 {
-                    bullet.Draw(buffer.Graphics);
+                    transmitter.Bullets2[i].Draw(buffer.Graphics);
                 }
             }
-
+            transmitter.Bullets2.RemoveAll(s => s == null);
             buffer.Render();
         }
 
@@ -284,8 +339,8 @@ namespace demo
                 dos.Add(block);
                 random = new Random();
 
-
-                GenerateBullets();
+                Tool.TransmitterTimer.Start();
+                //GenerateBullets();
             }
             //bullets = new Bullet[5];
             //transmitter.Bullets = new Bullet[transmitter.BulletNumber];
@@ -360,7 +415,10 @@ namespace demo
             Form2 rankForm = new Form2();
             rankForm.Show();
         }
-
+        public void drawstringonlabel(string str)
+        {
+            label5.Text = str;
+        }
     }
 }
 
