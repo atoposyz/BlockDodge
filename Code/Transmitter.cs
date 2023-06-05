@@ -177,7 +177,7 @@ namespace demo.Code
                     {
                         bullets2.Add(new FEARLESS(
                             new Point(startX, Tool.trackposY[j]),
-                            Form1.BulletWidth, Form1.BulletHeight, GameImg.bullet_blue));
+                            Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF));
                     }
                 }
             }
@@ -246,6 +246,14 @@ namespace demo.Code
                     new Point(startX, Tool.trackposY[j]),
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             }
+        }
+        public BUFF RandomDebuff(int startX, int i, int j)
+        {
+            return null;
+        }
+        public Effect RandomEffect(int startX, int i, int j)
+        {
+            return null;
         }
     }
 }

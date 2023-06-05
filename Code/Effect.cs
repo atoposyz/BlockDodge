@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.AxHost;
 using Timer = System.Timers.Timer;
 
 namespace demo.Code
@@ -135,7 +136,7 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             Tool.form.BulletSpeed = 3;
-            Tool.transmitter.Interval *= 5;
+            Tool.transmitter.Interval *= 2;
             Tool.TimeslackTime = 5500;
             Tool.TimeslackTimer.Stop();
             Tool.TimeslackTimer.Start();
@@ -143,7 +144,7 @@ namespace demo.Code
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
             Tool.form.BulletSpeed = Tool.BULLETSPEED;
-            Tool.transmitter.Interval /= 5;
+            Tool.transmitter.Interval /= 2;
         }
     }
     class INVINCIBILITY: BUFF  
@@ -184,8 +185,8 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
-            Tool.form.BulletSpeed = 20;
-            Tool.transmitter.Interval /= 2;
+            Tool.form.BulletSpeed *= 4;
+            Tool.transmitter.Interval /= 4;
             block.EffectIgnore = true;
             block.BulletIgnore = true;
             Tool.SprintTime = 4500;
@@ -195,8 +196,8 @@ namespace demo.Code
         }
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
-            Tool.form.BulletSpeed = 5;
-            Tool.transmitter.Interval *= 2;
+            Tool.form.BulletSpeed /= 4;
+            Tool.transmitter.Interval *= 4;
             Tool.block.BulletIgnore = false;
             Tool.block.EffectIgnore = false;
             //Tool.block.Magnet = false;
@@ -264,14 +265,74 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
-            Tool.transmitter.Interval = 50;
+            Tool.transmitter.Interval = 400;
             Tool.FearlessTime = 6500;
             Tool.FearlessTimer.Stop();
             Tool.FearlessTimer.Start();
         }
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
-            Tool.transmitter.Interval = 200;
+            Tool.transmitter.Interval = 500;
+        }
+    }
+    class GOODLUCK: DEBUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public GOODLUCK(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.OnceEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            Tool.transmitter.bullets2.Add(Tool.transmitter.RandomEffect());
+        }
+    }
+    class QUICK: DEBUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public QUICK(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.ContinuousEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            Tool.transmitter.Interval = 400;
+            Tool.form.BulletSpeed *= 3;
+            Tool.QuickTime = 5500;
+            Tool.QuickTimer.Stop();
+            Tool.QuickTimer.Start();
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+            Tool.form.BulletSpeed /= 3;
+        }
+    }
+    class NIGHTWALK: DEBUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public NIGHTWALK(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.ContinuousEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+
         }
     }
 }

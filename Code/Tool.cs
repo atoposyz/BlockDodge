@@ -30,6 +30,8 @@ namespace demo.Code
         public static Timer InvincibilityTimer;
         public static Timer SprintTimer;
         public static Timer FearlessTimer;
+        public static Timer QuickTimer;
+        public static Timer NightwalkTimer;
 
         public static int TransmitterTime = 0;
         public static int MagnetTime = 0;
@@ -37,6 +39,8 @@ namespace demo.Code
         public static int InvincibilityTime = 0;
         public static int SprintTime = 0;
         public static int FearlessTime = 0;
+        public static int QuickTime = 0;
+        public static int NightwalkTime = 0;
 
 
         public Tool(Form1 form1, Player block, Transmitter transmitter)
@@ -68,7 +72,13 @@ namespace demo.Code
             SprintTimer.AutoReset = false;
             FearlessTimer = new Timer(6000);
             FearlessTimer.Elapsed += new System.Timers.ElapsedEventHandler(FEARLESS.LoseEfficacy);
-            SprintTimer.AutoReset = false;
+            FearlessTimer.AutoReset = false;
+            QuickTimer = new Timer(5000);
+            QuickTimer.Elapsed += new System.Timers.ElapsedEventHandler(QUICK.LoseEfficacy);
+            QuickTimer.AutoReset = false;
+            NightwalkTimer = new Timer(4000);
+            NightwalkTimer.Elapsed += new System.Timers.ElapsedEventHandler(NIGHTWALK.LoseEfficacy);
+            NightwalkTimer.AutoReset = false;
         }
         public static void MainTimerCount(object source, System.Timers.ElapsedEventArgs e)
         {
