@@ -16,6 +16,9 @@ namespace demo.Code
         private bool bulletignore;
         private bool magnet;
         private bool effectignore;
+        private bool fearless;
+        private bool timeslack;
+        private bool quick;
         public static Point[,] Points = new Point[3, 3] {
             { new Point(50, 100), new Point(50, 200), new Point(50, 300) },
             { new Point(350, 100), new Point(350, 200), new Point(350, 300) },
@@ -49,6 +52,21 @@ namespace demo.Code
         {
             get { return effectignore;}
             set { effectignore = value; }
+        }
+        public bool Fearless
+        {
+            get { return fearless; }
+            set { fearless = value; }
+        }
+        public bool Timeslack
+        {
+            get { return timeslack; }
+            set { timeslack = value; }
+        }
+        public bool Quick
+        {
+            get { return quick; }
+            set { quick = value; }
         }
         public Player(Point position, int width, int height, Image image) : base(position, width, height, image)
         {

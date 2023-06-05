@@ -25,6 +25,13 @@ namespace demo.Code
         pure = 90,
         sprint = 100
     }
+    enum DebuffProbability
+    {
+        brave = 25,
+        fearless = 50,
+        goodluck = 75,
+        quick = 100
+    }
     class Transmitter
     {
         private int interval;
@@ -205,9 +212,10 @@ namespace demo.Code
                     }
                     else if (track[j][i] == 3)      //DEBUFF
                     {
-                        bullets[numtmp] = new FEARLESS(
+                        bullets[numtmp] = RandomDebuff(startX, i, j);
+                        /*bullets[numtmp] = new FEARLESS(
                             new Point(startX + i * interval, Tool.trackposY[j]),
-                            Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+                            Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);*/
                         numtmp++;
                     }
 
@@ -247,9 +255,40 @@ namespace demo.Code
                     Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             }
         }
-        public BUFF RandomDebuff(int startX, int i, int j)
+        public DEBUFF RandomDebuff(int startX, int i, int j)
         {
-            return null;
+            Random rd = new Random();
+            int tmp = rd.Next(0, 100);
+            if (tmp < (int)DebuffProbability.brave)
+            {
+                return new BRAVE(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+            }
+            else if (tmp < (int)DebuffProbability.fearless)
+            {
+                return new FEARLESS(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+            }
+            else if (tmp < (int)DebuffProbability.goodluck)
+            {
+                return new GOODLUCK(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+            }
+            else if (tmp < (int)DebuffProbability.quick)
+            {
+                return new QUICK(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+            }
+            else
+            {
+                return new NIGHTWALK(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+            }
         }
         public Effect RandomEffect(int startX, int i, int j)
         {

@@ -135,8 +135,13 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
-            Tool.form.BulletSpeed = 3;
-            Tool.transmitter.Interval *= 2;
+            if(block.Timeslack == false)
+            {
+                Tool.form.BulletSpeed = 3;
+                Tool.transmitter.Interval *= 2;
+                block.Timeslack = true;
+            }
+            
             Tool.TimeslackTime = 5500;
             Tool.TimeslackTimer.Stop();
             Tool.TimeslackTimer.Start();
@@ -145,6 +150,7 @@ namespace demo.Code
         {
             Tool.form.BulletSpeed = Tool.BULLETSPEED;
             Tool.transmitter.Interval /= 2;
+            Tool.block.Timeslack = false;
         }
     }
     class INVINCIBILITY: BUFF  
@@ -185,6 +191,7 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
+            if(block.EffectIgnore) return;
             Tool.form.BulletSpeed *= 4;
             Tool.transmitter.Interval /= 4;
             block.EffectIgnore = true;
@@ -261,18 +268,22 @@ namespace demo.Code
             this.width = width;
             this.height = height;
             type = EffectType.ContinuousEffect;
-
         }
         public override void CauseEffect(Player block)
         {
-            Tool.transmitter.Interval = 400;
+            if(block.Fearless == false)
+            {
+                block.Fearless = true;
+                Tool.transmitter.Interval -= 500;
+            }
             Tool.FearlessTime = 6500;
             Tool.FearlessTimer.Stop();
             Tool.FearlessTimer.Start();
         }
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
-            Tool.transmitter.Interval = 500;
+            Tool.transmitter.Interval += 500;
+            Tool.block.Fearless = false;
         }
     }
     class GOODLUCK: DEBUFF
@@ -288,7 +299,7 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
-            Tool.transmitter.bullets2.Add(Tool.transmitter.RandomEffect());
+            //Tool.transmitter.bullets2.Add(Tool.transmitter.RandomEffect());
         }
     }
     class QUICK: DEBUFF
@@ -304,8 +315,11 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
-            Tool.transmitter.Interval = 400;
-            Tool.form.BulletSpeed *= 3;
+            if(block.Quick == false)
+            {
+                block.Quick = true;
+                Tool.form.BulletSpeed *= 3;
+            }
             Tool.QuickTime = 5500;
             Tool.QuickTimer.Stop();
             Tool.QuickTimer.Start();
@@ -313,6 +327,7 @@ namespace demo.Code
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
             Tool.form.BulletSpeed /= 3;
+            Tool.block.Quick = false;
         }
     }
     class NIGHTWALK: DEBUFF
