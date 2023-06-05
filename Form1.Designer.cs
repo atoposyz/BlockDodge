@@ -110,6 +110,7 @@
             // 
             // panel2
             // 
+            panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(label1);
             panel2.Dock = DockStyle.Fill;
@@ -122,7 +123,6 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
             label1.Location = new Point(24, 22);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -329,7 +329,6 @@
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
@@ -360,5 +359,6 @@
         private Label timeslacklimit;
         private Label invincibilitylimit;
         private Label sprintlimit;
+
     }
 }
