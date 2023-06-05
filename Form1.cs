@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Timer = System.Windows.Forms.Timer;
 using demo.Code;
+using System.Security.Cryptography.Xml;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Text;
 
 namespace demo
 {
@@ -35,7 +39,9 @@ namespace demo
 
         private Random random;
         private BufferedGraphics buffer;
-
+        private int _score = 100; // 记录用户得分
+        private string userName;
+        private bool ifRecord = false;
         public Form1()
         {
             InitializeComponent();
@@ -134,6 +140,10 @@ namespace demo
                     {//TODO   BUG!!!!!!!
                         timer.Stop();
                         MessageBox.Show("You Win!");
+                        if (ifRecord == true)    //如果开始的时候输入了用户名，就更新排行榜
+                        {
+                            Form2.AddOrUpdateRankItem(userName, _score);
+                        }
                         break;
                     }
                     if (bullet.LeaveScreen())
@@ -243,8 +253,11 @@ namespace demo
             if (firststart == true)
             {
                 firststart = false;
+
                 dos.Add(block);
                 random = new Random();
+
+
                 GenerateBullets();
             }
             //bullets = new Bullet[5];
@@ -268,7 +281,15 @@ namespace demo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            userName = ShowUserNameDialog();
+            if (!string.IsNullOrEmpty(userName))
+            {
+                ifRecord = true;
+            }
+        }
+        private string ShowUserNameDialog()
+        {
+            return Microsoft.VisualBasic.Interaction.InputBox("请输入您的用户名：", "提示", "");
         }
 
         //private void panel2_MouseClick(object sender, MouseEventArgs e)
@@ -306,5 +327,14 @@ namespace demo
                 //label1.Text = "change to pos " + block.CoordinateY + " on" + block.Position.ToString();
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form2 rankForm = new Form2();
+            rankForm.Show();
+        }
+
+
     }
 }
+

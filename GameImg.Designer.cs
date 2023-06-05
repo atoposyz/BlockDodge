@@ -91,6 +91,19 @@ namespace demo {
         }
         
         /// <summary>
+        ///   查找类似 wx,0
+        ///myz,1
+        ///ggn,3
+        ///aidan,4
+        ///myz,5 的本地化字符串。
+        /// </summary>
+        internal static string rank {
+            get {
+                return ResourceManager.GetString("rank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap Square {
