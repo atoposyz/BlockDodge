@@ -66,6 +66,11 @@ namespace demo.Code
             coordinateY = y;
             position = Points[x, y];
         }
+        public override void Draw(Graphics g, Image image)
+        {
+            g.DrawImage(image, position.X, position.Y, width, height);
+        }
+
         public override void Draw(Graphics g)
         {
             g.DrawImage(image, position.X, position.Y, width, height);

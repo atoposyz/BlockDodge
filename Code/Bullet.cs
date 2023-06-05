@@ -61,5 +61,10 @@ namespace demo.Code
             g.DrawImage(image, position.X, position.Y, width, height);
         }
 
+        public override void Draw(Graphics g, Image image)
+        {
+            g.DrawImage(image, position.X, position.Y, width, height);
+        }
+
     }
 }

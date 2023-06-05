@@ -17,6 +17,8 @@ namespace demo.Code
             this.image = new Bitmap(image, width, height);
         }
 
+
+
         public Point Position
         {
             get { return position; }
@@ -24,5 +26,7 @@ namespace demo.Code
         }
 
         public abstract void Draw(Graphics g);
+
+        public abstract void Draw(Graphics g, Image image);
     }
 }

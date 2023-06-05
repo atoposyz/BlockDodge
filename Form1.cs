@@ -44,6 +44,8 @@ namespace demo
         private int _score = 100; // 记录用户得分
         private string userName;
         private bool ifRecord = false;
+        private int cnt = 3;
+        private int m = -1;
         public Form1()
         {
             InitializeComponent();
@@ -202,7 +204,12 @@ namespace demo
         {
             buffer.Graphics.Clear(BackColor);
             buffer.Graphics.DrawImage(GameImg.background, 0, 0);
-            block.Draw(buffer.Graphics);
+            string imagePath = @"Resources\mod_00" + cnt.ToString() + ".png";
+            cnt = (cnt - 3 + 1) % 23 + 3;
+            //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
+            Image image = Image.FromFile(imagePath);
+            Image imageTMP = new Bitmap(image, 60, 60);
+            block.Draw(buffer.Graphics, imageTMP);
 
             foreach (Bullet bullet in transmitter.Bullets)
             {
