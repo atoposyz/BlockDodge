@@ -65,10 +65,16 @@ namespace demo.Code
             get { return interval; } 
             set {  interval = value; } 
         }
-        private void Reset()
+        public void Reset()
         {
             tracklength = 100000;
             bulletnumber = 0;
+            for(int i = 0; i < track.Length; i++)
+            {
+                track[i] = new List<int> { };
+            }
+            bullets = null;
+            bullets2 = new List<Bullet> { };
         }
         public void LoadTrack(string docname)
         {

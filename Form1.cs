@@ -23,6 +23,7 @@ namespace demo
             { new Point(350, 100), new Point(350, 200), new Point(350, 300) },
             { new Point(650, 100), new Point(650, 200), new Point(650, 300) } };*/
 
+        private int mode = 0;
         private List<DrawableObject> dos = new List<DrawableObject>();
         private Transmitter transmitter;
         private Timer timer;
@@ -69,7 +70,6 @@ namespace demo
             timer.Tick += new EventHandler(timer_Tick);
 
             transmitter.LoadTrack("demo2.txt");
-            //transmitter.LoadRandomTrack(TrackLength);
 
             sp.SoundLocation = @"../../../Resources/music.wav"; //音乐文件
 
@@ -263,7 +263,7 @@ namespace demo
                 xPos = 0;
             }
             buffer.Graphics.Clear(BackColor);
-            buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
+            //buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
             string imagePath = @"Resources\mod_00" + cnt.ToString() + ".png";
             cnt = (cnt - 3 + 1) % 23 + 3;
             //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
@@ -271,7 +271,7 @@ namespace demo
             Image imageTMP = new Bitmap(image, 60, 60);
             block.Draw(buffer.Graphics, imageTMP);
 
-            for(int i = transmitter.Bullets2.Count - 1; i >= 0; i--)
+            for (int i = transmitter.Bullets2.Count - 1; i >= 0; i--)
             {
                 if (transmitter.Bullets2[i] != null)
                 {
@@ -284,9 +284,9 @@ namespace demo
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(GameImg.background_all, 0, 0);
+            //e.Graphics.DrawImage(GameImg.background_all, 0, 0);
             buffer.Graphics.Clear(BackColor);
-            buffer.Graphics.DrawImage(GameImg.background_all, 0, 0);
+            //buffer.Graphics.DrawImage(GameImg.background_all, 0, 0);
             ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
             foreach (DrawableObject drawable in dos)
             {
@@ -420,9 +420,21 @@ namespace demo
             Form2 rankForm = new Form2();
             rankForm.Show();
         }
-        public void drawstringonlabel(string str)
+
+        private void button3_Click(object sender, EventArgs e)
         {
-            label5.Text = str;
+            if (mode == 0)
+            {
+                mode = 1;
+                label1.Text = "无尽模式";
+                transmitter.LoadRandomTrack(TrackLength);
+            }
+            else if (mode == 1)
+            {
+                mode = 0;
+                label1.Text = "闯关模式";
+                transmitter.LoadTrack("demo2.txt");
+            }
         }
     }
 }

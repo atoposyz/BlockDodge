@@ -33,8 +33,9 @@
             button2 = new Button();
             button1 = new Button();
             panel2 = new Panel();
-            label1 = new Label();
             panel3 = new Panel();
+            button3 = new Button();
+            label1 = new Label();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
@@ -51,10 +52,8 @@
             shieldtext = new Label();
             magnetlimit = new Label();
             shieldlabel = new Label();
-            label5 = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -109,7 +108,6 @@
             // 
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(label1);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
@@ -117,17 +115,10 @@
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
             // 
-            // label1
-            // 
-            label1.Location = new Point(20, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(52, 20);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
-            // 
             // panel3
             // 
-            panel3.Controls.Add(label5);
+            panel3.Controls.Add(button3);
+            panel3.Controls.Add(label1);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(label8);
@@ -149,6 +140,24 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(146, 534);
             panel3.TabIndex = 2;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(27, 458);
+            button3.Name = "button3";
+            button3.Size = new Size(88, 44);
+            button3.TabIndex = 19;
+            button3.Text = "切换模式";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // label1
+            // 
+            label1.Location = new Point(37, 426);
+            label1.Name = "label1";
+            label1.Size = new Size(81, 29);
+            label1.TabIndex = 0;
+            label1.Text = "闯关模式";
             // 
             // label10
             // 
@@ -294,15 +303,6 @@
             shieldlabel.TabIndex = 3;
             shieldlabel.Text = "护盾：";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(15, 430);
-            label5.Name = "label5";
-            label5.Size = new Size(53, 20);
-            label5.TabIndex = 19;
-            label5.Text = "label5";
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -315,7 +315,6 @@
             KeyDown += Form1_KeyDown;
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
@@ -346,6 +345,6 @@
         private Label timeslacklimit;
         private Label invincibilitylimit;
         private Label sprintlimit;
-        private Label label5;
+        private Button button3;
     }
 }
