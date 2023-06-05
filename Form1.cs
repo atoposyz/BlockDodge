@@ -201,6 +201,7 @@ namespace demo
         private void DrawGame()
         {
             buffer.Graphics.Clear(BackColor);
+            buffer.Graphics.DrawImage(GameImg.background, 0, 0);
             block.Draw(buffer.Graphics);
 
             foreach (Bullet bullet in transmitter.Bullets)
@@ -216,7 +217,9 @@ namespace demo
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.DrawImage(GameImg.background, 0, 0);
             buffer.Graphics.Clear(BackColor);
+            buffer.Graphics.DrawImage(GameImg.background, 0, 0);
             ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
             foreach (DrawableObject drawable in dos)
             {
@@ -229,6 +232,17 @@ namespace demo
             buffer.Render(e.Graphics);
 
         }
+
+        //private void panel2_Paint2(object sender, PaintEventArgs e)
+        //{
+        //    Graphics g = e.Graphics;
+        //    g.DrawImage(new Bitmap(GameImg.tmp), 0, 0);
+        //    // 
+        //    // label1
+        //    // 
+        //    label1.AutoSize = true;
+        //}
+
         private void UpdateDrawableObject()
         {
             panel2.CreateGraphics().Clear(BackColor);
@@ -339,7 +353,6 @@ namespace demo
             Form2 rankForm = new Form2();
             rankForm.Show();
         }
-
 
     }
 }
