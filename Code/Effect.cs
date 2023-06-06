@@ -135,7 +135,7 @@ namespace demo.Code
         {
             if(block.Quick == true)
             {
-                Tool.form.BulletSpeed *= 3;
+                Tool.form.BulletSpeed /= 3;
                 block.Quick = false;
                 Tool.QuickTimer.Stop();
                 return;
@@ -199,7 +199,7 @@ namespace demo.Code
             if(block.EffectIgnore) return;
             if(block.Quick)
             {
-                Tool.form.BulletSpeed *= 3;
+                Tool.form.BulletSpeed /= 3;
                 block.Quick = false;
                 Tool.QuickTimer.Stop();
             }
