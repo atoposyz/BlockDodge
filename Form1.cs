@@ -151,14 +151,14 @@ namespace demo
         {
             if (block.Win == true)
             {
-                block.Win = false;
-                reset();
-                timer.Stop();
-                MessageBox.Show("You Win!");
                 if (ifRecord == true)    //如果开始的时候输入了用户名，就更新排行榜
                 {
                     Form2.AddOrUpdateRankItem(userName, Tool.score);
                 }
+                block.Win = false;
+                reset();
+                timer.Stop();
+                MessageBox.Show("You Win!");
                 return;
             }
             if (transmitter.Bullets2 != null)
