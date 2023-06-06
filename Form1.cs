@@ -684,6 +684,7 @@ namespace demo
         {
             sp.Stop();
             panel2.CreateGraphics().Clear(BackColor);
+            panel2.Invalidate();
             firststart = true;
             button1.Text = "¿ªÊ¼ÓÎÏ·";
             transmitter.Reset();
