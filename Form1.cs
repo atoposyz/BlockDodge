@@ -270,6 +270,7 @@ namespace demo
             sprintlimit.Text = (Tool.SprintTime / 1000).ToString() + "s";
             fearlesslimit.Text = (Tool.FearlessTime / 1000).ToString() + "s";
             quicklimit.Text = (Tool.QuickTime / 1000).ToString() + "s";
+            scores.Text = Tool.score.ToString();
         }
         private void DrawGame()
         {
@@ -377,7 +378,7 @@ namespace demo
                 sp.PlayLooping();
                 dos.Add(block);
                 random = new Random();
-
+                Tool.MainTimer.Start();
                 Tool.TransmitterTimer.Start();
                 //GenerateBullets();
             }
@@ -490,8 +491,10 @@ namespace demo
             Tool.reset();
             block.reset();
             pause = true;
+            block.Win = false;
             UpdateTimesEffect();
             UpdateContinuousEffect();
+            timer.Stop();
             if (mode == 0)
             {
                 button1.Enabled = true;

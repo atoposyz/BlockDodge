@@ -42,6 +42,8 @@ namespace demo.Code
         public static int QuickTime = 0;
         public static int NightwalkTime = 0;
 
+        public static int score = 0;
+
 
         public Tool(Form1 form1, Player block, Transmitter transmitter)
         {
@@ -82,6 +84,7 @@ namespace demo.Code
         }
         public static void reset ()
         {
+            MainTimer.Stop();
             TransmitterTimer.Stop();
             MagnetTimer.Stop();
             TimeslackTimer.Stop();
@@ -99,10 +102,16 @@ namespace demo.Code
             FearlessTime = 0;
             QuickTime = 0;
             NightwalkTime = 0;
+            score = 0;
 
         }
         public static void MainTimerCount(object source, System.Timers.ElapsedEventArgs e)
         {
+            if(form.pause == true)
+            {
+                return;
+            }
+            score += 5;
             if(block.Magnet == true && MagnetTime > 0)
             {
                 MagnetTime -= 500;
