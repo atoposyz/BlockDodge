@@ -344,6 +344,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1008, 601);
             Controls.Add(tableLayoutPanel1);
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Form1";
             FormClosing += Form1_FormClosing;
