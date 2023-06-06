@@ -237,7 +237,7 @@
             // 
             nightwalklimit.AutoSize = true;
             nightwalklimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            nightwalklimit.Location = new Point(123, 348);
+            nightwalklimit.Location = new Point(104, 348);
             nightwalklimit.Name = "nightwalklimit";
             nightwalklimit.Size = new Size(33, 27);
             nightwalklimit.TabIndex = 18;
@@ -247,7 +247,7 @@
             // 
             quicklimit.AutoSize = true;
             quicklimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            quicklimit.Location = new Point(123, 316);
+            quicklimit.Location = new Point(104, 316);
             quicklimit.Name = "quicklimit";
             quicklimit.Size = new Size(33, 27);
             quicklimit.TabIndex = 17;
@@ -257,7 +257,7 @@
             // 
             fearlesslimit.AutoSize = true;
             fearlesslimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            fearlesslimit.Location = new Point(123, 284);
+            fearlesslimit.Location = new Point(104, 284);
             fearlesslimit.Name = "fearlesslimit";
             fearlesslimit.Size = new Size(33, 27);
             fearlesslimit.TabIndex = 16;
@@ -267,7 +267,7 @@
             // 
             timeslacklimit.AutoSize = true;
             timeslacklimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            timeslacklimit.Location = new Point(123, 189);
+            timeslacklimit.Location = new Point(104, 189);
             timeslacklimit.Name = "timeslacklimit";
             timeslacklimit.Size = new Size(33, 27);
             timeslacklimit.TabIndex = 15;
@@ -277,7 +277,7 @@
             // 
             invincibilitylimit.AutoSize = true;
             invincibilitylimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            invincibilitylimit.Location = new Point(123, 221);
+            invincibilitylimit.Location = new Point(104, 221);
             invincibilitylimit.Name = "invincibilitylimit";
             invincibilitylimit.Size = new Size(33, 27);
             invincibilitylimit.TabIndex = 14;
@@ -287,7 +287,7 @@
             // 
             sprintlimit.AutoSize = true;
             sprintlimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            sprintlimit.Location = new Point(123, 253);
+            sprintlimit.Location = new Point(104, 253);
             sprintlimit.Name = "sprintlimit";
             sprintlimit.Size = new Size(33, 27);
             sprintlimit.TabIndex = 13;
@@ -367,7 +367,7 @@
             // 
             shieldtext.AutoSize = true;
             shieldtext.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            shieldtext.Location = new Point(123, 124);
+            shieldtext.Location = new Point(104, 124);
             shieldtext.Name = "shieldtext";
             shieldtext.Size = new Size(24, 27);
             shieldtext.TabIndex = 4;
@@ -377,7 +377,7 @@
             // 
             magnetlimit.AutoSize = true;
             magnetlimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            magnetlimit.Location = new Point(123, 156);
+            magnetlimit.Location = new Point(104, 156);
             magnetlimit.Name = "magnetlimit";
             magnetlimit.Size = new Size(33, 27);
             magnetlimit.TabIndex = 5;
@@ -399,10 +399,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1236, 731);
             Controls.Add(tableLayoutPanel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             MaximizeBox = false;
             Name = "Form1";
-            Text = "Form1";
+            Text = "德克萨斯送快递";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             KeyDown += Form1_KeyDown;

@@ -110,7 +110,7 @@ namespace demo.Code
         }
         public void LoadTrack(string docname)
         {
-            path = "../../../config/" + docname;
+            path = "config/" + docname;
             Reset();
             StreamReader sr = new StreamReader(path);
             string? line;

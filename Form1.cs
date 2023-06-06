@@ -60,6 +60,7 @@ namespace demo
         public Form1()
         {
             InitializeComponent();
+            this.Size = new Size(1254, 777);
             uiThread = new Thread(DrawGame);
             this.KeyPreview = true;
             //InitializeGame();
@@ -82,7 +83,7 @@ namespace demo
 
             transmitter.LoadTrack("demo2.txt");
 
-            sp.SoundLocation = @"../../../Resources/music.wav"; //音乐文件
+            sp.SoundLocation = @"Resources/music.wav"; //音乐文件
 
 
             //panel2.Resize += new EventHandler(panel2_Resize);
@@ -276,7 +277,7 @@ namespace demo
             {
                 magnetlabel.BackColor = BackColor;
             }
-            if(Tool.TimeslackTime / 1000 > 0)
+            if (Tool.TimeslackTime / 1000 > 0)
             {
                 timeslacklabel.BackColor = Color.LightGreen;
             }
@@ -284,15 +285,15 @@ namespace demo
             {
                 timeslacklabel.BackColor = BackColor;
             }
-            if(Tool.InvincibilityTime / 1000 > 0)
+            if (Tool.InvincibilityTime / 1000 > 0)
             {
                 invincibilitylabel.BackColor = Color.LightGreen;
             }
             else
             {
-                invincibilitylabel.BackColor= BackColor;
+                invincibilitylabel.BackColor = BackColor;
             }
-            if(Tool.SprintTime / 1000 > 0)
+            if (Tool.SprintTime / 1000 > 0)
             {
                 sprintlabel.BackColor = Color.LightGreen;
             }
@@ -300,31 +301,31 @@ namespace demo
             {
                 sprintlabel.BackColor = BackColor;
             }
-            if(Tool.FearlessTime / 1000 > 0)
+            if (Tool.FearlessTime / 1000 > 0)
             {
                 fearlesslabel.BackColor = Color.OrangeRed;
             }
             else
             {
-                fearlesslabel.BackColor= BackColor;
+                fearlesslabel.BackColor = BackColor;
             }
-            if(Tool.QuickTime / 1000 > 0)
+            if (Tool.QuickTime / 1000 > 0)
             {
                 quicklabel.BackColor = Color.OrangeRed;
             }
             else
             {
-                quicklabel.BackColor= BackColor;
+                quicklabel.BackColor = BackColor;
             }
-            if(Tool.DefenseTime / 100 > 0)
+            if (Tool.DefenseTime / 100 > 0)
             {
                 defenselabel.BackColor = Color.LightGreen;
             }
             else
             {
-                defenselabel.BackColor= BackColor;
+                defenselabel.BackColor = BackColor;
             }
-            if(Tool.PureTime / 100 > 0)
+            if (Tool.PureTime / 100 > 0)
             {
                 purelabel.BackColor = Color.LightGreen;
             }
@@ -332,21 +333,21 @@ namespace demo
             {
                 purelabel.BackColor = BackColor;
             }
-            if(Tool.BraveTime / 100 > 0)
+            if (Tool.BraveTime / 100 > 0)
             {
                 bravelabel.BackColor = Color.OrangeRed;
             }
             else
             {
-                bravelabel.BackColor= BackColor;
+                bravelabel.BackColor = BackColor;
             }
-            if(Tool.GoodluckTime / 100 > 0)
+            if (Tool.GoodluckTime / 100 > 0)
             {
                 goodlucklabel.BackColor = Color.OrangeRed;
             }
             else
             {
-                goodlucklabel.BackColor= BackColor;
+                goodlucklabel.BackColor = BackColor;
             }
             magnetlimit.Text = (Tool.MagnetTime / 1000).ToString() + 's';
             timeslacklimit.Text = (Tool.TimeslackTime / 1000).ToString() + "s";
@@ -374,7 +375,7 @@ namespace demo
                     }
                     buffer.Graphics.Clear(BackColor);
 
-                    using (FileStream stream = new FileStream(@"../../../Resources/background_all.png", FileMode.Open, FileAccess.Read))
+                    using (FileStream stream = new FileStream(@"Resources/background_all.png", FileMode.Open, FileAccess.Read))
                     {
                         using (Image image = Image.FromStream(stream))
                         {
@@ -393,7 +394,7 @@ namespace demo
 
 
                     //buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
-                    string imagePath = @"../../../Resources/mod_00" + cnt.ToString() + ".png";
+                    string imagePath = @"Resources/mod_00" + cnt.ToString() + ".png";
                     cnt = (cnt - 3 + 1) % 23 + 3;
                     //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
                     using (Image image = Image.FromFile(imagePath))
@@ -422,7 +423,7 @@ namespace demo
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawImage(GameImg.background_all, 0, 0);
-            string imagePath = @"../../../Resources/mod_003.png";
+            string imagePath = @"Resources/mod_003.png";
             using (Image image = Image.FromFile(imagePath))
             {
                 // 游戏绘制逻辑
@@ -723,7 +724,7 @@ namespace demo
             BulletSpeed = 12.5;
             transmitter.Interval = 500;
             Tool.INTERVAL = 500;
-            sp.SoundLocation = @"../../../Resources/music.wav";
+            sp.SoundLocation = @"Resources/music.wav";
             transmitter.LoadTrack("demo2.txt");
             mainpanel.Visible = false;
             tableLayoutPanel1.Visible = true;
@@ -735,7 +736,7 @@ namespace demo
             BulletSpeed = 5;
             transmitter.Interval = 1500;
             Tool.INTERVAL = 1500;
-            sp.SoundLocation = @"../../../Resources/endless.wav";
+            sp.SoundLocation = @"Resources/endless.wav";
             transmitter.LoadRandomTrack(TrackLength);
             mainpanel.Visible = false;
             tableLayoutPanel1.Visible = true;

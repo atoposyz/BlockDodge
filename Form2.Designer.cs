@@ -42,11 +42,12 @@
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.DataSource = rankItemBindingSource1;
-            dataGridView1.Location = new Point(221, -1);
+            dataGridView1.Location = new Point(181, -1);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 32;
-            dataGridView1.Size = new Size(406, 562);
+            dataGridView1.Size = new Size(332, 468);
             dataGridView1.TabIndex = 0;
             // 
             // rankItemBindingSource
@@ -55,12 +56,13 @@
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(11F, 24F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(873, 561);
+            ClientSize = new Size(714, 468);
             Controls.Add(dataGridView1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Form2";
-            Text = "Form2";
+            Text = "排行榜";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)rankItemBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)rankItemBindingSource).EndInit();
