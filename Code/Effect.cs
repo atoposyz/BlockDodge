@@ -350,4 +350,20 @@ namespace demo.Code
 
         }
     }
+    class Final: BUFF
+    {
+        private int width;
+        private int height;
+        EffectType type;
+        public Final(Point position, int width, int height, Image image) : base(position, width, height, image)
+        {
+            this.width = width;
+            this.height = height;
+            type = EffectType.OnceEffect;
+        }
+        public override void CauseEffect(Player block)
+        {
+            block.Win = true;
+        }
+    }
 }

@@ -28,7 +28,7 @@ namespace demo
         private Transmitter transmitter;
         private Timer timer;
         System.Media.SoundPlayer sp = new SoundPlayer();
-        private bool pause;
+        public bool pause;
         private bool firststart;
 
         public const int TrackNumber = 3;
@@ -149,6 +149,16 @@ namespace demo
         }
         private void timer_Tick(object sender, EventArgs e)
         {
+            if (block.Win == true)
+            {
+                timer.Stop();
+                MessageBox.Show("You Win!");
+                if (ifRecord == true)    //如果开始的时候输入了用户名，就更新排行榜
+                {
+                    Form2.AddOrUpdateRankItem(userName, _score);
+                }
+                return;
+            }
             if (transmitter.Bullets2 != null)
             {
                 for (int i = 0; i < transmitter.Bullets2.Count; i++)
@@ -157,17 +167,8 @@ namespace demo
                     if (bullet == null) continue;
                     bullet.Move();
                     //bullet.Draw(panel2.CreateGraphics());
-                    /*
-                    if (bullet.Pass(block) && i == transmitter.Bullets2.Count - 1)
-                    {//TODO   BUG!!!!!!!
-                        timer.Stop();
-                        MessageBox.Show("You Win!");
-                        if (ifRecord == true)    //如果开始的时候输入了用户名，就更新排行榜
-                        {
-                            Form2.AddOrUpdateRankItem(userName, _score);
-                        }
-                        break;
-                    }*/
+                    
+                    
                     if (bullet.LeaveScreen())
                     {
                         transmitter.Bullets2[i] = null;
@@ -344,7 +345,7 @@ namespace demo
                 pause = false;
                 timer.Start();
                 button1.Text = "暂停";
-                sp.PlayLooping();
+                
             }
             else if (pause == false)
             {
@@ -360,8 +361,9 @@ namespace demo
                 {
                     button1.Enabled = false;
                 }
+                button3.Enabled = false;
                 firststart = false;
-
+                sp.PlayLooping();
                 dos.Add(block);
                 random = new Random();
 
@@ -472,6 +474,7 @@ namespace demo
             panel2.CreateGraphics().Clear(BackColor);
             firststart = true;
             button1.Text = "开始游戏";
+            button3.Enabled = true;
             transmitter.Reset();
             Tool.reset();
             block.reset();

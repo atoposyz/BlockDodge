@@ -19,6 +19,7 @@ namespace demo.Code
         private bool fearless;
         private bool timeslack;
         private bool quick;
+        private bool win;
         public static Point[,] Points = new Point[3, 3] {
             { new Point(50, 100 - 10), new Point(50, 200 - 10), new Point(50, 300 - 10) },
             { new Point(350, 100 - 10), new Point(350, 200 - 10), new Point(350, 300 - 10) },
@@ -68,6 +69,11 @@ namespace demo.Code
             get { return quick; }
             set { quick = value; }
         }
+        public bool Win
+        {
+            get { return win; }
+            set { win = value; }
+        }
         public Player(Point position, int width, int height, Image image) : base(position, width, height, image)
         {
             this.width = width;
@@ -85,6 +91,7 @@ namespace demo.Code
             fearless = false;
             timeslack = false;
             quick = false;
+            win = false;
         }
         public void changepos(Point pos)
         {

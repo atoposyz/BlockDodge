@@ -47,6 +47,7 @@ namespace demo.Code
         //private int[] trackposY = new int[3] { 100, 200, 300 };
         private int timecount = 0;
         private bool goodluck;
+        private bool endtransmit;
         public Transmitter(int tracknumber, int startX, int interval = 500)
         {
             bulletnumber = 0;
@@ -167,9 +168,21 @@ namespace demo.Code
         }
         public void TransmitterCheck(object source, System.Timers.ElapsedEventArgs e)
         {
+            if(Tool.form.pause == true)
+            {
+                return;
+            }
             timecount += 50;
             int i = timecount / interval;    //interval秒发射一次
-            if(i >= tracklength)
+            if(i >= tracklength && endtransmit == false)
+            {
+                endtransmit = true;
+                bullets2.Add(new Final(new Point(startX, Tool.trackposY[0]), Form1.BulletWidth, Form1.BulletHeight, GameImg.goal));
+                bullets2.Add(new Final(new Point(startX, Tool.trackposY[1]), Form1.BulletWidth, Form1.BulletHeight, GameImg.goal));
+                bullets2.Add(new Final(new Point(startX, Tool.trackposY[2]), Form1.BulletWidth, Form1.BulletHeight, GameImg.goal));
+                return;
+            }
+            if(endtransmit == true)
             {
                 return;
             }
@@ -200,9 +213,7 @@ namespace demo.Code
                         }
                         else if (track[j][i] == 3)      //DEBUFF
                         {
-                            bullets2.Add(new GOODLUCK(
-                                new Point(startX, Tool.trackposY[j]),
-                                Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF));
+                            bullets2.Add(RandomDebuff(startX, i, j, GameImg.DEBUFF));
                         }
                     }
                 }

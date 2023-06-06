@@ -82,7 +82,6 @@ namespace demo.Code
         }
         public static void reset ()
         {
-            MainTimer.Stop();
             TransmitterTimer.Stop();
             MagnetTimer.Stop();
             TimeslackTimer.Stop();
