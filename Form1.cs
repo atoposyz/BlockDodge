@@ -14,14 +14,7 @@ namespace demo
     {
 
         private Player block;
-        //private int posY;
-        //private int posX;
-        //private Point startpoint = new Point(50, 200);
         private Point startpoint;
-        /*public static Point[,] Points = new Point[3, 3] { 
-            { new Point(50, 100), new Point(50, 200), new Point(50, 300) },
-            { new Point(350, 100), new Point(350, 200), new Point(350, 300) },
-            { new Point(650, 100), new Point(650, 200), new Point(650, 300) } };*/
 
         private int mode = 0;
         private List<DrawableObject> dos = new List<DrawableObject>();
@@ -42,8 +35,6 @@ namespace demo
         public const int BulletWidth = 48;
         public const int BulletHeight = 48;
 
-
-
         public double BulletSpeed = Tool.BULLETSPEED;
         public const int TrackLength = 200;
 
@@ -55,6 +46,16 @@ namespace demo
         private int cnt = 3;
         private int xPos = 0;
         private Thread uiThread;
+
+        //以下为UI部分的变量
+        Panel mainpanel;
+        PictureBox backgroundpic;
+        Label title;
+        Button helpbutton;
+        Button levelbutton;
+        Button randombutton;
+        Button quitbutton;
+
         public Form1()
         {
             InitializeComponent();
@@ -429,6 +430,88 @@ namespace demo
             {
                 ifRecord = true;
             }
+            tableLayoutPanel1.Visible = false;
+
+            mainpanel = new Panel()
+            {
+                Size = new Size(1026, 647),
+                BackColor = Color.White
+            };
+
+            backgroundpic = new PictureBox()
+            {
+                Size = new Size(1026, 647),
+                Image = GameImg.MainpagePicture,
+                Location = new Point(0, 0),
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
+
+            levelbutton = new Button()
+            {
+                Text = "选择关卡",
+                Font = new Font("方正粗雅宋_GBK", 20),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Location = new Point(100, 200),
+                //AutoSize = true,
+                Width = 200,
+                Height = 70,/*
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.Transparent*/
+            };
+
+            randombutton = new Button()
+            {
+                Text = "随机模式",
+                Font = new Font("方正粗雅宋_GBK", 20),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Location = new Point(100, 300),
+                //AutoSize = true,
+                Width = 200,
+                Height = 70,/*
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.Transparent*/
+            };
+
+            helpbutton = new Button()
+            {
+                Text = "帮助",
+                Font = new Font("方正粗雅宋_GBK", 20),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Location = new Point(100, 400),
+                //AutoSize = true,
+                Width = 200,
+                Height = 70,/*
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.Transparent*/
+            };
+
+            quitbutton = new Button()
+            {
+                Text = "退出",
+                Font = new Font("方正粗雅宋_GBK", 20),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Location = new Point(100, 500),
+                //AutoSize = true,
+                Width = 200,
+                Height = 70,/*
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.Transparent,
+                ForeColor = Color.Red*/
+            };
+
+            levelbutton.Click += levelbutton_click;
+            randombutton.Click += randombutton_click;
+            helpbutton.Click += helpbutton_click;
+            quitbutton.Click += quitbutton_click;
+
+            backgroundpic.Controls.Add(levelbutton);
+            backgroundpic.Controls.Add(randombutton);
+            backgroundpic.Controls.Add(quitbutton);
+            backgroundpic.Controls.Add(helpbutton);
+            mainpanel.Controls.Add(backgroundpic);
+            
+            this.Controls.Add(mainpanel);
+
         }
         private string ShowUserNameDialog()
         {
@@ -538,6 +621,24 @@ namespace demo
         {
             System.Environment.Exit(0);
         }
+        private void levelbutton_click(object sender, EventArgs e)
+        {
+            mainpanel.Visible = false;
+            tableLayoutPanel1.Visible = true;
+        }
+        private void randombutton_click(object sender, EventArgs e)
+        {
+
+        }
+        private void helpbutton_click(object sender, EventArgs e)
+        {
+
+        }
+        private void quitbutton_click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
 
