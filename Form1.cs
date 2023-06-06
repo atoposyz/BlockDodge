@@ -151,6 +151,7 @@ namespace demo
         {
             if (block.Win == true)
             {
+                block.Win = false;
                 reset();
                 timer.Stop();
                 MessageBox.Show("You Win!");
