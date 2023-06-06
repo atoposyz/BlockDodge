@@ -197,6 +197,12 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             if(block.EffectIgnore) return;
+            if(block.Quick)
+            {
+                Tool.form.BulletSpeed *= 3;
+                block.Quick = false;
+                Tool.QuickTimer.Stop();
+            }
             Tool.form.BulletSpeed *= 4;
             Tool.transmitter.Interval /= 4;
             block.EffectIgnore = true;

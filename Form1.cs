@@ -405,14 +405,21 @@ namespace demo
                     //Image image = Image.FromFile(imagePath);
                     //Image imageTMP = new Bitmap(image, BlockWidth, BlockHeight);
                     //block.Draw(buffer.Graphics, imageTMP);
-
-                    for (int i = transmitter.Bullets2.Count - 1; i >= 0; i--)
+                    foreach (var bullet in transmitter.Bullets2)
                     {
+                        if(bullet != null)
+                        {
+                            bullet.Draw(buffer.Graphics);
+                        }
+                    }
+                    /*for (int i = transmitter.Bullets2.Count - 1; i >= 0; i--)
+                    {
+
                         if (transmitter.Bullets2[i] != null)
                         {
                             transmitter.Bullets2[i].Draw(buffer.Graphics);
                         }
-                    }
+                    }*/
                     transmitter.Bullets2.RemoveAll(s => s == null);
                     buffer.Render();
                 }

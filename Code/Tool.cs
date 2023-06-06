@@ -53,7 +53,9 @@ namespace demo.Code
 
         public static int score = 0;
 
-        public static string debugdot = "../../../";
+        //public static string debugdot = "../../../";
+        public static string debugdot = "";
+
 
 
         public Tool(Form1 form1, Player block, Transmitter transmitter)
