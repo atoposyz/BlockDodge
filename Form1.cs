@@ -196,6 +196,7 @@ namespace demo
                         }
                     }
                 }
+                _score = block.ShieldCapacity;
 
                 //DrawGame();
             }
