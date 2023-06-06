@@ -168,8 +168,8 @@ namespace demo
                     if (bullet == null) continue;
                     bullet.Move();
                     //bullet.Draw(panel2.CreateGraphics());
-                    
-                    
+
+
                     if (bullet.LeaveScreen())
                     {
                         transmitter.Bullets2[i] = null;
@@ -275,10 +275,12 @@ namespace demo
         {
             while (true)
             {
-                if (firststart == false && pause == true) {
+                if (firststart == false && pause == true)
+                {
                     buffer.Graphics.DrawString("PAUSE", new Font("Segoe UI", 80), new SolidBrush(Color.Black), new Point(200, 100));
                     buffer.Render();
-                } else if (firststart == false)
+                }
+                else if (firststart == false)
                 {
                     xPos -= 5;
                     if (xPos < -4154)
@@ -292,7 +294,6 @@ namespace demo
                     //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
                     using (Image image = Image.FromFile(imagePath))
                     {
-                        // ÓÎÏ·»æÖÆÂß¼­
                         Image imageTMP = new Bitmap(image, BlockWidth, BlockHeight);
                         block.Draw(buffer.Graphics, imageTMP);
                     }
@@ -356,18 +357,18 @@ namespace demo
                 pause = false;
                 timer.Start();
                 button1.Text = "ÔÝÍ£";
-                
+
             }
             else if (pause == false)
             {
                 pause = true;
                 timer.Stop();
-                
+
                 button1.Text = "¼ÌÐø";
             }
             if (firststart == true)
             {
-                if(mode == 0)
+                if (mode == 0)
                 {
                     button1.Enabled = false;
                 }
@@ -497,7 +498,7 @@ namespace demo
                 transmitter.Interval = 500;
                 transmitter.LoadTrack("demo2.txt");
             }
-            else if(mode == 1)
+            else if (mode == 1)
             {
                 transmitter.Interval = 1500;
                 transmitter.LoadRandomTrack(TrackLength);
@@ -507,6 +508,11 @@ namespace demo
         private void button4_Click(object sender, EventArgs e)
         {
             reset();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
