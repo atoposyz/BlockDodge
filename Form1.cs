@@ -269,7 +269,7 @@ namespace demo
                 }
                 buffer.Graphics.Clear(BackColor);
                 buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
-                string imagePath = @"Resources\mod_00" + cnt.ToString() + ".png";
+                string imagePath = @"../../../Resources/mod_00" + cnt.ToString() + ".png";
                 cnt = (cnt - 3 + 1) % 23 + 3;
                 //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
                 Image image = Image.FromFile(imagePath);
