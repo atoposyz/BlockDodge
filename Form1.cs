@@ -275,50 +275,59 @@ namespace demo
         {
             while (true)
             {
-                xPos -= 5;
-                if (xPos < -4154)
+                if (firststart == false && pause == true) {
+                    buffer.Graphics.DrawString("PAUSE", new Font("Segoe UI", 80), new SolidBrush(Color.Black), new Point(200, 100));
+                    buffer.Render();
+                } else if (firststart == false)
                 {
-                    xPos = 0;
-                }
-                buffer.Graphics.Clear(BackColor);
-                buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
-                string imagePath = @"../../../Resources/mod_00" + cnt.ToString() + ".png";
-                cnt = (cnt - 3 + 1) % 23 + 3;
-                //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
-                Image image = Image.FromFile(imagePath);
-                Image imageTMP = new Bitmap(image, BlockWidth, BlockHeight);
-                block.Draw(buffer.Graphics, imageTMP);
-
-                for (int i = transmitter.Bullets2.Count - 1; i >= 0; i--)
-                {
-                    if (transmitter.Bullets2[i] != null)
+                    xPos -= 5;
+                    if (xPos < -4154)
                     {
-                        transmitter.Bullets2[i].Draw(buffer.Graphics);
+                        xPos = 0;
                     }
+                    buffer.Graphics.Clear(BackColor);
+                    buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
+                    string imagePath = @"../../../Resources/mod_00" + cnt.ToString() + ".png";
+                    cnt = (cnt - 3 + 1) % 23 + 3;
+                    //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
+                    using (Image image = Image.FromFile(imagePath))
+                    {
+                        // ÓÎÏ·»æÖÆÂß¼­
+                        Image imageTMP = new Bitmap(image, BlockWidth, BlockHeight);
+                        block.Draw(buffer.Graphics, imageTMP);
+                    }
+                    //Image image = Image.FromFile(imagePath);
+                    //Image imageTMP = new Bitmap(image, BlockWidth, BlockHeight);
+                    //block.Draw(buffer.Graphics, imageTMP);
+
+                    for (int i = transmitter.Bullets2.Count - 1; i >= 0; i--)
+                    {
+                        if (transmitter.Bullets2[i] != null)
+                        {
+                            transmitter.Bullets2[i].Draw(buffer.Graphics);
+                        }
+                    }
+                    transmitter.Bullets2.RemoveAll(s => s == null);
+                    buffer.Render();
                 }
-                transmitter.Bullets2.RemoveAll(s => s == null);
-                buffer.Render();
                 Thread.Sleep(8);
             }
         }
 
-        //private void panel2_Paint(object sender, PaintEventArgs e)
-        //{
-        //    //e.Graphics.DrawImage(GameImg.background_all, 0, 0);
-        //    buffer.Graphics.Clear(BackColor);
-        //    //buffer.Graphics.DrawImage(GameImg.background_all, 0, 0);
-        //    ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
-        //    foreach (DrawableObject drawable in dos)
-        //    {
-        //        if (drawable != null)
-        //        {
-        //            drawable.Draw(buffer.Graphics);
-        //        }
-
-        //    }
-        //    buffer.Render(e.Graphics);
-
-        //}
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(GameImg.background_all, 0, 0);
+            string imagePath = @"../../../Resources/mod_003.png";
+            using (Image image = Image.FromFile(imagePath))
+            {
+                // ÓÎÏ·»æÖÆÂß¼­
+                Image imageTMP = new Bitmap(image, BlockWidth, BlockHeight);
+                block.Draw(e.Graphics, imageTMP);
+            }
+            //buffer.Graphics.Clear(BackColor);
+            //buffer.Graphics.DrawImage(GameImg.background_all, 0, 0);
+            //ControlPaint.DrawBorder(e.Graphics, panel2.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+        }
 
         //private void panel2_Paint2(object sender, PaintEventArgs e)
         //{
@@ -353,8 +362,7 @@ namespace demo
             {
                 pause = true;
                 timer.Stop();
-                buffer.Graphics.DrawString("PAUSE", new Font("Segoe UI", 80), new SolidBrush(Color.Black), new Point(200, 100));
-                buffer.Render();
+                
                 button1.Text = "¼ÌÐø";
             }
             if (firststart == true)
