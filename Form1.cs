@@ -33,10 +33,17 @@ namespace demo
 
         public const int TrackNumber = 3;
         public const int BlockSize = 60;
+
+        public const int BlockWidth = 49;
+        public const int BlockHeight = 80;
+
         public const int BlockSpeed = 10;
         public const int BulletSize = 60;
-        public const int BulletWidth = 60;
-        public const int BulletHeight = 60;
+        public const int BulletWidth = 48;
+        public const int BulletHeight = 48;
+
+
+
         public double BulletSpeed = Tool.BULLETSPEED;
         public const int TrackLength = 200;
 
@@ -57,8 +64,8 @@ namespace demo
             //DoubleBuffered = true;
             //posY = 1;
             //posX = 0;
-            startpoint = Tool.points[0, 1];
-            block = new Player(startpoint, BlockSize, BlockSize, GameImg.Square);
+            startpoint = Player.Points[0, 1];
+            block = new Player(startpoint, BlockWidth, BlockHeight, GameImg.Square);
             block.CoordinateX = 0;
             block.CoordinateY = 1;
             transmitter = new Transmitter(TrackNumber, panel2.Width);
@@ -273,7 +280,7 @@ namespace demo
                 cnt = (cnt - 3 + 1) % 23 + 3;
                 //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
                 Image image = Image.FromFile(imagePath);
-                Image imageTMP = new Bitmap(image, 60, 60);
+                Image imageTMP = new Bitmap(image, BlockWidth, BlockHeight);
                 block.Draw(buffer.Graphics, imageTMP);
 
                 for (int i = transmitter.Bullets2.Count - 1; i >= 0; i--)

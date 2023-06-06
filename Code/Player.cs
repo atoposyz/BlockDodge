@@ -20,9 +20,9 @@ namespace demo.Code
         private bool timeslack;
         private bool quick;
         public static Point[,] Points = new Point[3, 3] {
-            { new Point(50, 100), new Point(50, 200), new Point(50, 300) },
-            { new Point(350, 100), new Point(350, 200), new Point(350, 300) },
-            { new Point(650, 100), new Point(650, 200), new Point(650, 300) } };
+            { new Point(50, 100 - 10), new Point(50, 200 - 10), new Point(50, 300 - 10) },
+            { new Point(350, 100 - 10), new Point(350, 200 - 10), new Point(350, 300 - 10) },
+            { new Point(650, 100 - 10), new Point(650, 200 - 10), new Point(650, 300 - 10) } };
         public int CoordinateX
         {
             get { return coordinateX; }

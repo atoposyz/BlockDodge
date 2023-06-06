@@ -35,8 +35,9 @@ namespace demo.Code
 
         public bool CollidesWith(Player block)
         {
-            Rectangle bulletRect = new Rectangle(position, new Size(Form1.BulletWidth, Form1.BulletHeight));
-            Rectangle blockRect = new Rectangle(block.Position, new Size(Form1.BlockSize, Form1.BlockSize));
+            //Rectangle bulletRect = new Rectangle(position, new Size(Form1.BulletWidth, Form1.BulletHeight));
+            Rectangle bulletRect = new Rectangle(new Point(position.X, position.Y + 12), new Size(Form1.BulletWidth, 24));
+            Rectangle blockRect = new Rectangle(block.Position, new Size(Form1.BlockWidth, Form1.BlockHeight));
             return bulletRect.IntersectsWith(blockRect);
         }
 
