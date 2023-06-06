@@ -151,6 +151,7 @@ namespace demo
         {
             if (block.Win == true)
             {
+                reset();
                 timer.Stop();
                 MessageBox.Show("You Win!");
                 if (ifRecord == true)    //如果开始的时候输入了用户名，就更新排行榜
@@ -188,6 +189,7 @@ namespace demo
                         bool flag = CollidesJudge(i, bullet);
                         if (flag == true)
                         {
+                            reset();
                             timer.Stop();
                             MessageBox.Show("Game Over");
                             break;
@@ -468,7 +470,7 @@ namespace demo
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        public void reset()
         {
             sp.Stop();
             panel2.CreateGraphics().Clear(BackColor);
@@ -492,6 +494,11 @@ namespace demo
                 transmitter.Interval = 1500;
                 transmitter.LoadRandomTrack(TrackLength);
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            reset();
         }
     }
 }
