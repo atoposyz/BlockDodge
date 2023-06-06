@@ -33,12 +33,11 @@
             button4 = new Button();
             button2 = new Button();
             button1 = new Button();
+            button3 = new Button();
             panel2 = new Panel();
             panel3 = new Panel();
             scores = new Label();
             label2 = new Label();
-            button3 = new Button();
-            label1 = new Label();
             nightwalklimit = new Label();
             quicklimit = new Label();
             fearlesslimit = new Label();
@@ -82,6 +81,7 @@
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
+            panel1.Controls.Add(button3);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 543);
             panel1.Name = "panel1";
@@ -90,7 +90,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(294, 10);
+            button4.Location = new Point(281, 10);
             button4.Name = "button4";
             button4.Size = new Size(101, 42);
             button4.TabIndex = 2;
@@ -100,7 +100,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(563, 10);
+            button2.Location = new Point(524, 10);
             button2.Name = "button2";
             button2.Size = new Size(103, 42);
             button2.TabIndex = 1;
@@ -118,6 +118,16 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(759, 8);
+            button3.Name = "button3";
+            button3.Size = new Size(88, 44);
+            button3.TabIndex = 19;
+            button3.Text = "返回";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // panel2
             // 
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
@@ -133,8 +143,6 @@
             // 
             panel3.Controls.Add(scores);
             panel3.Controls.Add(label2);
-            panel3.Controls.Add(button3);
-            panel3.Controls.Add(label1);
             panel3.Controls.Add(nightwalklimit);
             panel3.Controls.Add(quicklimit);
             panel3.Controls.Add(fearlesslimit);
@@ -175,24 +183,6 @@
             label2.Size = new Size(39, 20);
             label2.TabIndex = 20;
             label2.Text = "分数";
-            // 
-            // button3
-            // 
-            button3.Location = new Point(27, 458);
-            button3.Name = "button3";
-            button3.Size = new Size(88, 44);
-            button3.TabIndex = 19;
-            button3.Text = "切换模式";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // label1
-            // 
-            label1.Location = new Point(37, 426);
-            label1.Name = "label1";
-            label1.Size = new Size(81, 29);
-            label1.TabIndex = 0;
-            label1.Text = "闯关模式";
             // 
             // nightwalklimit
             // 
@@ -365,7 +355,6 @@
         private Button button2;
         private Button button1;
         private Panel panel2;
-        private Label label1;
         private Label shieldlabel;
         private Label shieldtext;
         private Label magnetlimit;

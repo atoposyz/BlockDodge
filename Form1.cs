@@ -395,7 +395,7 @@ namespace demo
                 {
                     button1.Enabled = false;
                 }
-                button3.Enabled = false;
+                //button3.Enabled = false;
                 firststart = false;
                 sp.PlayLooping();
                 dos.Add(block);
@@ -448,7 +448,7 @@ namespace demo
 
             levelbutton = new Button()
             {
-                Text = "选择关卡",
+                Text = "关卡模式",
                 Font = new Font("方正粗雅宋_GBK", 20),
                 TextAlign = ContentAlignment.MiddleCenter,
                 Location = new Point(100, 200),
@@ -509,7 +509,7 @@ namespace demo
             backgroundpic.Controls.Add(quitbutton);
             backgroundpic.Controls.Add(helpbutton);
             mainpanel.Controls.Add(backgroundpic);
-            
+
             this.Controls.Add(mainpanel);
 
         }
@@ -531,7 +531,6 @@ namespace demo
             {
                 return;
             }
-            label1.Text = ((char)e.KeyValue).ToString();
             if ((char)e.KeyValue == 'W' && block != null)
             {
                 if (block.CoordinateY > 0)
@@ -562,7 +561,10 @@ namespace demo
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (mode == 0)
+            mainpanel.Visible = true;
+            tableLayoutPanel1.Visible = false;
+            reset();
+            /*if (mode == 0)
             {
                 mode = 1;
                 label1.Text = "无尽模式";
@@ -581,7 +583,7 @@ namespace demo
                 transmitter.Interval = 500;
                 sp.SoundLocation = @"../../../Resources/music.wav";
                 transmitter.LoadTrack("demo2.txt");
-            }
+            }*/
         }
 
         public void reset()
@@ -590,7 +592,6 @@ namespace demo
             panel2.CreateGraphics().Clear(BackColor);
             firststart = true;
             button1.Text = "开始游戏";
-            button3.Enabled = true;
             transmitter.Reset();
             Tool.reset();
             block.reset();
@@ -623,12 +624,25 @@ namespace demo
         }
         private void levelbutton_click(object sender, EventArgs e)
         {
+            mode = 0;
+            Tool.BULLETSPEED = 12.5;
+            BulletSpeed = 12.5;
+            transmitter.Interval = 500;
+            sp.SoundLocation = @"../../../Resources/music.wav";
+            transmitter.LoadTrack("demo2.txt");
             mainpanel.Visible = false;
             tableLayoutPanel1.Visible = true;
         }
         private void randombutton_click(object sender, EventArgs e)
         {
-
+            mode = 1;
+            Tool.BULLETSPEED = 5;
+            BulletSpeed = 5;
+            transmitter.Interval = 1500;
+            sp.SoundLocation = @"../../../Resources/endless.wav";
+            transmitter.LoadRandomTrack(TrackLength);
+            mainpanel.Visible = false;
+            tableLayoutPanel1.Visible = true;
         }
         private void helpbutton_click(object sender, EventArgs e)
         {
@@ -636,7 +650,7 @@ namespace demo
         }
         private void quitbutton_click(object sender, EventArgs e)
         {
-
+            System.Environment.Exit(0);
         }
 
     }
