@@ -285,13 +285,32 @@ namespace demo
                 }
                 else if (firststart == false)
                 {
-                    xPos -= 5;
-                    if (xPos < -4154)
+                    xPos += 5;
+                    if (xPos > 4156)
                     {
                         xPos = 0;
                     }
                     buffer.Graphics.Clear(BackColor);
-                    buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
+
+                    using (FileStream stream = new FileStream(@"../../../Resources/background_all.png", FileMode.Open, FileAccess.Read))
+                    {
+                        using (Image image = Image.FromStream(stream))
+                        {
+                            Rectangle cropArea = new Rectangle(xPos, 0, 1039, 640);
+                            using (Bitmap croppedBitmap = new Bitmap(cropArea.Width, cropArea.Height))
+                            {
+                                using (Graphics g = Graphics.FromImage(croppedBitmap))
+                                {
+                                    g.DrawImage(image, new Rectangle(0, 0, cropArea.Width, cropArea.Height), cropArea, GraphicsUnit.Pixel);
+                                }
+
+                                buffer.Graphics.DrawImage(croppedBitmap, 0, 0);
+                            }
+                        }
+                    }
+
+
+                    //buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
                     string imagePath = @"../../../Resources/mod_00" + cnt.ToString() + ".png";
                     cnt = (cnt - 3 + 1) % 23 + 3;
                     //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
