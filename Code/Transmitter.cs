@@ -6,6 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.AxHost;
 
+
+/*
+空地: 0
+子弹: 1
+buff: 2
+debuff: 3
+effect: 4
+shield: 5
+magnet: 6
+defense: 7
+timeslack: 8
+invincibility:9
+pure: a
+sprint: b
+*/
+
 namespace demo.Code
 {
     enum BulletProbability
@@ -109,9 +125,13 @@ namespace demo.Code
                     {
                         track[i].Add(0);
                     }
-                    else
+                    else if(ch > '0' && ch <= '9')
                     {
-                        track[i].Add(1);
+                        track[i].Add((int)(ch - '0'));
+                        bulletnumber++;
+                    } else
+                    {
+                        track[i].Add(ch - 'a' + 10);
                         bulletnumber++;
                     }
                 }
@@ -215,6 +235,14 @@ namespace demo.Code
                         else if (track[j][i] == 3)      //DEBUFF
                         {
                             bullets2.Add(RandomDebuff(startX, i, j, GameImg.DEBUFF));
+                        } 
+                        else if(track[j][i] == 4)
+                        {
+
+                        }
+                        else if (track[j][i] > 4 && track[j][i] <= 11)
+                        {
+                            bullets2.Add(CertainBUFF(track[j][i] - 4, j));
                         }
                     }
                 }
@@ -333,6 +361,51 @@ namespace demo.Code
             else
             {
                 return RandomDebuff(startX, i, j, bm);
+            }
+        }
+        public BUFF CertainBUFF(int number, int j)
+        {
+            if (number == 1)
+            {
+                return new SHIELD(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            }
+            else if (number == 2)
+            {
+                return new MAGNET(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            }
+            else if (number == 3)
+            {
+                return new DEFENSE(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            }
+            else if (number == 4)
+            {
+                return new TIMESLACK(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            }
+            else if (number == 5)
+            {
+                return new INVINCIBILITY(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            }
+            else if (number == 6)
+            {
+                return new PURE(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+            }
+            else
+            {
+                return new SPRINT(
+                    new Point(startX, Tool.trackposY[j]),
+                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
             }
         }
     }
