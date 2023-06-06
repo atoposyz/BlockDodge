@@ -1,9 +1,9 @@
-myz, 100
-wxxxxxx,100
-wxx, 100
-王曦, 100
-ggn, 100
-lennox, 100
+myz, 83
+wxxxxxx,20
+wxx, 20
+王曦, 20
+lennox, 20
+ggn, 20
 toposyz,7
 aidan,4
 wx,0
