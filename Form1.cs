@@ -258,10 +258,13 @@ namespace demo
             timeslacklimit.Text = (Tool.TimeslackTime / 1000).ToString() + "s";
             invincibilitylimit.Text = (Tool.InvincibilityTime / 1000).ToString() + "s";
             sprintlimit.Text = (Tool.SprintTime / 1000).ToString() + "s";
+            fearlesslimit.Text = (Tool.FearlessTime / 1000).ToString() + "s";
+            quicklimit.Text = (Tool.QuickTime / 1000).ToString() + "s";
         }
         private void DrawGame()
         {
-            while (true) {
+            while (true)
+            {
                 xPos -= 5;
                 if (xPos < -4154)
                 {
@@ -286,7 +289,7 @@ namespace demo
                 transmitter.Bullets2.RemoveAll(s => s == null);
                 buffer.Render();
                 Thread.Sleep(8);
-            } 
+            }
         }
 
         //private void panel2_Paint(object sender, PaintEventArgs e)
@@ -346,6 +349,10 @@ namespace demo
             }
             if (firststart == true)
             {
+                if(mode == 0)
+                {
+                    button1.Enabled = false;
+                }
                 firststart = false;
 
                 dos.Add(block);
@@ -437,6 +444,7 @@ namespace demo
                 Tool.BULLETSPEED = 5;
                 BulletSpeed = 5;
                 transmitter.Interval = 1500;
+                sp.SoundLocation = @"../../../Resources/endless.wav";
                 transmitter.LoadRandomTrack(TrackLength);
             }
             else if (mode == 1)
@@ -446,7 +454,33 @@ namespace demo
                 Tool.BULLETSPEED = 12.5;
                 BulletSpeed = 12.5;
                 transmitter.Interval = 500;
+                sp.SoundLocation = @"../../../Resources/music.wav";
                 transmitter.LoadTrack("demo2.txt");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            sp.Stop();
+            panel2.CreateGraphics().Clear(BackColor);
+            firststart = true;
+            button1.Text = "¿ªÊ¼ÓÎÏ·";
+            transmitter.Reset();
+            Tool.reset();
+            block.reset();
+            pause = true;
+            UpdateTimesEffect();
+            UpdateContinuousEffect();
+            if (mode == 0)
+            {
+                button1.Enabled = true;
+                transmitter.Interval = 500;
+                transmitter.LoadTrack("demo2.txt");
+            }
+            else if(mode == 1)
+            {
+                transmitter.Interval = 1500;
+                transmitter.LoadRandomTrack(TrackLength);
             }
         }
     }

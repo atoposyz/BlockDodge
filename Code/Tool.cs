@@ -80,6 +80,28 @@ namespace demo.Code
             NightwalkTimer.Elapsed += new System.Timers.ElapsedEventHandler(NIGHTWALK.LoseEfficacy);
             NightwalkTimer.AutoReset = false;
         }
+        public static void reset ()
+        {
+            MainTimer.Stop();
+            TransmitterTimer.Stop();
+            MagnetTimer.Stop();
+            TimeslackTimer.Stop();
+            InvincibilityTimer.Stop();
+            SprintTimer.Stop();
+            FearlessTimer.Stop();
+            QuickTimer.Stop();
+            NightwalkTimer.Stop();
+
+            TransmitterTime = 0;
+            MagnetTime = 0;
+            TimeslackTime = 0;
+            InvincibilityTime = 0;
+            SprintTime = 0;
+            FearlessTime = 0;
+            QuickTime = 0;
+            NightwalkTime = 0;
+
+        }
         public static void MainTimerCount(object source, System.Timers.ElapsedEventArgs e)
         {
             if(block.Magnet == true && MagnetTime > 0)
@@ -90,7 +112,7 @@ namespace demo.Code
             {
                 MagnetTime = 0;
             }
-            if(form.BulletSpeed < Tool.BULLETSPEED && TimeslackTime > 0)
+            if(form.BulletSpeed < Tool.BULLETSPEED && TimeslackTime > 0 && block.Timeslack == true)
             {
                 TimeslackTime -= 500;
             } 
@@ -114,11 +136,24 @@ namespace demo.Code
             {
                 SprintTime = 0;
             }
+            if(block.Fearless == true && FearlessTime > 0) 
+            { 
+                FearlessTime -= 500; 
+            }
+            else
+            {
+                FearlessTime = 0;
+            }
+            if(block.Quick == true && QuickTime > 0)
+            {
+                QuickTime -= 500;
+            }
+            else
+            {
+                QuickTime = 0;
+            }
+            
         }
-        /*public static void TransmitterCheck(object source, System.Timers.ElapsedEventArgs e)
-        {
-            TransmitterTime += 50;
-
-        }*/
+        
     }
 }

@@ -73,7 +73,19 @@ namespace demo.Code
             this.width = width;
             this.height = height;
         }
-
+        public void reset()
+        {
+            coordinateX = 0; 
+            coordinateY = 1;
+            position = Points[0, 1];
+            shieldcapacity = 100;
+            bulletignore = false;
+            magnet = false;
+            effectignore = false;
+            fearless = false;
+            timeslack = false;
+            quick = false;
+        }
         public void changepos(Point pos)
         {
             position = pos;

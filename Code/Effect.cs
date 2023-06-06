@@ -299,7 +299,7 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
-            //Tool.transmitter.bullets2.Add(Tool.transmitter.RandomEffect());
+            Tool.transmitter.Goodluck = true;
         }
     }
     class QUICK: DEBUFF

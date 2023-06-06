@@ -46,6 +46,7 @@ namespace demo.Code
         private int bulletnumber;   //发射物的数量
         //private int[] trackposY = new int[3] { 100, 200, 300 };
         private int timecount = 0;
+        private bool goodluck;
         public Transmitter(int tracknumber, int startX, int interval = 500)
         {
             bulletnumber = 0;
@@ -72,10 +73,17 @@ namespace demo.Code
             get { return interval; } 
             set {  interval = value; } 
         }
+        public bool Goodluck
+        {
+            get { return goodluck; } 
+            set { goodluck = value; }
+        }
         public void Reset()
         {
             tracklength = 100000;
             bulletnumber = 0;
+            timecount = 0;
+            goodluck = false;
             for(int i = 0; i < track.Length; i++)
             {
                 track[i] = new List<int> { };
@@ -167,26 +175,38 @@ namespace demo.Code
             }
             if (timecount % interval == 0)
             {
-                for(int j = 0; j < track.Length; j++)
+                if(goodluck == true)
                 {
-                    if (track[j][i] == 0) continue;
-                    if (track[j][i] == 1)           //普通子弹
+                    goodluck = false;
+
+                    bullets2.Add(RandomEffect(startX, i, 0, GameImg.RandomEffect)); 
+                    bullets2.Add(RandomEffect(startX, i, 1, GameImg.RandomEffect)); 
+                    bullets2.Add(RandomEffect(startX, i, 2, GameImg.RandomEffect));
+                }
+                else
+                {
+                    for(int j = 0; j < track.Length; j++)
                     {
-                        bullets2.Add(new Bullet(
-                            new Point(startX, Tool.trackposY[j]),
-                            Form1.BulletWidth, Form1.BulletHeight, GameImg.sword));
-                    }
-                    else if (track[j][i] == 2)    //BUFF
-                    {
-                        bullets2.Add(RandomBuff(startX, i, j));
-                    }
-                    else if (track[j][i] == 3)      //DEBUFF
-                    {
-                        bullets2.Add(new FEARLESS(
-                            new Point(startX, Tool.trackposY[j]),
-                            Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF));
+                        if (track[j][i] == 0) continue;
+                        if (track[j][i] == 1)           //普通子弹
+                        {
+                            bullets2.Add(new Bullet(
+                                new Point(startX, Tool.trackposY[j]),
+                                Form1.BulletWidth, Form1.BulletHeight, GameImg.sword));
+                        }
+                        else if (track[j][i] == 2)    //BUFF
+                        {
+                            bullets2.Add(RandomBuff(startX, i, j, GameImg.BUFF));
+                        }
+                        else if (track[j][i] == 3)      //DEBUFF
+                        {
+                            bullets2.Add(new GOODLUCK(
+                                new Point(startX, Tool.trackposY[j]),
+                                Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF));
+                        }
                     }
                 }
+                
             }
         }
         public void Fire(int startX, int blockX)
@@ -204,7 +224,7 @@ namespace demo.Code
                         numtmp++;
                     } else if (track[j][i] == 2)    //BUFF
                     {
-                        bullets[numtmp] = RandomBuff(startX, i, j);
+                        bullets[numtmp] = RandomBuff(startX, i, j, GameImg.BUFF);
                         /*bullets[numtmp] = new TIMESLACK(
                             new Point(startX + i * interval, Tool.trackposY[j]),
                             Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);*/
@@ -212,7 +232,7 @@ namespace demo.Code
                     }
                     else if (track[j][i] == 3)      //DEBUFF
                     {
-                        bullets[numtmp] = RandomDebuff(startX, i, j);
+                        bullets[numtmp] = RandomDebuff(startX, i, j, GameImg.DEBUFF);
                         /*bullets[numtmp] = new FEARLESS(
                             new Point(startX + i * interval, Tool.trackposY[j]),
                             Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);*/
@@ -222,40 +242,40 @@ namespace demo.Code
                 }
             }
         }
-        public BUFF RandomBuff(int startX, int i, int j) {
+        public BUFF RandomBuff(int startX, int i, int j, Bitmap bm) {
             Random rd = new Random();
             int tmp = rd.Next(0, 100);
             if(tmp < (int)BuffProbability.shield) {
                 return new SHIELD(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             } else if(tmp < (int)BuffProbability.magnet) {
                 return new MAGNET(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             } else if(tmp < (int)BuffProbability.defense) {
                 return new DEFENSE(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             } else if(tmp < (int)BuffProbability.timeslack) {
                 return new TIMESLACK(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             } else if(tmp < (int)BuffProbability.invincibility) {
                 return new INVINCIBILITY(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             } else if(tmp < (int)BuffProbability.pure) {
                 return new PURE(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             } else {
                 return new SPRINT(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.BUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             }
         }
-        public DEBUFF RandomDebuff(int startX, int i, int j)
+        public DEBUFF RandomDebuff(int startX, int i, int j, Bitmap bm)
         {
             Random rd = new Random();
             int tmp = rd.Next(0, 100);
@@ -263,36 +283,45 @@ namespace demo.Code
             {
                 return new BRAVE(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             }
             else if (tmp < (int)DebuffProbability.fearless)
             {
                 return new FEARLESS(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             }
             else if (tmp < (int)DebuffProbability.goodluck)
             {
                 return new GOODLUCK(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             }
             else if (tmp < (int)DebuffProbability.quick)
             {
                 return new QUICK(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             }
             else
             {
                 return new NIGHTWALK(
                     new Point(startX, Tool.trackposY[j]),
-                    Form1.BulletWidth, Form1.BulletHeight, GameImg.DEBUFF);
+                    Form1.BulletWidth, Form1.BulletHeight, bm);
             }
         }
-        public Effect RandomEffect(int startX, int i, int j)
+        public Effect RandomEffect(int startX, int i, int j, Bitmap bm)
         {
-            return null;
+            Random rd = new Random();
+            int tmp = rd.Next(0, 100);
+            if(tmp < 30)
+            {
+                return RandomBuff(startX, i, j, bm);
+            }
+            else
+            {
+                return RandomDebuff(startX, i, j, bm);
+            }
         }
     }
 }

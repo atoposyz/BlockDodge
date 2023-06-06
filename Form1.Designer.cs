@@ -36,15 +36,15 @@
             panel3 = new Panel();
             button3 = new Button();
             label1 = new Label();
-            label10 = new Label();
-            label9 = new Label();
-            label8 = new Label();
+            nightwalklimit = new Label();
+            quicklimit = new Label();
+            fearlesslimit = new Label();
             timeslacklimit = new Label();
             invincibilitylimit = new Label();
             sprintlimit = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
+            nightwalklabel = new Label();
+            quicklabel = new Label();
+            fearlesslabel = new Label();
             sprintlabel = new Label();
             invincibilitylabel = new Label();
             timeslacklabel = new Label();
@@ -52,6 +52,7 @@
             shieldtext = new Label();
             magnetlimit = new Label();
             shieldlabel = new Label();
+            button4 = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -76,6 +77,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(button4);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Dock = DockStyle.Fill;
@@ -86,7 +88,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(266, 10);
+            button2.Location = new Point(563, 10);
             button2.Name = "button2";
             button2.Size = new Size(103, 42);
             button2.TabIndex = 1;
@@ -113,21 +115,20 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(850, 534);
             panel2.TabIndex = 1;
-            //panel2.Paint += panel2_Paint;
             // 
             // panel3
             // 
             panel3.Controls.Add(button3);
             panel3.Controls.Add(label1);
-            panel3.Controls.Add(label10);
-            panel3.Controls.Add(label9);
-            panel3.Controls.Add(label8);
+            panel3.Controls.Add(nightwalklimit);
+            panel3.Controls.Add(quicklimit);
+            panel3.Controls.Add(fearlesslimit);
             panel3.Controls.Add(timeslacklimit);
             panel3.Controls.Add(invincibilitylimit);
             panel3.Controls.Add(sprintlimit);
-            panel3.Controls.Add(label4);
-            panel3.Controls.Add(label3);
-            panel3.Controls.Add(label2);
+            panel3.Controls.Add(nightwalklabel);
+            panel3.Controls.Add(quicklabel);
+            panel3.Controls.Add(fearlesslabel);
             panel3.Controls.Add(sprintlabel);
             panel3.Controls.Add(invincibilitylabel);
             panel3.Controls.Add(timeslacklabel);
@@ -159,37 +160,37 @@
             label1.TabIndex = 0;
             label1.Text = "闯关模式";
             // 
-            // label10
+            // nightwalklimit
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(93, 371);
-            label10.Name = "label10";
-            label10.Size = new Size(25, 20);
-            label10.TabIndex = 18;
-            label10.Text = "0s";
+            nightwalklimit.AutoSize = true;
+            nightwalklimit.Location = new Point(112, 259);
+            nightwalklimit.Name = "nightwalklimit";
+            nightwalklimit.Size = new Size(25, 20);
+            nightwalklimit.TabIndex = 18;
+            nightwalklimit.Text = "0s";
             // 
-            // label9
+            // quicklimit
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(93, 332);
-            label9.Name = "label9";
-            label9.Size = new Size(25, 20);
-            label9.TabIndex = 17;
-            label9.Text = "0s";
+            quicklimit.AutoSize = true;
+            quicklimit.Location = new Point(112, 227);
+            quicklimit.Name = "quicklimit";
+            quicklimit.Size = new Size(25, 20);
+            quicklimit.TabIndex = 17;
+            quicklimit.Text = "0s";
             // 
-            // label8
+            // fearlesslimit
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(100, 278);
-            label8.Name = "label8";
-            label8.Size = new Size(25, 20);
-            label8.TabIndex = 16;
-            label8.Text = "0s";
+            fearlesslimit.AutoSize = true;
+            fearlesslimit.Location = new Point(112, 195);
+            fearlesslimit.Name = "fearlesslimit";
+            fearlesslimit.Size = new Size(25, 20);
+            fearlesslimit.TabIndex = 16;
+            fearlesslimit.Text = "0s";
             // 
             // timeslacklimit
             // 
             timeslacklimit.AutoSize = true;
-            timeslacklimit.Location = new Point(100, 140);
+            timeslacklimit.Location = new Point(112, 100);
             timeslacklimit.Name = "timeslacklimit";
             timeslacklimit.Size = new Size(25, 20);
             timeslacklimit.TabIndex = 15;
@@ -198,7 +199,7 @@
             // invincibilitylimit
             // 
             invincibilitylimit.AutoSize = true;
-            invincibilitylimit.Location = new Point(100, 181);
+            invincibilitylimit.Location = new Point(112, 132);
             invincibilitylimit.Name = "invincibilitylimit";
             invincibilitylimit.Size = new Size(25, 20);
             invincibilitylimit.TabIndex = 14;
@@ -207,43 +208,43 @@
             // sprintlimit
             // 
             sprintlimit.AutoSize = true;
-            sprintlimit.Location = new Point(100, 230);
+            sprintlimit.Location = new Point(112, 164);
             sprintlimit.Name = "sprintlimit";
             sprintlimit.Size = new Size(25, 20);
             sprintlimit.TabIndex = 13;
             sprintlimit.Text = "0s";
             // 
-            // label4
+            // nightwalklabel
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(11, 371);
-            label4.Name = "label4";
-            label4.Size = new Size(54, 20);
-            label4.TabIndex = 12;
-            label4.Text = "夜行：";
+            nightwalklabel.AutoSize = true;
+            nightwalklabel.Location = new Point(3, 259);
+            nightwalklabel.Name = "nightwalklabel";
+            nightwalklabel.Size = new Size(54, 20);
+            nightwalklabel.TabIndex = 12;
+            nightwalklabel.Text = "夜行：";
             // 
-            // label3
+            // quicklabel
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(11, 332);
-            label3.Name = "label3";
-            label3.Size = new Size(54, 20);
-            label3.TabIndex = 11;
-            label3.Text = "迅捷：";
+            quicklabel.AutoSize = true;
+            quicklabel.Location = new Point(3, 227);
+            quicklabel.Name = "quicklabel";
+            quicklabel.Size = new Size(54, 20);
+            quicklabel.TabIndex = 11;
+            quicklabel.Text = "迅捷：";
             // 
-            // label2
+            // fearlesslabel
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 278);
-            label2.Name = "label2";
-            label2.Size = new Size(54, 20);
-            label2.TabIndex = 10;
-            label2.Text = "无畏：";
+            fearlesslabel.AutoSize = true;
+            fearlesslabel.Location = new Point(3, 195);
+            fearlesslabel.Name = "fearlesslabel";
+            fearlesslabel.Size = new Size(54, 20);
+            fearlesslabel.TabIndex = 10;
+            fearlesslabel.Text = "无畏：";
             // 
             // sprintlabel
             // 
             sprintlabel.AutoSize = true;
-            sprintlabel.Location = new Point(3, 230);
+            sprintlabel.Location = new Point(3, 164);
             sprintlabel.Name = "sprintlabel";
             sprintlabel.Size = new Size(54, 20);
             sprintlabel.TabIndex = 9;
@@ -252,7 +253,7 @@
             // invincibilitylabel
             // 
             invincibilitylabel.AutoSize = true;
-            invincibilitylabel.Location = new Point(3, 181);
+            invincibilitylabel.Location = new Point(3, 132);
             invincibilitylabel.Name = "invincibilitylabel";
             invincibilitylabel.Size = new Size(54, 20);
             invincibilitylabel.TabIndex = 8;
@@ -261,7 +262,7 @@
             // timeslacklabel
             // 
             timeslacklabel.AutoSize = true;
-            timeslacklabel.Location = new Point(3, 140);
+            timeslacklabel.Location = new Point(3, 100);
             timeslacklabel.Name = "timeslacklabel";
             timeslacklabel.Size = new Size(54, 20);
             timeslacklabel.TabIndex = 7;
@@ -270,7 +271,7 @@
             // magnetlabel
             // 
             magnetlabel.AutoSize = true;
-            magnetlabel.Location = new Point(3, 88);
+            magnetlabel.Location = new Point(3, 67);
             magnetlabel.Name = "magnetlabel";
             magnetlabel.Size = new Size(54, 20);
             magnetlabel.TabIndex = 6;
@@ -288,7 +289,7 @@
             // magnetlimit
             // 
             magnetlimit.AutoSize = true;
-            magnetlimit.Location = new Point(112, 88);
+            magnetlimit.Location = new Point(112, 67);
             magnetlimit.Name = "magnetlimit";
             magnetlimit.Size = new Size(25, 20);
             magnetlimit.TabIndex = 5;
@@ -302,6 +303,16 @@
             shieldlabel.Size = new Size(54, 20);
             shieldlabel.TabIndex = 3;
             shieldlabel.Text = "护盾：";
+            // 
+            // button4
+            // 
+            button4.Location = new Point(294, 10);
+            button4.Name = "button4";
+            button4.Size = new Size(101, 42);
+            button4.TabIndex = 2;
+            button4.Text = "重置";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // Form1
             // 
@@ -336,15 +347,16 @@
         private Label magnetlabel;
         private Label sprintlabel;
         private Label invincibilitylabel;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Label label10;
-        private Label label9;
-        private Label label8;
+        private Label nightwalklabel;
+        private Label quicklabel;
+        private Label fearlesslabel;
+        private Label nightwalklimit;
+        private Label quicklimit;
+        private Label fearlesslimit;
         private Label timeslacklimit;
         private Label invincibilitylimit;
         private Label sprintlimit;
         private Button button3;
+        private Button button4;
     }
 }
