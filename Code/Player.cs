@@ -12,7 +12,7 @@ namespace demo.Code
         private int height;
         private int coordinateX;
         private int coordinateY;
-        private int shieldcapacity = 100;
+        private int shieldcapacity = 0;
         private bool bulletignore;
         private bool magnet;
         private bool effectignore;
@@ -84,7 +84,7 @@ namespace demo.Code
             coordinateX = 0; 
             coordinateY = 1;
             position = Points[0, 1];
-            shieldcapacity = 100;
+            shieldcapacity = 0;
             bulletignore = false;
             magnet = false;
             effectignore = false;

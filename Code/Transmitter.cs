@@ -85,7 +85,8 @@ namespace demo.Code
             bulletnumber = 0;
             timecount = 0;
             goodluck = false;
-            for(int i = 0; i < track.Length; i++)
+            endtransmit = false;
+            for (int i = 0; i < track.Length; i++)
             {
                 track[i] = new List<int> { };
             }
