@@ -50,11 +50,12 @@ namespace demo
         //以下为UI部分的变量
         Panel mainpanel;
         PictureBox backgroundpic;
-        Label title;
+        Label helppara;
         Button helpbutton;
         Button levelbutton;
         Button randombutton;
         Button quitbutton;
+        bool ifhelp;
 
         public Form1()
         {
@@ -499,11 +500,24 @@ namespace demo
                 ForeColor = Color.Red*/
             };
 
+            helppara = new Label()
+            {
+                Text = "\t又是平常的一天，德克萨斯身为企鹅物流的员工，又要去派送快递了！\n\n但是今天的路上依旧不那么太平啊，就像是误入了什么游戏一样，一把把刀剑从前面飞来！\n\n作为一名尖兵，躲过这些自然是易如反掌，但是有时候也会遇到不明确的BUFF与DEBUFF，让人措手不及！\n\n请你和德克萨斯合作，将快递安全送到目的地吧！\r\n\n\t使用W向上移动，S向下移动。",
+                Font = new Font("黑体", 14),
+                Location = new Point(150, 100),
+                BackColor = Color.FromArgb(200, 255, 255, 255),
+                AutoSize = true,
+                MaximumSize = new Size(600, 0),
+                Visible = false,
+            };
+            ifhelp = false;
+
             levelbutton.Click += levelbutton_click;
             randombutton.Click += randombutton_click;
             helpbutton.Click += helpbutton_click;
             quitbutton.Click += quitbutton_click;
 
+            backgroundpic.Controls.Add(helppara);
             backgroundpic.Controls.Add(levelbutton);
             backgroundpic.Controls.Add(randombutton);
             backgroundpic.Controls.Add(quitbutton);
@@ -646,7 +660,25 @@ namespace demo
         }
         private void helpbutton_click(object sender, EventArgs e)
         {
-
+            if(ifhelp == false)
+            {
+                ifhelp = true;
+                helpbutton.Text = "返回";
+                helppara.Visible = true;
+                levelbutton.Visible = false;
+                randombutton.Visible = false;
+                quitbutton.Visible = false;
+            }
+            else
+            {
+                ifhelp = false;
+                helpbutton.Text = "帮助";
+                helppara.Visible = false;
+                levelbutton.Visible = true;
+                randombutton.Visible = true;
+                quitbutton.Visible = true;
+            }
+            
         }
         private void quitbutton_click(object sender, EventArgs e)
         {
