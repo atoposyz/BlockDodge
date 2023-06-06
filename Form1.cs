@@ -156,7 +156,7 @@ namespace demo
                 MessageBox.Show("You Win!");
                 if (ifRecord == true)    //如果开始的时候输入了用户名，就更新排行榜
                 {
-                    Form2.AddOrUpdateRankItem(userName, _score);
+                    Form2.AddOrUpdateRankItem(userName, Tool.score);
                 }
                 return;
             }
