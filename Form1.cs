@@ -268,6 +268,86 @@ namespace demo
         }
         public void UpdateContinuousEffect()
         {
+            if (Tool.MagnetTime / 1000 > 0)
+            {
+                magnetlabel.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                magnetlabel.BackColor = BackColor;
+            }
+            if(Tool.TimeslackTime / 1000 > 0)
+            {
+                timeslacklabel.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                timeslacklabel.BackColor = BackColor;
+            }
+            if(Tool.InvincibilityTime / 1000 > 0)
+            {
+                invincibilitylabel.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                invincibilitylabel.BackColor= BackColor;
+            }
+            if(Tool.SprintTime / 1000 > 0)
+            {
+                sprintlabel.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                sprintlabel.BackColor = BackColor;
+            }
+            if(Tool.FearlessTime / 1000 > 0)
+            {
+                fearlesslabel.BackColor = Color.OrangeRed;
+            }
+            else
+            {
+                fearlesslabel.BackColor= BackColor;
+            }
+            if(Tool.QuickTime / 1000 > 0)
+            {
+                quicklabel.BackColor = Color.OrangeRed;
+            }
+            else
+            {
+                quicklabel.BackColor= BackColor;
+            }
+            if(Tool.DefenseTime / 100 > 0)
+            {
+                defenselabel.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                defenselabel.BackColor= BackColor;
+            }
+            if(Tool.PureTime / 100 > 0)
+            {
+                purelabel.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                purelabel.BackColor = BackColor;
+            }
+            if(Tool.BraveTime / 100 > 0)
+            {
+                bravelabel.BackColor = Color.OrangeRed;
+            }
+            else
+            {
+                bravelabel.BackColor= BackColor;
+            }
+            if(Tool.GoodluckTime / 100 > 0)
+            {
+                goodlucklabel.BackColor = Color.OrangeRed;
+            }
+            else
+            {
+                goodlucklabel.BackColor= BackColor;
+            }
             magnetlimit.Text = (Tool.MagnetTime / 1000).ToString() + 's';
             timeslacklimit.Text = (Tool.TimeslackTime / 1000).ToString() + "s";
             invincibilitylimit.Text = (Tool.InvincibilityTime / 1000).ToString() + "s";
@@ -282,7 +362,7 @@ namespace demo
             {
                 if (firststart == false && pause == true)
                 {
-                    buffer.Graphics.DrawString("PAUSE", new Font("Segoe UI", 80), new SolidBrush(Color.Black), new Point(200, 100));
+                    buffer.Graphics.DrawString("PAUSE", new Font("Segoe UI", 80), new SolidBrush(Color.Black), new Point(300, 200));
                     buffer.Render();
                 }
                 else if (firststart == false)
@@ -435,13 +515,13 @@ namespace demo
 
             mainpanel = new Panel()
             {
-                Size = new Size(1026, 647),
+                Size = new Size(1254, 777),
                 BackColor = Color.White
             };
 
             backgroundpic = new PictureBox()
             {
-                Size = new Size(1026, 647),
+                Size = new Size(1254, 777),
                 Image = GameImg.MainpagePicture,
                 Location = new Point(0, 0),
                 SizeMode = PictureBoxSizeMode.StretchImage
@@ -642,6 +722,7 @@ namespace demo
             Tool.BULLETSPEED = 12.5;
             BulletSpeed = 12.5;
             transmitter.Interval = 500;
+            Tool.INTERVAL = 500;
             sp.SoundLocation = @"../../../Resources/music.wav";
             transmitter.LoadTrack("demo2.txt");
             mainpanel.Visible = false;
@@ -653,6 +734,7 @@ namespace demo
             Tool.BULLETSPEED = 5;
             BulletSpeed = 5;
             transmitter.Interval = 1500;
+            Tool.INTERVAL = 1500;
             sp.SoundLocation = @"../../../Resources/endless.wav";
             transmitter.LoadRandomTrack(TrackLength);
             mainpanel.Visible = false;
@@ -660,7 +742,7 @@ namespace demo
         }
         private void helpbutton_click(object sender, EventArgs e)
         {
-            if(ifhelp == false)
+            if (ifhelp == false)
             {
                 ifhelp = true;
                 helpbutton.Text = "·µ»Ø";
@@ -678,7 +760,7 @@ namespace demo
                 randombutton.Visible = true;
                 quitbutton.Visible = true;
             }
-            
+
         }
         private void quitbutton_click(object sender, EventArgs e)
         {

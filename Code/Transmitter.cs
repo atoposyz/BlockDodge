@@ -51,7 +51,6 @@ namespace demo.Code
     class Transmitter
     {
         private int interval;
-        private int speed;
         private int startX;
         public Bullet[] bullets;
         public List<Bullet> bullets2 = new List<Bullet>();

@@ -96,8 +96,6 @@ namespace demo.Code
         private int width;
         private int height;
         EffectType type;
-        Timer timer;
-        Player block;
         public DEFENSE(Point position, int width, int height, Image image) : base(position, width, height, image)
         {
             this.width = width;
@@ -107,19 +105,19 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             block.BulletIgnore = true;
-            this.block = block;
-            timer = new Timer(100);
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(this.LoseEfficacy);
-            timer.AutoReset = false;
-            timer.Enabled = true;
+            block.EffectIgnore = true;
             if (block.CoordinateX > 0)
             {
                 block.changepos(block.CoordinateX - 1, block.CoordinateY);
             }
+            Tool.DefenseTime = 500;
+            Tool.DefenseTimer.Stop();
+            Tool.DefenseTimer.Start();
         }
-        private void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
-            block.BulletIgnore = false;
+            Tool.block.BulletIgnore = false;
+            Tool.block.EffectIgnore = false;
         }
     }
     class TIMESLACK: BUFF
@@ -135,6 +133,13 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
+            if(block.Quick == true)
+            {
+                Tool.form.BulletSpeed *= 3;
+                block.Quick = false;
+                Tool.QuickTimer.Stop();
+                return;
+            }
             if(block.Timeslack == false)
             {
                 Tool.form.BulletSpeed = 3;
@@ -226,6 +231,24 @@ namespace demo.Code
             block.EffectIgnore = false;
             block.BulletIgnore= false;
             block.Magnet = false;
+            block.Fearless = false;
+            block.Timeslack = false;
+            block.Quick = false;
+            Tool.form.BulletSpeed = Tool.BULLETSPEED;
+            Tool.transmitter.Interval = Tool.INTERVAL;
+            Tool.MagnetTimer.Stop();
+            Tool.FearlessTimer.Stop();
+            Tool.InvincibilityTimer.Stop();
+            Tool.TimeslackTimer.Stop();
+            Tool.SprintTimer.Stop();
+
+            Tool.PureTime = 500;
+            Tool.PureTimer.Stop();
+            Tool.PureTimer.Start();
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+            
         }
     }
     class BRAVE: DEBUFF
@@ -233,7 +256,6 @@ namespace demo.Code
         private int width;
         private int height;
         EffectType type;
-        Timer timer;
         public BRAVE(Point position, int width, int height, Image image) : base(position, width, height, image)
         {
             this.width = width;
@@ -244,18 +266,19 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             block.BulletIgnore = true;
-            timer = new Timer(100);
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(this.LoseEfficacy);
-            timer.AutoReset = false;
-            timer.Enabled = true;
+            block.EffectIgnore = true;
             if (block.CoordinateX < 2)
             {
                 block.changepos(block.CoordinateX + 1, block.CoordinateY);
             }
+            Tool.BraveTime = 500;
+            Tool.BraveTimer.Stop();
+            Tool.BraveTimer.Start();
         }
-        private void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
             Tool.block.BulletIgnore = false;
+            Tool.block.EffectIgnore = false;
         }
     }
     class FEARLESS: DEBUFF
@@ -300,6 +323,12 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             Tool.transmitter.Goodluck = true;
+            Tool.GoodluckTime = 500;
+            Tool.GoodluckTimer.Stop();
+            Tool.GoodluckTimer.Start();
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
         }
     }
     class QUICK: DEBUFF
@@ -315,6 +344,14 @@ namespace demo.Code
         }
         public override void CauseEffect(Player block)
         {
+            if(block.Timeslack == true)
+            {
+                block.Timeslack = false;
+                Tool.form.BulletSpeed = Tool.BULLETSPEED;
+                Tool.transmitter.Interval /= 2;
+                Tool.TimeslackTimer.Stop();
+                return;
+            }
             if(block.Quick == false)
             {
                 block.Quick = true;

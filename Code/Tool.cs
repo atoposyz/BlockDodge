@@ -18,6 +18,7 @@ namespace demo.Code
 
         public static double BULLETSPEED = 12.5;
         //public static double BULLETSPEED = 5;
+        public static int INTERVAL;
 
         public static Player block;
         public static Form1 form;
@@ -32,6 +33,10 @@ namespace demo.Code
         public static Timer FearlessTimer;
         public static Timer QuickTimer;
         public static Timer NightwalkTimer;
+        public static Timer DefenseTimer;
+        public static Timer PureTimer;
+        public static Timer BraveTimer;
+        public static Timer GoodluckTimer;
 
         public static int TransmitterTime = 0;
         public static int MagnetTime = 0;
@@ -41,6 +46,10 @@ namespace demo.Code
         public static int FearlessTime = 0;
         public static int QuickTime = 0;
         public static int NightwalkTime = 0;
+        public static int DefenseTime = 0;
+        public static int PureTime = 0;
+        public static int BraveTime = 0;
+        public static int GoodluckTime = 0;
 
         public static int score = 0;
 
@@ -81,6 +90,18 @@ namespace demo.Code
             NightwalkTimer = new Timer(4000);
             NightwalkTimer.Elapsed += new System.Timers.ElapsedEventHandler(NIGHTWALK.LoseEfficacy);
             NightwalkTimer.AutoReset = false;
+            DefenseTimer = new Timer(500);
+            DefenseTimer.Elapsed += new System.Timers.ElapsedEventHandler(DEFENSE.LoseEfficacy);
+            DefenseTimer.AutoReset = false;
+            PureTimer = new Timer(500);
+            PureTimer.Elapsed += new System.Timers.ElapsedEventHandler(PURE.LoseEfficacy);
+            PureTimer.AutoReset= false;
+            BraveTimer = new Timer(500);
+            BraveTimer.Elapsed += new System.Timers.ElapsedEventHandler(BRAVE.LoseEfficacy);
+            BraveTimer.AutoReset = false;
+            GoodluckTimer = new Timer(500);
+            GoodluckTimer.Elapsed += new System.Timers.ElapsedEventHandler(GOODLUCK.LoseEfficacy);
+            GoodluckTimer.AutoReset = false;
         }
         public static void reset ()
         {
@@ -160,7 +181,38 @@ namespace demo.Code
             {
                 QuickTime = 0;
             }
-            
+            if(DefenseTime > 0)
+            {
+                DefenseTime -= 250;
+            }
+            else
+            {
+                DefenseTime = 0;
+            }
+            if(PureTime > 0)
+            {
+                PureTime -= 250;
+            }
+            else
+            {
+                PureTime = 0;
+            }
+            if(BraveTime > 0)
+            {
+                BraveTime -= 250;
+            }
+            else
+            {
+                BraveTime = 0;
+            }
+            if(GoodluckTime > 0)
+            {
+                GoodluckTime -= 250;
+            }
+            else
+            {
+                GoodluckTime = 0;
+            }
         }
         
     }
