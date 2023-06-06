@@ -276,7 +276,7 @@ namespace demo
             {
                 magnetlabel.BackColor = BackColor;
             }
-            if(Tool.TimeslackTime / 1000 > 0)
+            if (Tool.TimeslackTime / 1000 > 0)
             {
                 timeslacklabel.BackColor = Color.LightGreen;
             }
@@ -284,15 +284,15 @@ namespace demo
             {
                 timeslacklabel.BackColor = BackColor;
             }
-            if(Tool.InvincibilityTime / 1000 > 0)
+            if (Tool.InvincibilityTime / 1000 > 0)
             {
                 invincibilitylabel.BackColor = Color.LightGreen;
             }
             else
             {
-                invincibilitylabel.BackColor= BackColor;
+                invincibilitylabel.BackColor = BackColor;
             }
-            if(Tool.SprintTime / 1000 > 0)
+            if (Tool.SprintTime / 1000 > 0)
             {
                 sprintlabel.BackColor = Color.LightGreen;
             }
@@ -300,31 +300,31 @@ namespace demo
             {
                 sprintlabel.BackColor = BackColor;
             }
-            if(Tool.FearlessTime / 1000 > 0)
+            if (Tool.FearlessTime / 1000 > 0)
             {
                 fearlesslabel.BackColor = Color.OrangeRed;
             }
             else
             {
-                fearlesslabel.BackColor= BackColor;
+                fearlesslabel.BackColor = BackColor;
             }
-            if(Tool.QuickTime / 1000 > 0)
+            if (Tool.QuickTime / 1000 > 0)
             {
                 quicklabel.BackColor = Color.OrangeRed;
             }
             else
             {
-                quicklabel.BackColor= BackColor;
+                quicklabel.BackColor = BackColor;
             }
-            if(Tool.DefenseTime / 100 > 0)
+            if (Tool.DefenseTime / 100 > 0)
             {
                 defenselabel.BackColor = Color.LightGreen;
             }
             else
             {
-                defenselabel.BackColor= BackColor;
+                defenselabel.BackColor = BackColor;
             }
-            if(Tool.PureTime / 100 > 0)
+            if (Tool.PureTime / 100 > 0)
             {
                 purelabel.BackColor = Color.LightGreen;
             }
@@ -332,21 +332,21 @@ namespace demo
             {
                 purelabel.BackColor = BackColor;
             }
-            if(Tool.BraveTime / 100 > 0)
+            if (Tool.BraveTime / 100 > 0)
             {
                 bravelabel.BackColor = Color.OrangeRed;
             }
             else
             {
-                bravelabel.BackColor= BackColor;
+                bravelabel.BackColor = BackColor;
             }
-            if(Tool.GoodluckTime / 100 > 0)
+            if (Tool.GoodluckTime / 100 > 0)
             {
                 goodlucklabel.BackColor = Color.OrangeRed;
             }
             else
             {
-                goodlucklabel.BackColor= BackColor;
+                goodlucklabel.BackColor = BackColor;
             }
             magnetlimit.Text = (Tool.MagnetTime / 1000).ToString() + 's';
             timeslacklimit.Text = (Tool.TimeslackTime / 1000).ToString() + "s";
