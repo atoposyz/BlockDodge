@@ -83,7 +83,7 @@ namespace demo
 
             transmitter.LoadTrack("demo2.txt");
 
-            sp.SoundLocation = @"Resources/music.wav"; //音乐文件
+            sp.SoundLocation = Tool.debugdot + @"Resources/music.wav"; //音乐文件
 
 
             //panel2.Resize += new EventHandler(panel2_Resize);
@@ -375,7 +375,7 @@ namespace demo
                     }
                     buffer.Graphics.Clear(BackColor);
 
-                    using (FileStream stream = new FileStream(@"Resources/background_all.png", FileMode.Open, FileAccess.Read))
+                    using (FileStream stream = new FileStream(Tool.debugdot + @"Resources/background_all.png", FileMode.Open, FileAccess.Read))
                     {
                         using (Image image = Image.FromStream(stream))
                         {
@@ -394,7 +394,7 @@ namespace demo
 
 
                     //buffer.Graphics.DrawImage(GameImg.background_all, xPos, 0);
-                    string imagePath = @"Resources/mod_00" + cnt.ToString() + ".png";
+                    string imagePath = Tool.debugdot + @"Resources/mod_00" + cnt.ToString() + ".png";
                     cnt = (cnt - 3 + 1) % 23 + 3;
                     //string imagePath = "Resources\\mod_000" + cnt.ToString() + ".png";
                     using (Image image = Image.FromFile(imagePath))
@@ -423,7 +423,7 @@ namespace demo
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawImage(GameImg.background_all, 0, 0);
-            string imagePath = @"Resources/mod_003.png";
+            string imagePath = Tool.debugdot + @"Resources/mod_003.png";
             using (Image image = Image.FromFile(imagePath))
             {
                 // 游戏绘制逻辑
@@ -725,7 +725,7 @@ namespace demo
             BulletSpeed = 12.5;
             transmitter.Interval = 500;
             Tool.INTERVAL = 500;
-            sp.SoundLocation = @"Resources/music.wav";
+            sp.SoundLocation = Tool.debugdot + @"Resources/music.wav";
             transmitter.LoadTrack("demo2.txt");
             mainpanel.Visible = false;
             tableLayoutPanel1.Visible = true;
@@ -737,7 +737,7 @@ namespace demo
             BulletSpeed = 5;
             transmitter.Interval = 1500;
             Tool.INTERVAL = 1500;
-            sp.SoundLocation = @"Resources/endless.wav";
+            sp.SoundLocation = Tool.debugdot + @"Resources/endless.wav";
             transmitter.LoadRandomTrack(TrackLength);
             mainpanel.Visible = false;
             tableLayoutPanel1.Visible = true;
