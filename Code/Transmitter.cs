@@ -26,7 +26,7 @@ namespace demo.Code
 {
     enum BulletProbability
     {
-        space = 30,     //0
+        space = 25,     //0
         buff = 35,      //2
         debuff = 40,    //3
         bullet = 100    //1
@@ -52,7 +52,7 @@ namespace demo.Code
     {
         private int interval;
         private int startX;
-        public Bullet[] bullets;
+        public Bullet[] bullets = new Bullet[Tool.BULLETTOTAL];
         public List<Bullet> bullets2 = new List<Bullet>();
         private string? path;
         //private string[] track = new string[3];
@@ -105,7 +105,7 @@ namespace demo.Code
             {
                 track[i] = new List<int> { };
             }
-            bullets = null;
+            bullets = new Bullet[Tool.BULLETTOTAL];
             bullets2 = new List<Bullet> { };
         }
         public void LoadTrack(string docname)
@@ -136,7 +136,7 @@ namespace demo.Code
                 }
             }
             sr.Close();
-            bullets = new Bullet[bulletnumber];
+            //bullets = new Bullet[bulletnumber];
         }
         public void LoadRandomTrack(int timelength)
         {
@@ -180,12 +180,123 @@ namespace demo.Code
                     bulletnumber -= track.Length;
                 }
             }
-            bullets = new Bullet[bulletnumber];
+            //bullets = new Bullet[bulletnumber];
         }
         public int BulletNumber
         {
             get { return bulletnumber; }
         }
+        public void TransmitterCheck(object source, System.Timers.ElapsedEventArgs e)
+        {
+            if (Tool.form.pause == true)
+            {
+                return;
+            }
+            timecount += 50;
+            int i = timecount / interval;    //interval秒发射一次
+            if (i >= tracklength && endtransmit == false)
+            {
+                endtransmit = true;
+                int _flag = 0;
+                for(int j = 0; j < Tool.BULLETTOTAL; j++)
+                {
+                    if (bullets[j] == null)
+                    {
+                        bullets[j] = new Final(new Point(startX, Tool.trackposY[_flag]), Form1.BulletWidth, Form1.BulletHeight, GameImg.goal);
+                        _flag++;
+                    }
+                    if(_flag > 2)
+                    {
+                        break;
+                    }
+                }
+                return;
+            }
+            if (endtransmit == true)
+            {
+                return;
+            }
+            if (timecount % interval == 0)
+            {
+                if (goodluck == true)
+                {
+                    goodluck = false;
+
+                    int _flag = 0;
+                    for (int j = 0; j < Tool.BULLETTOTAL; j++)
+                    {
+                        if (bullets[j] == null)
+                        {
+                            bullets[j] = RandomEffect(startX, i, _flag, GameImg.RandomEffect);
+                            _flag++;
+                        }
+                        if (_flag > 2)
+                        {
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < track.Length; j++)
+                    {
+                        if (track[j][i] == 0) continue;
+                        if (track[j][i] == 1)           //普通子弹
+                        {
+                            for(int k = 0; k < Tool.BULLETTOTAL; k++)
+                            {
+                                if (bullets[k] == null)
+                                {
+                                    bullets[k] = new Bullet(
+                                        new Point(startX, Tool.trackposY[j]),
+                                        Form1.BulletWidth, Form1.BulletHeight, GameImg.sword);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (track[j][i] == 2)    //BUFF
+                        {
+                            for (int k = 0; k < Tool.BULLETTOTAL; k++)
+                            {
+                                if (bullets[k] == null)
+                                {
+                                    bullets[k] = RandomBuff(startX, i, j, GameImg.BUFF);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (track[j][i] == 3)      //DEBUFF
+                        {
+                            for (int k = 0; k < Tool.BULLETTOTAL; k++)
+                            {
+                                if (bullets[k] == null)
+                                {
+                                    bullets[k] = RandomDebuff(startX, i, j, GameImg.DEBUFF);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (track[j][i] == 4)
+                        {
+
+                        }
+                        else if (track[j][i] > 4 && track[j][i] <= 11)
+                        {
+                            for (int k = 0; k < Tool.BULLETTOTAL; k++)
+                            {
+                                if (bullets[k] == null)
+                                {
+                                    bullets[k] = CertainBUFF(track[j][i] - 4, j);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+        /*
         public void TransmitterCheck(object source, System.Timers.ElapsedEventArgs e)
         {
             if(Tool.form.pause == true)
@@ -248,6 +359,7 @@ namespace demo.Code
                 
             }
         }
+        */
         public void Fire(int startX, int blockX)
         {
             int numtmp = 0;

@@ -395,8 +395,8 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(9F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(119F, 119F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1008, 601);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;

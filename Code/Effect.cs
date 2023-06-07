@@ -135,7 +135,7 @@ namespace demo.Code
         {
             if(block.Quick == true)
             {
-                Tool.form.BulletSpeed /= 3;
+                Tool.form.BulletSpeed = Tool.BULLETSPEED;
                 block.Quick = false;
                 Tool.QuickTimer.Stop();
                 return;
@@ -143,7 +143,7 @@ namespace demo.Code
             if(block.Timeslack == false)
             {
                 Tool.form.BulletSpeed = 3;
-                Tool.transmitter.Interval *= 2;
+                Tool.transmitter.Interval = Tool.INTERVAL * 2;
                 block.Timeslack = true;
             }
             
@@ -154,7 +154,7 @@ namespace demo.Code
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
             Tool.form.BulletSpeed = Tool.BULLETSPEED;
-            Tool.transmitter.Interval /= 2;
+            Tool.transmitter.Interval = Tool.INTERVAL;
             Tool.block.Timeslack = false;
         }
     }
@@ -199,12 +199,12 @@ namespace demo.Code
             if(block.EffectIgnore) return;
             if(block.Quick)
             {
-                Tool.form.BulletSpeed /= 3;
+                Tool.form.BulletSpeed = Tool.BULLETSPEED;
                 block.Quick = false;
                 Tool.QuickTimer.Stop();
             }
-            Tool.form.BulletSpeed *= 4;
-            Tool.transmitter.Interval /= 4;
+            Tool.form.BulletSpeed = Tool.BULLETSPEED * 4;
+            Tool.transmitter.Interval = Tool.INTERVAL / 4;
             block.EffectIgnore = true;
             block.BulletIgnore = true;
             Tool.SprintTime = 4500;
@@ -214,8 +214,8 @@ namespace demo.Code
         }
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
-            Tool.form.BulletSpeed /= 4;
-            Tool.transmitter.Interval *= 4;
+            Tool.form.BulletSpeed = Tool.BULLETSPEED;
+            Tool.transmitter.Interval = Tool.INTERVAL;
             Tool.block.BulletIgnore = false;
             Tool.block.EffectIgnore = false;
             //Tool.block.Magnet = false;
@@ -303,7 +303,7 @@ namespace demo.Code
             if(block.Fearless == false)
             {
                 block.Fearless = true;
-                Tool.transmitter.Interval -= 500;
+                Tool.transmitter.Interval  = Tool.INTERVAL - 500;
             }
             Tool.FearlessTime = 6500;
             Tool.FearlessTimer.Stop();
@@ -311,7 +311,7 @@ namespace demo.Code
         }
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
-            Tool.transmitter.Interval += 500;
+            Tool.transmitter.Interval = Tool.INTERVAL;
             Tool.block.Fearless = false;
         }
     }
@@ -354,14 +354,14 @@ namespace demo.Code
             {
                 block.Timeslack = false;
                 Tool.form.BulletSpeed = Tool.BULLETSPEED;
-                Tool.transmitter.Interval /= 2;
+                Tool.transmitter.Interval  = Tool.INTERVAL;
                 Tool.TimeslackTimer.Stop();
                 return;
             }
             if(block.Quick == false)
             {
                 block.Quick = true;
-                Tool.form.BulletSpeed *= 3;
+                Tool.form.BulletSpeed = Tool.BULLETSPEED * 3;
             }
             Tool.QuickTime = 5500;
             Tool.QuickTimer.Stop();
@@ -369,7 +369,7 @@ namespace demo.Code
         }
         public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
         {
-            Tool.form.BulletSpeed /= 3;
+            Tool.form.BulletSpeed = Tool.BULLETSPEED;
             Tool.block.Quick = false;
         }
     }
@@ -403,6 +403,7 @@ namespace demo.Code
             this.width = width;
             this.height = height;
             type = EffectType.OnceEffect;
+            damagetype = 3;
         }
         public override void CauseEffect(Player block)
         {

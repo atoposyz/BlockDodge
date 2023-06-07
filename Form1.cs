@@ -8,6 +8,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Text;
 using System.Media;
 using System.Reflection.Emit;
+using System.Diagnostics;
 
 namespace demo
 {
@@ -37,7 +38,7 @@ namespace demo
         public const int BulletHeight = 48;
 
         public double BulletSpeed = Tool.BULLETSPEED;
-        public const int TrackLength = 2;
+        public const int TrackLength = 200;
 
         private Random random;
         private BufferedGraphics buffer;
@@ -127,17 +128,20 @@ namespace demo
         //}
         private bool CollidesJudge(int No_, Bullet bullet)
         {
+            Debug.Assert(bullet != null);
             if (bullet.DamageType == 0)  //如果是子弹
             {
                 if (block.BulletIgnore == true)
                 {
-                    transmitter.Bullets2[No_] = null;
+                    //transmitter.Bullets2[No_] = null;
+                    transmitter.Bullets[No_] = null;
                     UpdateTimesEffect();
                 }
                 else if (block.ShieldCapacity > 0)
                 {
                     block.ShieldCapacity--;
-                    transmitter.Bullets2[No_] = null;
+                    //transmitter.Bullets2[No_] = null;
+                    transmitter.Bullets[No_] = null;
                     UpdateTimesEffect();
                 }
                 else
@@ -149,27 +153,36 @@ namespace demo
             {
                 if (block.EffectIgnore == true)
                 {
-                    transmitter.Bullets2[No_] = null;
+                    //transmitter.Bullets2[No_] = null;
+                    transmitter.Bullets[No_] = null;
                 }
                 else
                 {
                     ((BUFF)bullet).CauseEffect(block);
                     UpdateTimesEffect();
-                    transmitter.Bullets2[No_] = null;
+                    //transmitter.Bullets2[No_] = null;
+                    transmitter.Bullets[No_] = null;
                 }
             }
             else if (bullet.DamageType == 2)
             {
                 if (block.EffectIgnore == true)
                 {
-                    transmitter.Bullets2[No_] = null;
+                    //transmitter.Bullets2[No_] = null;
+                    transmitter.Bullets[No_] = null;
                 }
                 else
                 {
                     ((DEBUFF)bullet).CauseEffect(block);
                     UpdateTimesEffect();
-                    transmitter.Bullets2[No_] = null;
+                    //transmitter.Bullets2[No_] = null;
+                    transmitter.Bullets[No_] = null;
                 }
+            }
+            else if(bullet.DamageType == 3)
+            {
+                ((BUFF)bullet).CauseEffect(block);
+                block.Win = true;
             }
             return false;
         }
@@ -187,19 +200,21 @@ namespace demo
                 MessageBox.Show("You Win!");
                 return;
             }
-            if (transmitter.Bullets2 != null)
-            {
-                for (int i = 0; i < transmitter.Bullets2.Count; i++)
+            //if (transmitter.Bullets2 != null)
+            if (transmitter.Bullets != null)
+            {//Bullets!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                for (int i = 0; i < transmitter.Bullets.Length; i++)
                 {
-                    Bullet bullet = transmitter.Bullets2[i];
+                    Bullet bullet = transmitter.Bullets[i];
                     if (bullet == null) continue;
                     bullet.Move();
                     //bullet.Draw(panel2.CreateGraphics());
-
+                    Debug.Assert(bullet != null);
 
                     if (bullet.LeaveScreen())
                     {
-                        transmitter.Bullets2[i] = null;
+                        //Debug.Assert(false);
+                        transmitter.Bullets[i] = null;
                         continue;
                         //bullet.Position = new Point(panel2.Width, random.Next(panel2.Height - BulletHeight));
                     }
@@ -208,9 +223,10 @@ namespace demo
                     {
                         ((BUFF)bullet).CauseEffect(block);
                         UpdateTimesEffect();
-                        transmitter.Bullets2[i] = null;
+                        transmitter.Bullets[i] = null;
                         continue;
                     }
+                    Debug.Assert(bullet != null);
                     if (bullet.CollidesWith(block))
                     {
                         bool flag = CollidesJudge(i, bullet);
@@ -428,7 +444,8 @@ namespace demo
                     //Image image = Image.FromFile(imagePath);
                     //Image imageTMP = new Bitmap(image, BlockWidth, BlockHeight);
                     //block.Draw(buffer.Graphics, imageTMP);
-                    foreach (var bullet in transmitter.Bullets2)
+                    //foreach (var bullet in transmitter.Bullets2)
+                    foreach (var bullet in transmitter.Bullets)
                     {
                         if (bullet != null)
                         {
@@ -443,7 +460,8 @@ namespace demo
                             transmitter.Bullets2[i].Draw(buffer.Graphics);
                         }
                     }*/
-                    transmitter.Bullets2.RemoveAll(s => s == null);
+
+                    //transmitter.Bullets2.RemoveAll(s => s == null);这里注释掉了！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
                     buffer.Render();
                 }
                 Thread.Sleep(8);
@@ -492,13 +510,17 @@ namespace demo
                 pause = false;
                 timer.Start();
                 button1.Text = "暂停";
-
+                if(firststart == false)
+                {
+                    Tool.EffectResume();
+                }
+                
             }
             else if (pause == false)
             {
                 pause = true;
                 timer.Stop();
-
+                Tool.EffectPause();
                 button1.Text = "继续";
             }
             if (firststart == true)

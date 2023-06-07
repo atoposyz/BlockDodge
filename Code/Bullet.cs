@@ -12,6 +12,7 @@ namespace demo.Code
         private int height;
         protected int damagetype;
         protected double posX;
+        private bool isfired;
 
         public Bullet(Point position, int width, int height, Image image) : base(position, width, height, image)
         {
@@ -19,12 +20,18 @@ namespace demo.Code
             this.height = height;
             damagetype = 0;
             posX = position.X;
+            isfired = false;
         }
 
         public int DamageType
         {
             get { return damagetype; } 
             set {  damagetype = value; }
+        }
+        public bool Isfired
+        {
+            get { return isfired; }
+            set { isfired = value; }
         }
         public void Move()
         {

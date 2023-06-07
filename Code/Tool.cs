@@ -19,6 +19,7 @@ namespace demo.Code
         public static double BULLETSPEED = 12.5;
         //public static double BULLETSPEED = 5;
         public static int INTERVAL;
+        public static int BULLETTOTAL = 60;
 
         public static Player block;
         public static Form1 form;
@@ -26,13 +27,13 @@ namespace demo.Code
         public static Timer MainTimer;
         public static Timer TransmitterTimer;
 
-        public static Timer MagnetTimer;
-        public static Timer TimeslackTimer;
-        public static Timer InvincibilityTimer;
-        public static Timer SprintTimer;
-        public static Timer FearlessTimer;
-        public static Timer QuickTimer;
-        public static Timer NightwalkTimer;
+        public static PauseTimer MagnetTimer;
+        public static PauseTimer TimeslackTimer;
+        public static PauseTimer InvincibilityTimer;
+        public static PauseTimer SprintTimer;
+        public static PauseTimer FearlessTimer;
+        public static PauseTimer QuickTimer;
+        public static PauseTimer NightwalkTimer;
         public static Timer DefenseTimer;
         public static Timer PureTimer;
         public static Timer BraveTimer;
@@ -52,9 +53,10 @@ namespace demo.Code
         public static int GoodluckTime = 0;
 
         public static int score = 0;
+        public static int activebullets = 0;
 
-        //public static string debugdot = "../../../";
-        public static string debugdot = "";
+        public static string debugdot = "../../../";
+        //public static string debugdot = "";
 
 
 
@@ -73,25 +75,25 @@ namespace demo.Code
             TransmitterTimer.Elapsed += new System.Timers.ElapsedEventHandler(transmitter.TransmitterCheck);
             TransmitterTimer.AutoReset = true;
 
-            Tool.MagnetTimer = new Timer(10000);
+            Tool.MagnetTimer = new PauseTimer(10000);
             Tool.MagnetTimer.Elapsed += new System.Timers.ElapsedEventHandler(MAGNET.LoseEfficacy);
             Tool.MagnetTimer.AutoReset = false;
-            Tool.TimeslackTimer = new Timer(5000);
+            Tool.TimeslackTimer = new PauseTimer(5000);
             Tool.TimeslackTimer.Elapsed += new System.Timers.ElapsedEventHandler(TIMESLACK.LoseEfficacy);
             Tool.TimeslackTimer.AutoReset = false;
-            InvincibilityTimer = new Timer(5000);
+            InvincibilityTimer = new PauseTimer(5000);
             InvincibilityTimer.Elapsed += new System.Timers.ElapsedEventHandler(INVINCIBILITY.LoseEfficacy);
             InvincibilityTimer.AutoReset = false;
-            SprintTimer = new Timer(4000);
+            SprintTimer = new PauseTimer(4000);
             SprintTimer.Elapsed += new System.Timers.ElapsedEventHandler(SPRINT.LoseEfficacy);
             SprintTimer.AutoReset = false;
-            FearlessTimer = new Timer(6000);
+            FearlessTimer = new PauseTimer(6000);
             FearlessTimer.Elapsed += new System.Timers.ElapsedEventHandler(FEARLESS.LoseEfficacy);
             FearlessTimer.AutoReset = false;
-            QuickTimer = new Timer(5000);
+            QuickTimer = new PauseTimer(5000);
             QuickTimer.Elapsed += new System.Timers.ElapsedEventHandler(QUICK.LoseEfficacy);
             QuickTimer.AutoReset = false;
-            NightwalkTimer = new Timer(4000);
+            NightwalkTimer = new PauseTimer(4000);
             NightwalkTimer.Elapsed += new System.Timers.ElapsedEventHandler(NIGHTWALK.LoseEfficacy);
             NightwalkTimer.AutoReset = false;
             DefenseTimer = new Timer(500);
@@ -130,6 +132,29 @@ namespace demo.Code
             score = 0;
 
         }
+
+        public static void EffectPause()
+        {
+            MagnetTimer.Pause();
+            TimeslackTimer.Pause();
+            InvincibilityTimer.Pause();
+            SprintTimer.Pause();
+            FearlessTimer.Pause();
+            QuickTimer.Pause();
+            NightwalkTimer.Pause();
+        }
+
+        public static void EffectResume()
+        {
+            MagnetTimer.Resume();
+            TimeslackTimer.Resume();
+            InvincibilityTimer.Resume();
+            SprintTimer.Resume();
+            FearlessTimer.Resume();
+            QuickTimer.Resume();
+            NightwalkTimer.Resume();
+        }
+
         public static void MainTimerCount(object source, System.Timers.ElapsedEventArgs e)
         {
             if(form.pause == true)
@@ -216,6 +241,14 @@ namespace demo.Code
             else
             {
                 GoodluckTime = 0;
+            }
+            activebullets = 0;
+            foreach (var bullet in transmitter.bullets)
+            {
+                if(bullet != null)
+                {
+                    activebullets++;
+                }
             }
         }
         
