@@ -212,6 +212,7 @@ namespace demo.Code
             }
             Tool.form.BulletSpeed = Tool.BULLETSPEED * 4;
             Tool.transmitter.Interval = Tool.INTERVAL / 4;
+            Tool.PERSCORE = 20;
             block.EffectIgnore = true;
             block.BulletIgnore = true;
             Tool.SprintTime = 4500;
@@ -223,6 +224,7 @@ namespace demo.Code
         {
             Tool.form.BulletSpeed = Tool.BULLETSPEED;
             Tool.transmitter.Interval = Tool.INTERVAL;
+            Tool.PERSCORE = 5;
             Tool.block.BulletIgnore = false;
             Tool.block.EffectIgnore = false;
             //Tool.block.Magnet = false;

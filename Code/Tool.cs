@@ -20,6 +20,7 @@ namespace demo.Code
         //public static double BULLETSPEED = 5;
         public static int INTERVAL;
         public static int BULLETTOTAL = 60;
+        public static int PERSCORE = 5;
 
         public static Player block;
         public static Form1 form;
@@ -135,6 +136,7 @@ namespace demo.Code
             QuickTime = 0;
             NightwalkTime = 0;
             score = 0;
+            Tool.PERSCORE = 5;
 
         }
 
@@ -175,6 +177,7 @@ namespace demo.Code
             Tool.InvincibilityTimer.Stop();
             Tool.TimeslackTimer.Stop();
             Tool.SprintTimer.Stop();
+            Tool.PERSCORE = 5;
         }
 
         public static void MainTimerCount(object source, System.Timers.ElapsedEventArgs e)
@@ -183,7 +186,7 @@ namespace demo.Code
             {
                 return;
             }
-            score += 5;
+            score += PERSCORE;
             if(block.Magnet == true && MagnetTime > 0)
             {
                 MagnetTime -= 500;
