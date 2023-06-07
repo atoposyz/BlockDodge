@@ -105,9 +105,9 @@ namespace demo
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
 
-            transmitter.LoadTrack("demo2.txt");
+            //transmitter.LoadTrack("demo2.txt");
 
-            sp.SoundLocation = Tool.debugdot + @"Resources/music.wav"; //音乐文件
+            //sp.SoundLocation = Tool.debugdot + @"Resources/music.wav"; //音乐文件
 
 
             //panel2.Resize += new EventHandler(panel2_Resize);
@@ -195,6 +195,7 @@ namespace demo
                     Form2.AddOrUpdateRankItem(userName, Tool.score);
                 }
                 block.Win = false;
+                Tool.EffectStop();
                 reset();
                 timer.Stop();
                 MessageBox.Show("You Win!");
@@ -232,6 +233,7 @@ namespace demo
                         bool flag = CollidesJudge(i, bullet);
                         if (flag == true)
                         {
+                            Tool.EffectStop();
                             reset();
                             timer.Stop();
                             MessageBox.Show("Game Over");
@@ -729,6 +731,7 @@ namespace demo
         {
             mainpanel.Visible = true;
             tableLayoutPanel1.Visible = false;
+            Tool.EffectStop();
             reset();
             /*if (mode == 0)
             {
@@ -782,6 +785,7 @@ namespace demo
 
         private void button4_Click(object sender, EventArgs e)
         {
+            Tool.EffectStop();
             reset();
         }
 
@@ -793,9 +797,10 @@ namespace demo
         {
             mode = 0;
             Tool.BULLETSPEED = 12.5;
+            Tool.INTERVAL = 500;
+            reset();
             BulletSpeed = 12.5;
             transmitter.Interval = 500;
-            Tool.INTERVAL = 500;
             sp.SoundLocation = Tool.debugdot + @"Resources/music.wav";
             transmitter.LoadTrack("demo2.txt");
             mainpanel.Visible = false;
@@ -805,9 +810,10 @@ namespace demo
         {
             mode = 1;
             Tool.BULLETSPEED = 5;
+            Tool.INTERVAL = 1500;
+            reset();
             BulletSpeed = 5;
             transmitter.Interval = 1500;
-            Tool.INTERVAL = 1500;
             sp.SoundLocation = Tool.debugdot + @"Resources/endless.wav";
             transmitter.LoadRandomTrack(TrackLength);
             mainpanel.Visible = false;

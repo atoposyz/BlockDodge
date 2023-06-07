@@ -160,6 +160,23 @@ namespace demo.Code
             NightwalkTimer.Resume();
         }
 
+        public static void EffectStop() 
+        {
+            block.EffectIgnore = false;
+            block.BulletIgnore = false;
+            block.Magnet = false;
+            block.Fearless = false;
+            block.Timeslack = false;
+            block.Quick = false;
+            Tool.form.BulletSpeed = Tool.BULLETSPEED;
+            Tool.transmitter.Interval = Tool.INTERVAL;
+            Tool.MagnetTimer.Stop();
+            Tool.FearlessTimer.Stop();
+            Tool.InvincibilityTimer.Stop();
+            Tool.TimeslackTimer.Stop();
+            Tool.SprintTimer.Stop();
+        }
+
         public static void MainTimerCount(object source, System.Timers.ElapsedEventArgs e)
         {
             if(form.pause == true)
