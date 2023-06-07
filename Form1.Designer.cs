@@ -73,12 +73,11 @@
             tableLayoutPanel1.Controls.Add(panel3, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(4, 4, 4, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.Size = new Size(1232, 721);
+            tableLayoutPanel1.Size = new Size(1008, 601);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -88,18 +87,16 @@
             panel1.Controls.Add(button1);
             panel1.Controls.Add(button3);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(4, 652);
-            panel1.Margin = new Padding(4, 4, 4, 4);
+            panel1.Location = new Point(3, 543);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1039, 65);
+            panel1.Size = new Size(850, 55);
             panel1.TabIndex = 0;
             // 
             // button4
             // 
-            button4.Location = new Point(343, 12);
-            button4.Margin = new Padding(4, 4, 4, 4);
+            button4.Location = new Point(281, 10);
             button4.Name = "button4";
-            button4.Size = new Size(123, 50);
+            button4.Size = new Size(101, 42);
             button4.TabIndex = 2;
             button4.Text = "重置";
             button4.UseVisualStyleBackColor = true;
@@ -107,10 +104,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(640, 12);
-            button2.Margin = new Padding(4, 4, 4, 4);
+            button2.Location = new Point(524, 10);
             button2.Name = "button2";
-            button2.Size = new Size(126, 50);
+            button2.Size = new Size(103, 42);
             button2.TabIndex = 1;
             button2.Text = "排行榜";
             button2.UseVisualStyleBackColor = true;
@@ -118,10 +114,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(71, 12);
-            button1.Margin = new Padding(4, 4, 4, 4);
+            button1.Location = new Point(58, 10);
             button1.Name = "button1";
-            button1.Size = new Size(123, 50);
+            button1.Size = new Size(101, 42);
             button1.TabIndex = 0;
             button1.Text = "开始游戏";
             button1.UseVisualStyleBackColor = true;
@@ -129,10 +124,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(928, 10);
-            button3.Margin = new Padding(4, 4, 4, 4);
+            button3.Location = new Point(759, 8);
             button3.Name = "button3";
-            button3.Size = new Size(108, 53);
+            button3.Size = new Size(88, 44);
             button3.TabIndex = 19;
             button3.Text = "返回";
             button3.UseVisualStyleBackColor = true;
@@ -143,10 +137,9 @@
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(4, 4);
-            panel2.Margin = new Padding(4, 4, 4, 4);
+            panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1039, 640);
+            panel2.Size = new Size(850, 534);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
             // 
@@ -175,20 +168,18 @@
             panel3.Controls.Add(magnetlimit);
             panel3.Controls.Add(shieldlabel);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(1051, 4);
-            panel3.Margin = new Padding(4, 4, 4, 4);
+            panel3.Location = new Point(859, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(177, 640);
+            panel3.Size = new Size(146, 534);
             panel3.TabIndex = 2;
             // 
             // goodlucklabel
             // 
             goodlucklabel.AutoSize = true;
             goodlucklabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            goodlucklabel.Location = new Point(53, 37);
-            goodlucklabel.Margin = new Padding(4, 0, 4, 0);
+            goodlucklabel.Location = new Point(33, 19);
             goodlucklabel.Name = "goodlucklabel";
-            goodlucklabel.Size = new Size(62, 31);
+            goodlucklabel.Size = new Size(52, 27);
             goodlucklabel.TabIndex = 25;
             goodlucklabel.Text = "强运";
             // 
@@ -196,10 +187,9 @@
             // 
             bravelabel.AutoSize = true;
             bravelabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            bravelabel.Location = new Point(115, 101);
-            bravelabel.Margin = new Padding(4, 0, 4, 0);
+            bravelabel.Location = new Point(65, 83);
             bravelabel.Name = "bravelabel";
-            bravelabel.Size = new Size(62, 31);
+            bravelabel.Size = new Size(52, 27);
             bravelabel.TabIndex = 24;
             bravelabel.Text = "勇猛";
             // 
@@ -207,10 +197,9 @@
             // 
             purelabel.AutoSize = true;
             purelabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            purelabel.Location = new Point(127, 55);
-            purelabel.Margin = new Padding(4, 0, 4, 0);
+            purelabel.Location = new Point(75, 46);
             purelabel.Name = "purelabel";
-            purelabel.Size = new Size(62, 31);
+            purelabel.Size = new Size(52, 27);
             purelabel.TabIndex = 23;
             purelabel.Text = "净化";
             // 
@@ -218,20 +207,18 @@
             // 
             defenselabel.AutoSize = true;
             defenselabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            defenselabel.Location = new Point(23, 90);
-            defenselabel.Margin = new Padding(4, 0, 4, 0);
+            defenselabel.Location = new Point(6, 64);
             defenselabel.Name = "defenselabel";
-            defenselabel.Size = new Size(62, 31);
+            defenselabel.Size = new Size(52, 27);
             defenselabel.TabIndex = 22;
             defenselabel.Text = "回防";
             // 
             // scores
             // 
             scores.Font = new Font("Microsoft YaHei UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            scores.Location = new Point(24, 576);
-            scores.Margin = new Padding(4, 0, 4, 0);
+            scores.Location = new Point(11, 456);
             scores.Name = "scores";
-            scores.Size = new Size(171, 54);
+            scores.Size = new Size(140, 45);
             scores.TabIndex = 21;
             scores.Text = "0";
             scores.TextAlign = ContentAlignment.MiddleCenter;
@@ -240,10 +227,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(79, 533);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(56, 420);
             label2.Name = "label2";
-            label2.Size = new Size(62, 31);
+            label2.Size = new Size(52, 27);
             label2.TabIndex = 20;
             label2.Text = "分数";
             // 
@@ -251,10 +237,9 @@
             // 
             nightwalklimit.AutoSize = true;
             nightwalklimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            nightwalklimit.Location = new Point(150, 418);
-            nightwalklimit.Margin = new Padding(4, 0, 4, 0);
+            nightwalklimit.Location = new Point(84, 348);
             nightwalklimit.Name = "nightwalklimit";
-            nightwalklimit.Size = new Size(39, 31);
+            nightwalklimit.Size = new Size(33, 27);
             nightwalklimit.TabIndex = 18;
             nightwalklimit.Text = "0s";
             // 
@@ -262,10 +247,9 @@
             // 
             quicklimit.AutoSize = true;
             quicklimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            quicklimit.Location = new Point(150, 379);
-            quicklimit.Margin = new Padding(4, 0, 4, 0);
+            quicklimit.Location = new Point(84, 316);
             quicklimit.Name = "quicklimit";
-            quicklimit.Size = new Size(39, 31);
+            quicklimit.Size = new Size(33, 27);
             quicklimit.TabIndex = 17;
             quicklimit.Text = "0s";
             // 
@@ -273,10 +257,9 @@
             // 
             fearlesslimit.AutoSize = true;
             fearlesslimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            fearlesslimit.Location = new Point(150, 341);
-            fearlesslimit.Margin = new Padding(4, 0, 4, 0);
+            fearlesslimit.Location = new Point(84, 284);
             fearlesslimit.Name = "fearlesslimit";
-            fearlesslimit.Size = new Size(39, 31);
+            fearlesslimit.Size = new Size(33, 27);
             fearlesslimit.TabIndex = 16;
             fearlesslimit.Text = "0s";
             // 
@@ -284,10 +267,9 @@
             // 
             timeslacklimit.AutoSize = true;
             timeslacklimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            timeslacklimit.Location = new Point(150, 227);
-            timeslacklimit.Margin = new Padding(4, 0, 4, 0);
+            timeslacklimit.Location = new Point(84, 189);
             timeslacklimit.Name = "timeslacklimit";
-            timeslacklimit.Size = new Size(39, 31);
+            timeslacklimit.Size = new Size(33, 27);
             timeslacklimit.TabIndex = 15;
             timeslacklimit.Text = "0s";
             // 
@@ -295,10 +277,9 @@
             // 
             invincibilitylimit.AutoSize = true;
             invincibilitylimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            invincibilitylimit.Location = new Point(150, 265);
-            invincibilitylimit.Margin = new Padding(4, 0, 4, 0);
+            invincibilitylimit.Location = new Point(84, 221);
             invincibilitylimit.Name = "invincibilitylimit";
-            invincibilitylimit.Size = new Size(39, 31);
+            invincibilitylimit.Size = new Size(33, 27);
             invincibilitylimit.TabIndex = 14;
             invincibilitylimit.Text = "0s";
             // 
@@ -306,10 +287,9 @@
             // 
             sprintlimit.AutoSize = true;
             sprintlimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            sprintlimit.Location = new Point(150, 304);
-            sprintlimit.Margin = new Padding(4, 0, 4, 0);
+            sprintlimit.Location = new Point(84, 253);
             sprintlimit.Name = "sprintlimit";
-            sprintlimit.Size = new Size(39, 31);
+            sprintlimit.Size = new Size(33, 27);
             sprintlimit.TabIndex = 13;
             sprintlimit.Text = "0s";
             // 
@@ -317,10 +297,9 @@
             // 
             nightwalklabel.AutoSize = true;
             nightwalklabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            nightwalklabel.Location = new Point(7, 418);
-            nightwalklabel.Margin = new Padding(4, 0, 4, 0);
+            nightwalklabel.Location = new Point(6, 348);
             nightwalklabel.Name = "nightwalklabel";
-            nightwalklabel.Size = new Size(62, 31);
+            nightwalklabel.Size = new Size(52, 27);
             nightwalklabel.TabIndex = 12;
             nightwalklabel.Text = "夜行";
             // 
@@ -328,10 +307,9 @@
             // 
             quicklabel.AutoSize = true;
             quicklabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            quicklabel.Location = new Point(7, 379);
-            quicklabel.Margin = new Padding(4, 0, 4, 0);
+            quicklabel.Location = new Point(6, 316);
             quicklabel.Name = "quicklabel";
-            quicklabel.Size = new Size(62, 31);
+            quicklabel.Size = new Size(52, 27);
             quicklabel.TabIndex = 11;
             quicklabel.Text = "迅捷";
             // 
@@ -339,10 +317,9 @@
             // 
             fearlesslabel.AutoSize = true;
             fearlesslabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            fearlesslabel.Location = new Point(7, 341);
-            fearlesslabel.Margin = new Padding(4, 0, 4, 0);
+            fearlesslabel.Location = new Point(6, 284);
             fearlesslabel.Name = "fearlesslabel";
-            fearlesslabel.Size = new Size(62, 31);
+            fearlesslabel.Size = new Size(52, 27);
             fearlesslabel.TabIndex = 10;
             fearlesslabel.Text = "无畏";
             // 
@@ -350,10 +327,9 @@
             // 
             sprintlabel.AutoSize = true;
             sprintlabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            sprintlabel.Location = new Point(7, 304);
-            sprintlabel.Margin = new Padding(4, 0, 4, 0);
+            sprintlabel.Location = new Point(6, 253);
             sprintlabel.Name = "sprintlabel";
-            sprintlabel.Size = new Size(62, 31);
+            sprintlabel.Size = new Size(52, 27);
             sprintlabel.TabIndex = 9;
             sprintlabel.Text = "冲刺";
             // 
@@ -361,10 +337,9 @@
             // 
             invincibilitylabel.AutoSize = true;
             invincibilitylabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            invincibilitylabel.Location = new Point(7, 265);
-            invincibilitylabel.Margin = new Padding(4, 0, 4, 0);
+            invincibilitylabel.Location = new Point(6, 221);
             invincibilitylabel.Name = "invincibilitylabel";
-            invincibilitylabel.Size = new Size(62, 31);
+            invincibilitylabel.Size = new Size(52, 27);
             invincibilitylabel.TabIndex = 8;
             invincibilitylabel.Text = "无敌";
             // 
@@ -372,10 +347,9 @@
             // 
             timeslacklabel.AutoSize = true;
             timeslacklabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            timeslacklabel.Location = new Point(7, 227);
-            timeslacklabel.Margin = new Padding(4, 0, 4, 0);
+            timeslacklabel.Location = new Point(6, 189);
             timeslacklabel.Name = "timeslacklabel";
-            timeslacklabel.Size = new Size(62, 31);
+            timeslacklabel.Size = new Size(52, 27);
             timeslacklabel.TabIndex = 7;
             timeslacklabel.Text = "缓时";
             // 
@@ -383,10 +357,9 @@
             // 
             magnetlabel.AutoSize = true;
             magnetlabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            magnetlabel.Location = new Point(7, 187);
-            magnetlabel.Margin = new Padding(4, 0, 4, 0);
+            magnetlabel.Location = new Point(6, 156);
             magnetlabel.Name = "magnetlabel";
-            magnetlabel.Size = new Size(62, 31);
+            magnetlabel.Size = new Size(52, 27);
             magnetlabel.TabIndex = 6;
             magnetlabel.Text = "磁铁";
             // 
@@ -394,10 +367,9 @@
             // 
             shieldtext.AutoSize = true;
             shieldtext.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            shieldtext.Location = new Point(150, 149);
-            shieldtext.Margin = new Padding(4, 0, 4, 0);
+            shieldtext.Location = new Point(84, 124);
             shieldtext.Name = "shieldtext";
-            shieldtext.Size = new Size(28, 31);
+            shieldtext.Size = new Size(24, 27);
             shieldtext.TabIndex = 4;
             shieldtext.Text = "0";
             // 
@@ -405,10 +377,9 @@
             // 
             magnetlimit.AutoSize = true;
             magnetlimit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            magnetlimit.Location = new Point(150, 187);
-            magnetlimit.Margin = new Padding(4, 0, 4, 0);
+            magnetlimit.Location = new Point(84, 156);
             magnetlimit.Name = "magnetlimit";
-            magnetlimit.Size = new Size(39, 31);
+            magnetlimit.Size = new Size(33, 27);
             magnetlimit.TabIndex = 5;
             magnetlimit.Text = "0s";
             // 
@@ -416,22 +387,20 @@
             // 
             shieldlabel.AutoSize = true;
             shieldlabel.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            shieldlabel.Location = new Point(7, 149);
-            shieldlabel.Margin = new Padding(4, 0, 4, 0);
+            shieldlabel.Location = new Point(6, 124);
             shieldlabel.Name = "shieldlabel";
-            shieldlabel.Size = new Size(62, 31);
+            shieldlabel.Size = new Size(52, 27);
             shieldlabel.TabIndex = 3;
             shieldlabel.Text = "护盾";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(11F, 24F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1232, 721);
+            ClientSize = new Size(1008, 601);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
-            Margin = new Padding(4, 4, 4, 4);
             MaximizeBox = false;
             Name = "Form1";
             Text = "德克萨斯送快递";
