@@ -38,6 +38,7 @@ namespace demo.Code
         public static Timer PureTimer;
         public static Timer BraveTimer;
         public static Timer GoodluckTimer;
+        public static Timer ShieldTimer;
 
         public static int TransmitterTime = 0;
         public static int MagnetTime = 0;
@@ -51,6 +52,7 @@ namespace demo.Code
         public static int PureTime = 0;
         public static int BraveTime = 0;
         public static int GoodluckTime = 0;
+        public static int ShieldTime = 0;
 
         public static int score = 0;
         public static int activebullets = 0;
@@ -108,6 +110,9 @@ namespace demo.Code
             GoodluckTimer = new Timer(500);
             GoodluckTimer.Elapsed += new System.Timers.ElapsedEventHandler(GOODLUCK.LoseEfficacy);
             GoodluckTimer.AutoReset = false;
+            ShieldTimer = new Timer(500);
+            ShieldTimer.Elapsed += new System.Timers.ElapsedEventHandler(SHIELD.LoseEfficacy);
+            ShieldTimer.AutoReset = false;
         }
         public static void reset ()
         {
@@ -241,6 +246,14 @@ namespace demo.Code
             else
             {
                 GoodluckTime = 0;
+            }
+            if(ShieldTime > 0)
+            {
+                ShieldTime -= 250;
+            }
+            else
+            {
+                 ShieldTime = 0;
             }
             activebullets = 0;
             foreach (var bullet in transmitter.bullets)

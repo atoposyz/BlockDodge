@@ -64,6 +64,13 @@ namespace demo.Code
         public override void CauseEffect(Player block)
         {
             block.ShieldCapacity++;
+            Tool.ShieldTime = 500;
+            Tool.ShieldTimer.Stop();
+            Tool.ShieldTimer.Start();
+        }
+        public static void LoseEfficacy(object source, System.Timers.ElapsedEventArgs e)
+        {
+
         }
     }
     class MAGNET: BUFF

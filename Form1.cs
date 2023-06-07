@@ -388,6 +388,14 @@ namespace demo
             {
                 goodlucklabel.BackColor = BackColor;
             }
+            if(Tool.ShieldTime / 100 > 0)
+            {
+                shieldlabel.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                shieldlabel.BackColor = BackColor;
+            }
             magnetlimit.Text = (Tool.MagnetTime / 1000).ToString() + 's';
             timeslacklimit.Text = (Tool.TimeslackTime / 1000).ToString() + "s";
             invincibilitylimit.Text = (Tool.InvincibilityTime / 1000).ToString() + "s";
@@ -635,7 +643,7 @@ namespace demo
 
             helppara = new System.Windows.Forms.Label()
             {
-                Text = "\t又是平常的一天，德克萨斯身为企鹅物流的员工，又要去派送快递了！\n\n但是今天的路上依旧不那么太平啊，就像是误入了什么游戏一样，一把把刀剑从前面飞来！\n\n作为一名尖兵，躲过这些自然是易如反掌，但是有时候也会遇到不明确的BUFF与DEBUFF，让人措手不及！\n\n请你和德克萨斯合作，将快递安全送到目的地吧！\r\n\n\t使用W向上移动，S向下移动。",
+                Text = "\t又是平常的一天，德克萨斯身为企鹅物流的员工，又要去派送快递了！\n\n但是今天的路上依旧不那么太平啊，就像是误入了什么游戏一样，一把把刀剑从前面飞来！\n\n作为一名尖兵，躲过这些自然是易如反掌，但是有时候也会遇到不明确的BUFF与DEBUFF，让人措手不及！\n\n请你和德克萨斯合作，将快递安全送到目的地吧！\r\n\n\t使用W向上移动，S向下移动。\n\n作者：Aidan, Xuanfly\n\nSpecial Thanks：GGN_2015",
                 Font = new Font("黑体", 14),
                 Location = new Point(100, 100),
                 BackColor = Color.FromArgb(200, 255, 255, 255),
@@ -645,12 +653,12 @@ namespace demo
             };
             helppara2 = new System.Windows.Forms.Label()
             {
-                Text = "BUFF\r\n\r\n1. 护盾SHIELD。具有层数，可抵消一次子弹。\r\n2. 磁铁MAGNET。具有持续时间，在持续时间内可以吸收经过的 3 条赛道的 BUFF, 金币, 红心 。\r\n3. 回防DEFENSE。一次性效果，若方块后方有位置，则退到当前赛道的后一个位置，并无敌小段时间。\r\n4. 缓时TIMESLACK。具有持续时间，持续时间内发射物速度变慢。\r\n5. 无敌INVINCIBILITY。具有持续时间，持续时间内抵消所有子弹和特殊道具。\r\n6. 净化PURE。一次性效果，清空所有已获得的特殊效果。\r\n7. 冲刺SPRINT。具有持续时间，持续时间内获得磁铁和无敌并加速游戏时间。\r\n\r\nDEBUFF\r\n\r\n1. 勇猛BRAVE。一次性效果，若方块前方有位置，则前进到当前赛道的前一个位置，并无敌小段时间。\r\n2. 无畏FEARLESS。具有持续时间，持续时间内子弹数量变多。\r\n3. 强运GOODLUCK。一次性效果，立刻发射 3 个并排的未知效果。\r\n4. 迅捷QUICK。具有持续时间，持续时间内发射物速度变快。\r\n5. 夜行NIGHTWALK。具有持续时间，持续时间内游戏画面黑白闪烁。",
+                Text = "BUFF\n\n1. 护盾SHIELD。具有层数，可抵消一次子弹。\r\n2. 磁铁MAGNET。具有持续时间，在持续时间内可以吸收经过的 3 条赛道的 BUFF。\r\n3. 回防DEFENSE。一次性效果，若方块后方有位置，则退到当前赛道的后一个位置，并无敌小段时间。\r\n4. 缓时TIMESLACK。具有持续时间，持续时间内发射物速度变慢。\r\n5. 无敌INVINCIBILITY。具有持续时间，持续时间内抵消所有子弹和特殊道具。\r\n6. 净化PURE。一次性效果，清空所有已获得的特殊效果。\r\n7. 冲刺SPRINT。具有持续时间，持续时间内获得磁铁和无敌并加速游戏时间。\n\nDEBUFF\n\n1. 勇猛BRAVE。一次性效果，若方块前方有位置，则前进到当前赛道的前一个位置，并无敌小段时间。\r\n2. 无畏FEARLESS。具有持续时间，持续时间内子弹数量变多。\r\n3. 强运GOODLUCK。一次性效果，立刻发射 3 个并排的未知效果。\r\n4. 迅捷QUICK。具有持续时间，持续时间内发射物速度变快。\r\n5. 夜行NIGHTWALK。具有持续时间，持续时间内游戏画面黑白闪烁。",
                 Font = new Font("黑体", 14),
-                Location = new Point(150, 50),
+                Location = new Point(50, 20),
                 BackColor = Color.FromArgb(200, 255, 255, 255),
                 AutoSize = true,
-                MaximumSize = new Size(850, 0),
+                MaximumSize = new Size(950, 0),
                 Visible = false,
             };
             ifhelp = 0;
