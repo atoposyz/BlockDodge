@@ -33,10 +33,10 @@ namespace demo.Code
     }
     enum BuffProbability
     {
-        shield = 15,
-        magnet = 30,
-        defense = 45,
-        timeslack = 60,
+        shield = 20,
+        magnet = 35,
+        defense = 55,
+        timeslack = 70,
         invincibility = 75,
         pure = 90,
         sprint = 100
