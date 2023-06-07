@@ -480,7 +480,26 @@ namespace demo
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(GameImg.background_all, 0, 0);
+            using (FileStream stream = new FileStream(Tool.debugdot + @"Resources/background.png", FileMode.Open, FileAccess.Read))
+            {
+                using (Image image = Image.FromStream(stream))
+                {
+                    Rectangle cropArea = new Rectangle(0, 0, 1039, 640);
+                    using (Bitmap croppedBitmap = new Bitmap(cropArea.Width, cropArea.Height))
+                    {
+                        using (Graphics g = Graphics.FromImage(croppedBitmap))
+                        {
+                            g.DrawImage(image, new Rectangle(0, 0, cropArea.Width, cropArea.Height), cropArea, GraphicsUnit.Pixel);
+                        }
+
+                        e.Graphics.DrawImage(croppedBitmap, 0, 0);
+                    }
+                }
+            }
+
+
+
+            //e.Graphics.DrawImage(GameImg.background, 0, 0);
             string imagePath = Tool.debugdot + @"Resources/mod_003.png";
             using (Image image = Image.FromFile(imagePath))
             {
