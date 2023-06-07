@@ -58,8 +58,8 @@ namespace demo.Code
         public static int score = 0;
         public static int activebullets = 0;
 
-        //public static string debugdot = "../../../";
-        public static string debugdot = "";
+        public static string debugdot = "../../../";
+        //public static string debugdot = "";
 
 
 

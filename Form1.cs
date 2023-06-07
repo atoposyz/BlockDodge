@@ -480,11 +480,11 @@ namespace demo
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
-            using (FileStream stream = new FileStream(Tool.debugdot + @"Resources/background.png", FileMode.Open, FileAccess.Read))
+            using (FileStream stream = new FileStream(Tool.debugdot + @"Resources/background_all.png", FileMode.Open, FileAccess.Read))
             {
                 using (Image image = Image.FromStream(stream))
                 {
-                    Rectangle cropArea = new Rectangle(0, 0, 1039, 640);
+                    Rectangle cropArea = new Rectangle(xPos, 0, 1039, 640);
                     using (Bitmap croppedBitmap = new Bitmap(cropArea.Width, cropArea.Height))
                     {
                         using (Graphics g = Graphics.FromImage(croppedBitmap))
@@ -496,7 +496,6 @@ namespace demo
                     }
                 }
             }
-
 
 
             //e.Graphics.DrawImage(GameImg.background, 0, 0);
@@ -777,6 +776,7 @@ namespace demo
         public void reset()
         {
             sp.Stop();
+            xPos = 0;
             panel2.CreateGraphics().Clear(BackColor);
             panel2.Invalidate();
             firststart = true;
