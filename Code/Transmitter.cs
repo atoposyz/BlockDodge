@@ -28,7 +28,7 @@ namespace demo.Code
     {
         space = 25,     //0
         buff = 35,      //2
-        debuff = 40,    //3
+        debuff = 45,    //3
         bullet = 100    //1
     }
     enum BuffProbability
