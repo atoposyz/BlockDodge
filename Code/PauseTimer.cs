@@ -37,13 +37,17 @@ namespace demo.Code
                 Start();
             }
 
-            resetStopwatch();
+            stopwatch.Reset();
         }
         public void Pause()
         {
             Stop();
             stopwatch.Stop();
             remainingtime = Interval - stopwatch.Elapsed.TotalMilliseconds;
+            if(remainingtime <= 0)
+            {
+                remainingtime = 1;
+            }
         }
         public void Resume()
         {
